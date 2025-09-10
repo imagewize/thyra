@@ -1,5 +1,5 @@
 <p align="center">
-  <a href="https://roots.io/sage/"><img alt="Sage" src="https://cdn.roots.io/app/uploads/logo-sage.svg" height="100"></a>
+  <img alt="Thyra" src="resources/images/thyra-logo.svg" height="100">
 </p>
 
 <p align="center">
@@ -8,7 +8,7 @@
   <a href="https://bsky.app/profile/roots.dev"><img alt="Follow roots.dev on Bluesky" src="https://img.shields.io/badge/follow-@roots.dev-0085ff?logo=bluesky&style=flat-square"></a>
 </p>
 
-# Thyra
+<h1 align="center">Thyra</h1>
 
 **Minimalist editorial WordPress theme inspired by Thaiconomics design**
 
