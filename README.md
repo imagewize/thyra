@@ -16,9 +16,9 @@ Built on Sage 11 with Laravel Blade, Tailwind CSS, and modern development workfl
 
 ## Design Philosophy
 
-Thyra embodies the sophisticated minimalism of editorial publishing, drawing inspiration from the clean aesthetics of [Thaiconomics](https://thaiconomics.smtv.test). The theme focuses on:
+Thyra embodies the sophisticated minimalism of editorial publishing, drawing inspiration from the clean aesthetics of Thaiconomic. The theme focuses on:
 
-- **Editorial Typography** — Helvetica Neue with carefully crafted type hierarchy
+- **Editorial Typography** — Lato Regular (400) - Primary Sans Serif, Lora Regular (400) - Serif Font, Bitter Regular (400) - Display Font, Open Sans Regular (400) - Alternative Sans Serif with carefully crafted type hierarchy
 - **Magazine-Style Layout** — Asymmetric grids and generous whitespace  
 - **Minimalist Aesthetic** — Black, white, and subtle grays color palette
 - **Reading Experience** — Optimized for long-form content consumption
