@@ -1,0 +1,198 @@
+@import "tailwindcss" theme(static);
+@import "./fonts.css";
+@source "../views/";
+@source "../../app/";
+
+/* Thaiconomics Editorial Design System - Phase 1.2 */
+@theme {
+  /* Thaiconomics Editorial Palette */
+  --color-black: #000000;
+  --color-charcoal: #333333;
+  --color-gray: #666666;
+  --color-light-gray: #999999;
+  --color-white: #ffffff;
+  --color-off-white: #fafafa;
+  
+  /* Extended grays for UI elements */
+  --color-gray-50: #f9fafb;
+  --color-gray-100: #f3f4f6;
+  --color-gray-200: #e5e7eb;
+  --color-gray-300: #d1d5db;
+  --color-gray-400: #9ca3af;
+  --color-gray-500: #6b7280;
+  --color-gray-600: #4b5563;
+  --color-gray-700: #374151;
+  --color-gray-800: #1f2937;
+  --color-gray-900: #111827;
+  
+  /* Typography System */
+  --font-family-primary: "Lato", system-ui, sans-serif;
+  --font-family-serif: "Lora", Georgia, serif;
+  --font-family-display: "Bitter", "Lato", system-ui, sans-serif;
+  --font-family-body: "Open Sans", "Lato", system-ui, sans-serif;
+  
+  /* Editorial Typography Scale */
+  --font-size-hero: 55px;        /* Hero post titles (desktop) */
+  --font-size-hero-mobile: 28px; /* Hero post titles (mobile) */
+  --font-size-title: 30px;       /* Large editorial headlines (desktop) */
+  --font-size-title-mobile: 20px; /* Large editorial headlines (mobile) */
+  --font-size-subtitle: 24px;    /* Subtitle/deck text */
+  --font-size-body: 16px;        /* Body text */
+  --font-size-small: 14px;       /* Meta text */
+  
+  /* Line Heights for Editorial Design */
+  --line-height-tight: 1.2;      /* Headlines */
+  --line-height-normal: 1.6;     /* Body text */
+  --line-height-relaxed: 1.8;    /* Large body text */
+  
+  /* Font Weights */
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+  
+  /* Editorial Spacing System (generous whitespace) */
+  --spacing-xs: 0.5rem;    /* 8px */
+  --spacing-sm: 1rem;      /* 16px */
+  --spacing-md: 1.5rem;    /* 24px */
+  --spacing-lg: 2rem;      /* 32px */
+  --spacing-xl: 3rem;      /* 48px */
+  --spacing-2xl: 4rem;     /* 64px */
+  --spacing-3xl: 6rem;     /* 96px */
+  --spacing-4xl: 8rem;     /* 128px */
+  --spacing-5xl: 10rem;    /* 160px */
+  
+  /* Custom Editorial Spacing */
+  --spacing-section: 4rem;  /* Between major sections */
+  --spacing-article: 2rem;  /* Between articles */
+  --spacing-content: 1.5rem; /* Content spacing */
+  
+  /* Border Radius */
+  --radius-none: 0;
+  --radius-sm: 0.25rem;
+  --radius-md: 0.5rem;
+  --radius-lg: 1rem;
+  --radius-xl: 1.5rem;
+  
+  /* Shadows for Editorial Design */
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  
+  /* Z-index Scale */
+  --z-index-dropdown: 10;
+  --z-index-modal: 50;
+  --z-index-popover: 100;
+  --z-index-tooltip: 200;
+}
+
+/* Editorial Design CSS Variables */
+:root {
+  /* Content width constraints */
+  --content-width-narrow: 65ch;   /* Optimal reading line length */
+  --content-width-medium: 80ch;   /* Medium content blocks */
+  --content-width-wide: 1200px;   /* Full-width sections */
+  
+  /* Editorial layout proportions */
+  --hero-aspect-ratio: 16/9;      /* Hero image aspect ratio */
+  --thumbnail-aspect-ratio: 4/3;  /* Article thumbnail aspect ratio */
+  --sidebar-width: 320px;         /* Sidebar width */
+  
+  /* Animation durations */
+  --transition-fast: 0.15s;
+  --transition-normal: 0.3s;
+  --transition-slow: 0.5s;
+  
+  /* Focus ring for accessibility */
+  --focus-ring: 0 0 0 2px var(--color-black);
+}
+
+/* Editorial Typography Utilities */
+.text-hero {
+  font-size: var(--font-size-hero);
+  line-height: var(--line-height-tight);
+  font-weight: var(--font-weight-bold);
+}
+
+.text-title {
+  font-size: var(--font-size-title);
+  line-height: var(--line-height-tight);
+  font-weight: var(--font-weight-semibold);
+}
+
+.text-subtitle {
+  font-size: var(--font-size-subtitle);
+  line-height: var(--line-height-normal);
+  font-weight: var(--font-weight-normal);
+}
+
+.text-meta {
+  font-size: var(--font-size-small);
+  color: var(--color-gray);
+  font-weight: var(--font-weight-normal);
+}
+
+/* Responsive Typography */
+@media (max-width: 768px) {
+  .text-hero {
+    font-size: var(--font-size-hero-mobile);
+  }
+  
+  .text-title {
+    font-size: var(--font-size-title-mobile);
+  }
+}
+
+/* Editorial Layout Utilities */
+.content-narrow {
+  max-width: var(--content-width-narrow);
+}
+
+.content-medium {
+  max-width: var(--content-width-medium);
+}
+
+.content-wide {
+  max-width: var(--content-width-wide);
+}
+
+/* Custom utility classes */
+.line-clamp-3 {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.aspect-hero {
+  aspect-ratio: var(--hero-aspect-ratio);
+}
+
+.aspect-thumbnail {
+  aspect-ratio: var(--thumbnail-aspect-ratio);
+}
+
+/* Smooth scroll behavior */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Enhanced focus styles for accessibility */
+.focus\:not-sr-only:focus {
+  position: static;
+  width: auto;
+  height: auto;
+  padding: 1rem;
+  margin: 0;
+  overflow: visible;
+  clip: auto;
+  white-space: normal;
+}
+
+/* Focus ring for interactive elements */
+*:focus-visible {
+  outline: none;
+  box-shadow: var(--focus-ring);
+  border-radius: var(--radius-sm);
+}

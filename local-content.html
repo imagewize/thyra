@@ -1,0 +1,61 @@
+<html><head></head><body><br>
+<b>Fatal error</b>:  Uncaught ParseError: syntax error, unexpected token "endforeach", expecting "elseif" or "else" or "endif" in /Users/jasperfrumau/code/thyra/wp-content/cache/acorn/framework/views/4c214db169194f8a0d85e6d3ef7e95de.php:139
+Stack trace:
+#0 /Users/jasperfrumau/code/thyra/wp-content/themes/thyra/vendor/illuminate/filesystem/Filesystem.php(124): Illuminate\Filesystem\Filesystem::Illuminate\Filesystem\{closure}()
+#1 /Users/jasperfrumau/code/thyra/wp-content/themes/thyra/vendor/illuminate/view/Engines/PhpEngine.php(57): Illuminate\Filesystem\Filesystem-&gt;getRequire('/Users/jasperfr...', Array)
+#2 /Users/jasperfrumau/code/thyra/wp-content/themes/thyra/vendor/illuminate/view/Engines/CompilerEngine.php(76): Illuminate\View\Engines\PhpEngine-&gt;evaluatePath('/Users/jasperfr...', Array)
+#3 /Users/jasperfrumau/code/thyra/wp-content/themes/thyra/vendor/illuminate/view/View.php(208): Illuminate\View\Engines\CompilerEngine-&gt;get('/Users/jasperfr...', Array)
+#4 /Users/jasperfrumau/code/thyra/wp-content/themes/thyra/vendor/illuminate/view/View.php(191): Illuminate\View\View-&gt;getContents()
+#5 /Users/jasperfrumau/code/thyra/wp-content/themes/thyra/vendor/illuminate/view/View.php(160): Illuminate\View\View-&gt;renderContents()
+#6 /Users/jasperfrumau/code/thyra/wp-content/cache/acorn/framework/views/27bc68453bf0634b8621b66045fab329.php(26): Illuminate\View\View-&gt;render()
+#7 /Users/jasperfrumau/code/thyra/wp-content/themes/thyra/vendor/illuminate/filesystem/Filesystem.php(123): require('/Users/jasperfr...')
+#8 /Users/jasperfrumau/code/thyra/wp-content/themes/thyra/vendor/illuminate/filesystem/Filesystem.php(124): Illuminate\Filesystem\Filesystem::Illuminate\Filesystem\{closure}()
+#9 /Users/jasperfrumau/code/thyra/wp-content/themes/thyra/vendor/illuminate/view/Engines/PhpEngine.php(57): Illuminate\Filesystem\Filesystem-&gt;getRequire('/Users/jasperfr...', Array)
+#10 /Users/jasperfrumau/code/thyra/wp-content/themes/thyra/vendor/illuminate/view/Engines/CompilerEngine.php(76): Illuminate\View\Engines\PhpEngine-&gt;evaluatePath('/Users/jasperfr...', Array)
+#11 /Users/jasperfrumau/code/thyra/wp-content/themes/thyra/vendor/illuminate/view/View.php(208): Illuminate\View\Engines\CompilerEngine-&gt;get('/Users/jasperfr...', Array)
+#12 /Users/jasperfrumau/code/thyra/wp-content/themes/thyra/vendor/illuminate/view/View.php(191): Illuminate\View\View-&gt;getContents()
+#13 /Users/jasperfrumau/code/thyra/wp-content/themes/thyra/vendor/illuminate/view/View.php(160): Illuminate\View\View-&gt;renderContents()
+#14 /Users/jasperfrumau/code/thyra/wp-content/themes/thyra/index.php(3): Illuminate\View\View-&gt;render()
+#15 /Users/jasperfrumau/code/thyra/wp-includes/template-loader.php(106): include('/Users/jasperfr...')
+#16 /Users/jasperfrumau/code/thyra/wp-blog-header.php(19): require_once('/Users/jasperfr...')
+#17 /Users/jasperfrumau/code/thyra/index.php(17): require('/Users/jasperfr...')
+#18 /Users/jasperfrumau/.composer/vendor/laravel/valet/server.php(110): require('/Users/jasperfr...')
+#19 {main}
+
+Next Illuminate\View\ViewException: syntax error, unexpected token "endforeach", expecting "elseif" or "else" or "endif" (View: /Users/jasperfrumau/code/thyra/wp-content/themes/thyra/resources/views/partials/hero-section.blade.php) in /Users/jasperfrumau/code/thyra/wp-content/cache/acorn/framework/views/4c214db169194f8a0d85e6d3ef7e95de.php:139
+Stack trace:
+#0 /Users/jasperfrumau/code/thyra/wp-content/themes/thyra/vendor/illuminate/view/Engines/PhpEngine.php(59): Illuminate\View\Engines\CompilerEngine-&gt;handleViewException(Object(ParseError), 3)
+#1 /Users/jasperfrumau/code/thyra/wp-content/themes/thyra/vendor/illuminate/view/Engines/CompilerEngine.php(76): Illuminate\View\Engines\PhpEngine-&gt;evaluatePath('/Users/jasperfr...', Array)
+#2 /Users/jasperfrumau/code/thyra/wp-content/themes/thyra/vendor/illuminate/view/View.php(208): Illuminate\View\Engines\CompilerEngine-&gt;get('/Users/jasperfr...', Array)
+#3 /Users/jasperfrumau/code/thyra/wp-content/themes/thyra/vendor/illuminate/view/View.php(191): Illuminate\View\View-&gt;getContents()
+#4 /Users/jasperfrumau/code/thyra/wp-content/themes/thyra/vendor/illuminate/view/View.php(160): Illuminate\View\View-&gt;renderContents()
+#5 /Users/jasperfrumau/code/thyra/wp-content/cache/acorn/framework/views/27bc68453bf0634b8621b66045fab329.php(26): Illuminate\View\View-&gt;render()
+#6 /Users/jasperfrumau/code/thyra/wp-content/themes/thyra/vendor/illuminate/filesystem/Filesystem.php(123): require('/Users/jasperfr...')
+#7 /Users/jasperfrumau/code/thyra/wp-content/themes/thyra/vendor/illuminate/filesystem/Filesystem.php(124): Illuminate\Filesystem\Filesystem::Illuminate\Filesystem\{closure}()
+#8 /Users/jasperfrumau/code/thyra/wp-content/themes/thyra/vendor/illuminate/view/Engines/PhpEngine.php(57): Illuminate\Filesystem\Filesystem-&gt;getRequire('/Users/jasperfr...', Array)
+#9 /Users/jasperfrumau/code/thyra/wp-content/themes/thyra/vendor/illuminate/view/Engines/CompilerEngine.php(76): Illuminate\View\Engines\PhpEngine-&gt;evaluatePath('/Users/jasperfr...', Array)
+#10 /Users/jasperfrumau/code/thyra/wp-content/themes/thyra/vendor/illuminate/view/View.php(208): Illuminate\View\Engines\CompilerEngine-&gt;get('/Users/jasperfr...', Array)
+#11 /Users/jasperfrumau/code/thyra/wp-content/themes/thyra/vendor/illuminate/view/View.php(191): Illuminate\View\View-&gt;getContents()
+#12 /Users/jasperfrumau/code/thyra/wp-content/themes/thyra/vendor/illuminate/view/View.php(160): Illuminate\View\View-&gt;renderContents()
+#13 /Users/jasperfrumau/code/thyra/wp-content/themes/thyra/index.php(3): Illuminate\View\View-&gt;render()
+#14 /Users/jasperfrumau/code/thyra/wp-includes/template-loader.php(106): include('/Users/jasperfr...')
+#15 /Users/jasperfrumau/code/thyra/wp-blog-header.php(19): require_once('/Users/jasperfr...')
+#16 /Users/jasperfrumau/code/thyra/index.php(17): require('/Users/jasperfr...')
+#17 /Users/jasperfrumau/.composer/vendor/laravel/valet/server.php(110): require('/Users/jasperfr...')
+#18 {main}
+
+Next Illuminate\View\ViewException: syntax error, unexpected token "endforeach", expecting "elseif" or "else" or "endif" (View: /Users/jasperfrumau/code/thyra/wp-content/themes/thyra/resources/views/partials/hero-section.blade.php) (View: /Users/jasperfrumau/code/thyra/wp-content/themes/thyra/resources/views/partials/hero-section.blade.php) in /Users/jasperfrumau/code/thyra/wp-content/cache/acorn/framework/views/4c214db169194f8a0d85e6d3ef7e95de.php:139
+Stack trace:
+#0 /Users/jasperfrumau/code/thyra/wp-content/themes/thyra/vendor/illuminate/view/Engines/PhpEngine.php(59): Illuminate\View\Engines\CompilerEngine-&gt;handleViewException(Object(Illuminate\View\ViewException), 1)
+#1 /Users/jasperfrumau/code/thyra/wp-content/themes/thyra/vendor/illuminate/view/Engines/CompilerEngine.php(76): Illuminate\View\Engines\PhpEngine-&gt;evaluatePath('/Users/jasperfr...', Array)
+#2 /Users/jasperfrumau/code/thyra/wp-content/themes/thyra/vendor/illuminate/view/View.php(208): Illuminate\View\Engines\CompilerEngine-&gt;get('/Users/jasperfr...', Array)
+#3 /Users/jasperfrumau/code/thyra/wp-content/themes/thyra/vendor/illuminate/view/View.php(191): Illuminate\View\View-&gt;getContents()
+#4 /Users/jasperfrumau/code/thyra/wp-content/themes/thyra/vendor/illuminate/view/View.php(160): Illuminate\View\View-&gt;renderContents()
+#5 /Users/jasperfrumau/code/thyra/wp-content/themes/thyra/index.php(3): Illuminate\View\View-&gt;render()
+#6 /Users/jasperfrumau/code/thyra/wp-includes/template-loader.php(106): include('/Users/jasperfr...')
+#7 /Users/jasperfrumau/code/thyra/wp-blog-header.php(19): require_once('/Users/jasperfr...')
+#8 /Users/jasperfrumau/code/thyra/index.php(17): require('/Users/jasperfr...')
+#9 /Users/jasperfrumau/.composer/vendor/laravel/valet/server.php(110): require('/Users/jasperfr...')
+#10 {main}
+  thrown in <b>/Users/jasperfrumau/code/thyra/wp-content/cache/acorn/framework/views/4c214db169194f8a0d85e6d3ef7e95de.php</b> on line <b>139</b><br>
+</body></html>

@@ -1,0 +1,6 @@
+@extends('layouts.app')
+
+@section('content')
+  <h1>Test Page</h1>
+  <p>This is a minimal test to check if Blade is working.</p>
+@endsection
