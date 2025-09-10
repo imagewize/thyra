@@ -14,7 +14,7 @@
 
 Built on Sage 11 with Laravel Blade, Tailwind CSS, and modern development workflow.
 
-## 🎨 Design Philosophy
+## Design Philosophy
 
 Thyra embodies the sophisticated minimalism of editorial publishing, drawing inspiration from the clean aesthetics of [Thaiconomics](https://thaiconomics.smtv.test). The theme focuses on:
 
@@ -24,18 +24,18 @@ Thyra embodies the sophisticated minimalism of editorial publishing, drawing ins
 - **Reading Experience** — Optimized for long-form content consumption
 - **Mobile-First Design** — Responsive design that works beautifully on all devices
 
-## 🚀 Features
+## Features
 
-- 🔧 **Modern PHP Architecture** — Laravel Blade templating with Acorn framework
-- ⚡️ **Lightning Fast** — Vite build system with hot reload development
-- 🎨 **Tailwind CSS** — Utility-first CSS framework with custom editorial design tokens
-- 📱 **Responsive Design** — Mobile-first approach with perfect cross-device experience
-- 📰 **Editorial Layout** — Magazine-style homepage with featured articles grid
-- ✍️ **Typography Focus** — Optimized reading experience with proper type hierarchy
-- 🔍 **SEO Optimized** — Clean semantic HTML structure
-- 🎯 **Performance** — Minimal CSS footprint and optimized asset loading
+- **Modern PHP Architecture** — Laravel Blade templating with Acorn framework
+- **Lightning Fast** — Vite build system with hot reload development
+- **Tailwind CSS** — Utility-first CSS framework with custom editorial design tokens
+- **Responsive Design** — Mobile-first approach with perfect cross-device experience
+- **Editorial Layout** — Magazine-style homepage with featured articles grid
+- **Typography Focus** — Optimized reading experience with proper type hierarchy
+- **SEO Optimized** — Clean semantic HTML structure
+- **Performance** — Minimal CSS footprint and optimized asset loading
 
-## 📖 Architecture
+## Architecture
 
 Thyra is built on **Sage 11**, combining modern Laravel patterns with WordPress theme development:
 
@@ -53,7 +53,7 @@ Thyra is built on **Sage 11**, combining modern Laravel patterns with WordPress 
 - **Vite** for modern frontend build tooling
 - **WordPress 6.6+** with full theme integration
 
-## 🎯 Design Implementation
+## Design Implementation
 
 Based on comprehensive analysis of the [Thaiconomics design system](docs/DESIGN.md), Thyra implements:
 
@@ -75,7 +75,7 @@ Based on comprehensive analysis of the [Thaiconomics design system](docs/DESIGN.
 - **Touch-friendly navigation** with hamburger menu on mobile
 - **Optimized typography** scaling across all device sizes
 
-## 🛠️ Development
+## Development
 
 ### Quick Start
 
@@ -122,7 +122,7 @@ curl -i http://thyra.test
 node compare-sites.js
 ```
 
-## 📂 File Structure
+## File Structure
 
 ```
 thyra/
@@ -146,7 +146,7 @@ thyra/
     └── DESIGN.md               # Complete Thaiconomics design analysis
 ```
 
-## 🎨 Design System
+## Design System
 
 ### Typography
 - **Primary Font**: Helvetica Neue (clean, editorial aesthetic)
@@ -166,13 +166,13 @@ thyra/
 - **Paragraph Spacing**: 24px between text blocks
 - **Generous Whitespace**: Following magazine design principles
 
-## 📚 Documentation
+## Documentation
 
 - **[Design System](docs/DESIGN.md)** — Complete Thaiconomics design analysis and implementation guide
 - **[Development Guide](CLAUDE.md)** — Detailed development instructions and architecture
 - **[Sage Documentation](https://roots.io/sage/docs/)** — Official Sage framework docs
 
-## 🎯 Use Cases
+## Use Cases
 
 Thyra is perfect for:
 
@@ -182,14 +182,14 @@ Thyra is perfect for:
 - **Corporate Blogs** — Companies wanting sophisticated, readable content presentation
 - **Literary Sites** — Publishers and authors prioritizing typography and reading experience
 
-## 🔧 Requirements
+## Requirements
 
 - **PHP**: 8.2+
 - **WordPress**: 6.6+
 - **Node.js**: 20.0+
 - **Composer**: Latest version
 
-## 🤝 Built With Sage
+## Built With Sage
 
 Thyra extends the powerful Sage starter theme framework:
 
@@ -202,4 +202,4 @@ Thyra extends the powerful Sage starter theme framework:
 
 **Thyra Theme** — Minimalist editorial design meets modern WordPress development.
 
-Built with ❤️ using [Sage](https://roots.io/sage/) • Inspired by editorial excellence
+Built with love using [Sage](https://roots.io/sage/) • Inspired by editorial excellence
