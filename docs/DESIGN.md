@@ -22,7 +22,7 @@ Based on the analysis of `https://thaiconomics.smtv.test`, this document provide
 **Desktop Homepage Layout Structure:**
 ```
 ┌─────────────────────────────────────┐
-│           Thaiconomics               │
+│           Thyra (Lato)              │
 │               ────                   │
 │                                     │
 │  [IMG1]    [IMG2]    [IMG3]         │
@@ -40,7 +40,7 @@ Based on the analysis of `https://thaiconomics.smtv.test`, this document provide
 **Mobile Homepage Layout Structure:**
 ```
 ┌─────────────────────┐
-│    ☰  Thaiconomics  │
+│    ☰  Thyra (Lato)  │
 │                     │
 │                     │
 │     [Hero Image]    │
@@ -59,7 +59,7 @@ Based on the analysis of `https://thaiconomics.smtv.test`, this document provide
 **Desktop Single Post Layout:**
 ```
 ┌─────────────────────────────────────┐
-│           Thaiconomics               │
+│           Thyra (Lato)              │
 │               ────                   │
 │                                     │
 │         [Hero Image]                │
@@ -81,7 +81,7 @@ Based on the analysis of `https://thaiconomics.smtv.test`, this document provide
 **Mobile Single Post Layout:**
 ```
 ┌─────────────────────┐
-│    ☰  Thaiconomics  │
+│    ☰  Thyra (Lato)  │
 │                     │
 │     [Hero Image]    │
 │                     │
@@ -124,12 +124,15 @@ Based on the mobile screenshot from `screenshots/thaiconomics-homepage-mobile.pn
 **File:** `resources/css/app.css`
 
 ```css
-/* Thaiconomics Typography System */
-@import url('https://fonts.googleapis.com/css2?family=Helvetica+Neue:wght@300;400;700&display=swap');
+/* Thaiconomics Typography System - Using Local Fonts */
+@import './fonts.css';
 
 :root {
   /* Typography Scale - Thaiconomics Inspired */
-  --font-primary: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  --font-primary: 'Lato', system-ui, sans-serif;
+  --font-serif: 'Lora', Georgia, serif;
+  --font-display: 'Bitter', serif;
+  --font-alt: 'Open Sans', system-ui, sans-serif;
   --font-size-xs: 12px;
   --font-size-sm: 14px;
   --font-size-base: 16px;
@@ -168,7 +171,10 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        'primary': ['"Helvetica Neue"', 'Helvetica', 'Arial', 'sans-serif'],
+        'primary': ['"Lato"', 'system-ui', 'sans-serif'],
+        'serif': ['"Lora"', 'Georgia', 'serif'],
+        'display': ['"Bitter"', 'serif'],
+        'alt': ['"Open Sans"', 'system-ui', 'sans-serif'],
       },
       fontSize: {
         'hero': ['55px', { lineHeight: '1.2' }],
@@ -804,7 +810,7 @@ After implementing this Thaiconomics-inspired design:
 | Aspect | Previous (Clarity) | New (Thaiconomics) |
 |--------|-------------------|-------------------|
 | **Color Scheme** | Colorful, gradients | Black, white, minimal |
-| **Typography** | Inter, multiple weights | Helvetica Neue, clean |
+| **Typography** | Inter, multiple weights | Lato/Lora/Bitter, editorial |
 | **Layout** | Card-based grid | Editorial magazine style |
 | **Navigation** | Complex dropdown | Simple horizontal links |
 | **Images** | Rounded corners | Clean, rectangular |

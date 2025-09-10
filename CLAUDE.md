@@ -1,6 +1,51 @@
 # CLAUDE.md
 
-This file provides guidance to Clau### File Structure
+This file provides guidance to Claude Code when working with code in this repository.
+
+## Table of Contents
+
+- [Architecture Overview](#architecture-overview)
+- [File Structure](#file-structure)
+  - [PHP Architecture](#php-architecture)
+  - [The `app/` Directory](#the-app-directory)
+  - [The `resources/` Directory](#the-resources-directory)
+  - [The `public/` Directory](#the-public-directory)
+  - [Other Important Directories](#other-important-directories)
+- [View Composers: The Sage Way](#view-composers-the-sage-way)
+  - [Why Use View Composers?](#why-use-view-composers)
+  - [Creating View Composers](#creating-view-composers)
+  - [View Composer Structure](#view-composer-structure)
+  - [Template Usage](#template-usage)
+  - [Anti-Pattern: Avoid Inline PHP](#anti-pattern-avoid-inline-php)
+- [Development Commands](#development-commands)
+  - [Frontend Development](#frontend-development)
+  - [Code Quality](#code-quality)
+  - [Image Size Testing](#image-size-testing)
+  - [Translation/Internationalization](#translationinternationalization)
+  - [Site Comparison & Testing](#site-comparison--testing)
+  - [Local Development SSL](#local-development-ssl)
+- [Font Management](#font-management)
+  - [Adding Custom Fonts](#adding-custom-fonts)
+  - [Font CSS Structure](#font-css-structure)
+  - [Tailwind CSS Integration](#tailwind-css-integration)
+  - [Font Resources](#font-resources)
+- [WordPress Integration](#wordpress-integration)
+  - [Theme.json Workflow](#themejson-workflow)
+  - [Block Editor Integration](#block-editor-integration)
+  - [ACF Block Development with ACF Composer](#acf-block-development-with-acf-composer)
+  - [Native Block Development with Sage Native Block](#native-block-development-with-sage-native-block)
+  - [Asset Loading](#asset-loading)
+  - [WordPress Features](#wordpress-features)
+- [Blade Layouts & Template Architecture](#blade-layouts--template-architecture)
+  - [Layout Structure](#layout-structure)
+  - [Extending Layouts](#extending-layouts)
+  - [Including Partials](#including-partials)
+  - [Key Blade Directives](#key-blade-directives)
+  - [Cache Management](#cache-management)
+- [Common Issues & Troubleshooting](#common-issues--troubleshooting)
+  - [Blade Template Syntax Errors](#blade-template-syntax-errors)
+
+## File Structure
 
 ### PHP Architecture
 - `functions.php` - Main theme entry point, bootstraps Acorn and includes app files
@@ -237,18 +282,34 @@ Sage provides a structured approach to adding custom fonts to your theme:
 ```css
 @font-face {
   font-display: swap;
-  font-family: 'Helvetica Neue';
+  font-family: 'Lato';
   font-style: normal;
   font-weight: 400;
-  src: url('@fonts/helvetica-neue-regular.woff2') format('woff2');
+  src: url('@fonts/lato-regular.woff2') format('woff2');
 }
 
 @font-face {
   font-display: swap;
-  font-family: 'Helvetica Neue';
+  font-family: 'Lora';
   font-style: normal;
-  font-weight: 700;
-  src: url('@fonts/helvetica-neue-bold.woff2') format('woff2');
+  font-weight: 400;
+  src: url('@fonts/lora-regular.woff2') format('woff2');
+}
+
+@font-face {
+  font-display: swap;
+  font-family: 'Bitter';
+  font-style: normal;
+  font-weight: 400;
+  src: url('@fonts/bitter-regular.woff2') format('woff2');
+}
+
+@font-face {
+  font-display: swap;
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 400;
+  src: url('@fonts/opensans-regular.woff2') format('woff2');
 }
 ```
 
@@ -258,7 +319,10 @@ Add custom fonts to your Tailwind theme in `resources/css/app.css`:
 
 ```css
 @theme {
-  --font-primary: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --font-primary: "Lato", system-ui, sans-serif;
+  --font-serif: "Lora", Georgia, serif;
+  --font-display: "Bitter", serif;
+  --font-alt: "Open Sans", system-ui, sans-serif;
 }
 ```
 
