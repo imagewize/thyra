@@ -50,15 +50,15 @@ Transform the Thyra WordPress theme into a minimalist editorial design inspired 
 - [x] **Verify design tokens in browser**
 
 #### 1.3 Image Size Configuration
-- [ ] **Configure custom image sizes with `add_image_size()`**
-  - [ ] Homepage featured images (desktop: 350x525, 3 in a row grid layout)
-  - [ ] Single post featured image (desktop: 725x825, full-width with sidebar)
-  - [ ] Mobile featured images (both homepage & single: 350x568)
-  - [ ] Author profile images (desktop: 120x120, mobile: 80x80)
-  - [ ] Thumbnail fallbacks for cards/widgets (desktop: 300x200, mobile: 280x187)
-- [ ] **Add image sizes to `app/setup.php`**
-- [ ] **Test image generation and cropping**
-- [ ] **Verify performance impact and loading speed**
+- [x] **Configure custom image sizes with `add_image_size()`**
+  - [x] Homepage featured images (desktop: 350x525, 3 in a row grid layout)
+  - [x] Single post featured image (desktop: 725x825, full-width with sidebar)
+  - [x] Mobile featured images (both homepage & single: 350x568)
+  - [x] Author profile images (desktop: 120x120, mobile: 80x80)
+  - [x] Thumbnail fallbacks for cards/widgets (desktop: 300x200, mobile: 280x187)
+- [x] **Add image sizes to `app/setup.php`**
+- [x] **Test image generation and cropping**
+- [x] **Verify performance impact and loading speed**
 
 ---
 

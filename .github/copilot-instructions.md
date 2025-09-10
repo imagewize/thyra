@@ -24,6 +24,7 @@ The `app/` directory contains all theme functionality and is namespaced under `A
 - Use `./vendor/bin/pint` for PHP code formatting.
 - Use translation commands (`npm run translate:*`) for internationalization.
 - Use `node compare-sites.js` to run Playwright comparison between thyra.test and reference site (clarity-tailwind.preview.uideck.com).
+- Use WP-CLI for image size testing: `wp media regenerate --all` and `wp eval "print_r(get_intermediate_image_sizes());"`.
 
 ### Site Comparison Tool
 The theme includes a Playwright script (`compare-sites.js`) for comparing the local development site with the reference design:

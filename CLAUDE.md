@@ -143,6 +143,13 @@ npm run build        # Build production assets
 ./vendor/bin/pint    # Run Laravel Pint code formatter (PHP)
 ```
 
+### Image Size Testing
+```bash
+wp media regenerate --all          # Regenerate all image sizes for existing images
+wp media regenerate [attachment-id] # Regenerate sizes for specific image
+wp eval "print_r(get_intermediate_image_sizes());"  # List all registered image sizes
+```
+
 ### Translation/Internationalization
 ```bash
 npm run translate           # Generate .pot file and update .po files
