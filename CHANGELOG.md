@@ -5,6 +5,56 @@ All notable changes to the Thyra WordPress theme will be documented in this file
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.0.0-alpha.2] - 2025-09-10
+
+### Added
+- **Complete Template Architecture Implementation (Phase 2)**
+  - Magazine-style homepage with 3-column grid layout and featured story hero section
+  - Static front page template with optional blog section integration
+  - Editorial single post template with full-width hero images and large typography (55px headlines)
+  - Category archive template with magazine-style layout and category header
+  
+- **Enhanced View Composers**
+  - Updated Index composer for magazine-style data structure (1 featured + 6 grid posts)
+  - New FrontPage composer for static page content with blog integration
+  - Enhanced Post composer with subtitle handling, author profiles, reading time calculation, and related posts
+  - New Category composer with pagination, related categories, and post count management
+  
+- **Editorial Features**
+  - Automatic reading time calculation and display
+  - Enhanced author profiles with bio, avatar, and post count
+  - Related posts based on category matching
+  - Newsletter subscription forms in sidebar and sections
+  - Post tags and category navigation
+  - Responsive typography scaling (4xl-6xl hero headlines)
+  
+- **Template Enhancements**
+  - Hero image overlays with gradient backgrounds
+  - Two-column content layout with sidebar on single posts
+  - Mobile-responsive single column layouts
+  - Category-specific post filtering and navigation
+  - Pagination support for archives
+
+### Improved
+- **Magazine Layout System**
+  - Asymmetric featured story section with 4:5 aspect ratio images
+  - Clean 3-column desktop grid with single column mobile fallback
+  - Editorial typography with serif headlines and sans-serif body text
+  - Generous whitespace implementation following Thaiconomics design
+  
+- **WordPress Integration**
+  - Proper template hierarchy following Sage conventions
+  - Custom field support for subtitles (ACF compatible)
+  - WordPress pagination and navigation systems
+  - Category and tag taxonomy integration
+  - Comment system integration
+
+### Technical Implementation
+- **View Composer Architecture**: Clean data separation with dedicated composers for each template
+- **Responsive Design**: Mobile-first approach with desktop enhancements
+- **Performance**: Optimized image loading with custom size configurations
+- **Code Quality**: Following Sage/Laravel conventions with PSR-4 autoloading
+
 ## [1.0.0-alpha] - 2025-09-10
 
 ### Added

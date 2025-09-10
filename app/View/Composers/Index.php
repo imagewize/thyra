@@ -31,26 +31,27 @@ class Index extends Composer
     }
 
     /**
-     * Get featured posts with thumbnails.
+     * Get featured posts with thumbnails for magazine layout.
      */
     public function getFeaturedPosts()
     {
         return get_posts([
-            'numberposts' => 3,
+            'numberposts' => 1,
             'post_status' => 'publish',
             'meta_key' => '_thumbnail_id'
         ]);
     }
 
     /**
-     * Get latest posts (excluding featured).
+     * Get latest posts for 3-column magazine grid (excluding featured).
      */
     public function getLatestPosts()
     {
         return get_posts([
             'numberposts' => 6,
             'post_status' => 'publish',
-            'offset' => 3
+            'meta_key' => '_thumbnail_id',
+            'offset' => 1
         ]);
     }
 
