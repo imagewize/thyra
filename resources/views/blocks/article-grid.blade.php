@@ -28,7 +28,7 @@
               </span>
             @endif
 
-            <h2 class="text-xl font-bold text-black leading-tight group-hover:text-gray-700 transition-colors">
+            <h2 class="text-xl font-normal text-black leading-tight group-hover:text-gray-600 transition-colors">
               <a href="{{ get_permalink($post->ID) }}">
                 {{ get_the_title($post->ID) }}
               </a>
