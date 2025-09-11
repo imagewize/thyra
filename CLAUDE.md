@@ -58,44 +58,36 @@ The `app/` directory contains all theme functionality and is namespaced under `A
 - **`app/Providers/`** — Service Providers for theme functionality (extends Sage's base provider)
 - **`app/View/Composers/`** — View Composers for passing data to Blade templates (preferred over inline PHP)
 
-The majority of theme functionality lives in the `app/` directory. All classes follow PSR-4 autoloading under the `App\` namespace.
-
 Most PHP code in Sage is namespaced and autoloaded. All theme functionality should use namespaced functions and classes following Laravel patterns:
 
 **Key App Directory Responsibilities:**
 - **`app/setup.php`** — Enqueue stylesheets and scripts, register support for theme features with `add_theme_support`, register navigation menus and sidebars
-- **`app/filters.php`** — Add WordPress filters (e.g., `excerpt_more` filter for "... Continued" text)
 - **`app/Providers/`** — Service Providers for theme functionality (extends `Roots\Acorn\ServiceProvider`)
 - **`app/View/Composers/`** — View Composers and Components for passing data to Blade templates (preferred over inline `@php` blocks)
 
 ## View Composers: The Sage Way
 
-View Composers are the cornerstone of data handling in Sage themes. They separate data logic from presentation, following Laravel's architectural patterns.
 
 ### Why Use View Composers?
 - **Separation of Concerns**: Keep data fetching logic out of Blade templates
 - **Reusability**: Share data logic across multiple templates
 - **Testability**: Easier to unit test data logic separately
 - **Performance**: Centralized data fetching and caching
-- **Maintainability**: Changes to data logic don't require template modifications
 
 ### Creating View Composers
 Use the Artisan command to generate new View Composers:
 ```bash
-wp acorn make:composer ExampleComposer  # Creates app/View/Composers/ExampleComposer.php
 wp acorn make:composer HeroSection      # Creates app/View/Composers/HeroSection.php
 ```
 
 ### View Composer Structure
 ```php
 // app/View/Composers/Index.php
-<?php
 
 namespace App\View\Composers;
 
 use Roots\Acorn\View\Composer;
 
-class Index extends Composer
 {
     protected static $views = ['index', 'partials.hero-section'];
 
