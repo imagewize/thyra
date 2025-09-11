@@ -1,3 +1,21 @@
+## [1.0.0-alpha.3] - 2025-09-11
+
+### Added
+- Hero Section ACF Block scaffolded with ACF Composer (fields: headline, subheadline, background image, CTA text, CTA URL, accent color, overlay opacity)
+- ACF Composer installed for block development
+- Advanced Custom Fields Pro plugin installed and activated
+- Added `docs/roots-docs/sage/` folder with official Roots Sage documentation for reference and best practices
+
+### Changed
+- Updated documentation files (`CLAUDE.md`, `.github/copilot-instructions.md`) to reference Sage docs folder and reinforce Sage conventions
+
+### Technical Implementation
+- Hero Section block fields defined in `app/Fields/HeroSection.php`
+- Block scaffolded in `app/Blocks/HeroSection.php` and `resources/views/blocks/hero-section.blade.php`
+- ACF Composer and ACF Pro integration confirmed
+
+---
+
 # Changelog
 
 All notable changes to the Thyra WordPress theme will be documented in this file.
@@ -65,19 +83,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - Lato Regular (400) - Primary Sans Serif
   - Lora Regular (400) - Serif Font  
   - Bitter Regular (400) - Display Font
-  - Open Sans Regular (400) - Alternative Sans Serif
 - Custom image size configuration for editorial layouts:
   - Homepage featured images (350x525 desktop, 3-column grid)
   - Single post featured images (725x825 desktop with sidebar)
   - Mobile featured images (350x568 responsive)
   - Author profile images (120x120 desktop, 80x80 mobile)
-  - Thumbnail fallbacks (300x200 desktop, 280x187 mobile)
 - Font loading optimization with `font-display: swap`
 - Vite build system for modern asset compilation
 - Laravel Blade templating system
 - View Composer architecture for clean data separation
 - PSR-4 autoloading with App namespace
-- Service Provider pattern implementation
 
 ### Technical Implementation
 - **Architecture**: Sage 11 + Laravel Acorn
@@ -85,7 +100,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - **Typography**: Helvetica Neue-inspired font stack with local hosting
 - **Templates**: Laravel Blade with View Composers
 - **Build System**: Vite with HMR support
-- **Code Quality**: Laravel Pint formatter integration
 
 ### Design System
 - Editorial color palette (black, charcoal, gray variants, white, off-white)
@@ -93,13 +107,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Generous whitespace implementation
 - Mobile-first responsive design approach
 - Magazine-style layout foundation
-
 ### Development Workflow
 - Hot module replacement with `npm run dev`
 - Production builds with `npm run build`
 - Code formatting with `./vendor/bin/pint`
 - Translation support with pot/po/mo workflow
-- Site comparison testing with Playwright
 
 ### Configuration Files
 - `theme.json` for WordPress theme configuration
@@ -107,27 +119,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `composer.json` for PHP dependencies
 - `package.json` for Node.js dependencies
 - `CLAUDE.md` for development documentation
-
-### Project Structure
-```
-├── app/                    # Theme functionality (PHP classes)
 │   ├── Providers/         # Laravel service providers
 │   └── View/Composers/    # Blade view composers
 ├── resources/             # Source assets and templates
-│   ├── css/              # Stylesheets and fonts
-│   ├── js/               # JavaScript files
-│   ├── fonts/            # Local font files
-│   └── views/            # Blade templates
 └── public/build/         # Compiled assets (auto-generated)
 ```
-
 ### Notes
 - This is an alpha release focusing on foundation setup
-- Theme is inspired by Thaiconomics editorial design
-- Built for modern WordPress with block editor support
-- Optimized for editorial and magazine-style content
 
-### Upcoming
 - Template development (Phase 2)
 - Block editor integration (Phase 3)
 - Component development (Phase 4)

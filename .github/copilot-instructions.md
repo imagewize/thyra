@@ -3,6 +3,7 @@
 This repository is a Sage WordPress theme built on Laravel's Acorn framework. Please follow these guidelines when using GitHub Copilot in this project:
 
 ### Architecture & Conventions
+- The repository now includes the official Roots Sage documentation in `docs/roots-docs/sage/`. Always consult these files for best practices, Blade template usage, block development, and Sage conventions.
 - Use **Laravel Blade templates** for views (`resources/views/*.blade.php`) - NOT traditional PHP templates.
 - All PHP classes use the `App\` namespace and follow PSR-4 autoloading (see `composer.json`).
 - Service Providers are in `app/Providers/` and should extend Sage's base provider.
