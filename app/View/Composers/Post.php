@@ -89,6 +89,7 @@ class Post extends Composer
 
         // Fall back to excerpt
         $excerpt = get_the_excerpt();
+
         return $excerpt ? wp_trim_words($excerpt, 25) : '';
     }
 
@@ -137,7 +138,7 @@ class Post extends Composer
         $content = get_the_content();
         $word_count = str_word_count(strip_tags($content));
         $reading_time = ceil($word_count / 200); // Average 200 words per minute
-        
+
         return max(1, $reading_time); // Minimum 1 minute
     }
 
@@ -155,12 +156,12 @@ class Post extends Composer
     public function relatedPosts(): array
     {
         $categories = get_the_category();
-        
+
         if (empty($categories)) {
             return [];
         }
 
-        $category_ids = array_map(function($cat) {
+        $category_ids = array_map(function ($cat) {
             return $cat->term_id;
         }, $categories);
 
@@ -169,7 +170,7 @@ class Post extends Composer
             'post_status' => 'publish',
             'post__not_in' => [get_the_ID()],
             'category__in' => $category_ids,
-            'meta_key' => '_thumbnail_id'
+            'meta_key' => '_thumbnail_id',
         ]);
     }
 

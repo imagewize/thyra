@@ -139,11 +139,12 @@ class HeroSection extends Block
      * @var array
      */
     public $example = [
-        'items' => [
-            ['item' => 'Item one'],
-            ['item' => 'Item two'],
-            ['item' => 'Item three'],
-        ],
+        'headline' => 'Your Headline Here',
+        'subheadline' => 'Add your subheadline text here',
+        'cta_text' => 'Get Started',
+        'cta_url' => '#',
+        'accent_color' => '#3B82F6',
+        'overlay_opacity' => 60,
     ];
 
     /**
@@ -151,10 +152,7 @@ class HeroSection extends Block
      *
      * @var array
      */
-    public $template = [
-        'core/heading' => ['placeholder' => 'Hello World'],
-        'core/paragraph' => ['placeholder' => 'Welcome to the Hero Section block.'],
-    ];
+    public $template = [];
 
     /**
      * Data to be passed to the block before rendering.
@@ -162,7 +160,13 @@ class HeroSection extends Block
     public function with(): array
     {
         return [
-            'items' => $this->items(),
+            'headline' => $this->headline(),
+            'subheadline' => $this->subheadline(),
+            'background_image' => $this->backgroundImage(),
+            'cta_text' => $this->ctaText(),
+            'cta_url' => $this->ctaUrl(),
+            'accent_color' => $this->accentColor(),
+            'overlay_opacity' => $this->overlayOpacity(),
         ];
     }
 
@@ -174,21 +178,103 @@ class HeroSection extends Block
         $fields = Builder::make('hero_section');
 
         $fields
-            ->addRepeater('items')
-                ->addText('item')
-            ->endRepeater();
+            ->addText('headline', [
+                'label' => 'Headline',
+                'instructions' => 'Main headline for the hero section',
+                'default_value' => 'Your Headline Here',
+            ])
+            ->addText('subheadline', [
+                'label' => 'Subheadline',
+                'instructions' => 'Optional subheadline text',
+                'default_value' => 'Add your subheadline text here',
+            ])
+            ->addImage('background_image', [
+                'label' => 'Background Image',
+                'instructions' => 'Large background image for the hero section',
+                'return_format' => 'array',
+                'preview_size' => 'large',
+            ])
+            ->addText('cta_text', [
+                'label' => 'Call to Action Text',
+                'instructions' => 'Text for the CTA button',
+                'default_value' => 'Get Started',
+            ])
+            ->addUrl('cta_url', [
+                'label' => 'Call to Action URL',
+                'instructions' => 'URL for the CTA button',
+                'default_value' => '#',
+            ])
+            ->addColorPicker('accent_color', [
+                'label' => 'Accent Color',
+                'instructions' => 'Optional accent color for overlay/button',
+                'default_value' => '#3B82F6',
+            ])
+            ->addRange('overlay_opacity', [
+                'label' => 'Overlay Opacity',
+                'instructions' => 'Set overlay opacity (0-100)',
+                'min' => 0,
+                'max' => 100,
+                'step' => 1,
+                'default_value' => 60,
+            ]);
 
         return $fields->build();
     }
 
     /**
-     * Retrieve the items.
-     *
-     * @return array
+     * Retrieve the headline.
      */
-    public function items()
+    public function headline()
     {
-        return get_field('items') ?: $this->example['items'];
+        return get_field('headline') ?: $this->example['headline'];
+    }
+
+    /**
+     * Retrieve the subheadline.
+     */
+    public function subheadline()
+    {
+        return get_field('subheadline') ?: $this->example['subheadline'];
+    }
+
+    /**
+     * Retrieve the background image.
+     */
+    public function backgroundImage()
+    {
+        return get_field('background_image');
+    }
+
+    /**
+     * Retrieve the CTA text.
+     */
+    public function ctaText()
+    {
+        return get_field('cta_text') ?: $this->example['cta_text'];
+    }
+
+    /**
+     * Retrieve the CTA URL.
+     */
+    public function ctaUrl()
+    {
+        return get_field('cta_url') ?: $this->example['cta_url'];
+    }
+
+    /**
+     * Retrieve the accent color.
+     */
+    public function accentColor()
+    {
+        return get_field('accent_color') ?: $this->example['accent_color'];
+    }
+
+    /**
+     * Retrieve the overlay opacity.
+     */
+    public function overlayOpacity()
+    {
+        return get_field('overlay_opacity') ?: $this->example['overlay_opacity'];
     }
 
     /**
@@ -196,7 +282,7 @@ class HeroSection extends Block
      *
      * @link https://developer.wordpress.org/block-editor/how-to-guides/enqueueing-assets-in-the-editor/#editor-content-scripts-and-styles
      */
-    public function assets(array $block): void
+    public function assets(): void
     {
         //
     }

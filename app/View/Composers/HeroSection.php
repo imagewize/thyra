@@ -40,7 +40,7 @@ class HeroSection extends Composer
             'post_status' => 'publish',
             'meta_key' => '_thumbnail_id',
             'orderby' => 'date',
-            'order' => 'DESC'
+            'order' => 'DESC',
         ]);
     }
 

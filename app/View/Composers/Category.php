@@ -43,8 +43,8 @@ class Category extends Composer
     public function getCategoryPosts(): array
     {
         global $wp_query;
-        
-        if (!$wp_query->have_posts()) {
+
+        if (! $wp_query->have_posts()) {
             return [];
         }
 
@@ -53,9 +53,9 @@ class Category extends Composer
             $wp_query->the_post();
             $posts[] = get_post();
         }
-        
+
         wp_reset_postdata();
-        
+
         return $posts;
     }
 
@@ -65,8 +65,8 @@ class Category extends Composer
     public function getPostCount(): int
     {
         $category = get_queried_object();
-        
-        if (!$category || !isset($category->count)) {
+
+        if (! $category || ! isset($category->count)) {
             return 0;
         }
 
@@ -92,8 +92,8 @@ class Category extends Composer
     public function getRelatedCategories(): array
     {
         $current_category = get_queried_object();
-        
-        if (!$current_category) {
+
+        if (! $current_category) {
             return [];
         }
 
