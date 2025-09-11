@@ -3,6 +3,12 @@ import.meta.glob([
   '../fonts/**',
 ]);
 
+import Alpine from 'alpinejs'
+
+window.Alpine = Alpine
+
+Alpine.start()
+
 // Theme functionality (Alpine.js handles most interactions now)
 document.addEventListener('DOMContentLoaded', function() {
   // Smooth scroll for anchor links
