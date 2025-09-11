@@ -1,3 +1,39 @@
+## [1.0.0-alpha.4] - 2025-09-11
+
+### Added
+- Minimalist header implementation with Thaiconomics editorial design
+- Blade Icons integration for modern SVG icons (replaced FontAwesome)
+- Mobile-first navigation with hamburger menu and responsive design
+- Simple footer with horizontal navigation (About / Work / Contact)
+- Centered logo with clean underline accent in header
+- Mobile navigation menu with slide animations
+
+### Changed  
+- **Complete Header Redesign**: From complex sticky header with multiple CTAs to clean, editorial-style centered logo design
+- **Footer Simplification**: From multi-column widget footer to simple horizontal navigation
+- **Navigation Philosophy**: Minimalist approach following Thaiconomics design principles
+- **Social Icons**: Replaced FontAwesome font icons with inline SVG icons for better performance
+- **Mobile Experience**: Improved touch-friendly navigation and responsive spacing
+
+### Improved
+- **Typography Integration**: Proper use of `font-primary` (Lato) throughout header and footer
+- **Performance**: Eliminated FontAwesome dependency, using lightweight SVG icons instead  
+- **Responsive Design**: Mobile-first approach with desktop enhancements
+- **Accessibility**: Added proper ARIA labels for social media icons
+- **Code Quality**: Clean Blade templates following Sage conventions
+
+### Technical Implementation
+- Blade Icons package installed via Composer for SVG icon management
+- Alpine.js event system for mobile menu toggling
+- Responsive utility classes with mobile/desktop breakpoints
+- Clean separation of mobile and desktop navigation patterns
+
+### Dependencies
+- Added `blade-ui-kit/blade-icons` package for modern SVG icon management
+- Removed FontAwesome dependency from theme assets
+
+---
+
 ## [1.0.0-alpha.3] - 2025-09-11
 
 ### Added
