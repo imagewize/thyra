@@ -38,7 +38,7 @@ class Index extends Composer
         return get_posts([
             'numberposts' => 1,
             'post_status' => 'publish',
-            'meta_key' => '_thumbnail_id'
+            'meta_key' => '_thumbnail_id',
         ]);
     }
 
@@ -51,7 +51,7 @@ class Index extends Composer
             'numberposts' => 6,
             'post_status' => 'publish',
             'meta_key' => '_thumbnail_id',
-            'offset' => 1
+            'offset' => 1,
         ]);
     }
 
@@ -73,7 +73,7 @@ class Index extends Composer
             'has_published_posts' => true,
             'number' => 3,
             'orderby' => 'post_count',
-            'order' => 'DESC'
+            'order' => 'DESC',
         ]);
     }
 

@@ -34,7 +34,7 @@ class FrontPage extends Composer
         return get_posts([
             'numberposts' => 6,
             'post_status' => 'publish',
-            'meta_key' => '_thumbnail_id'
+            'meta_key' => '_thumbnail_id',
         ]);
     }
 

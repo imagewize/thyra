@@ -105,17 +105,17 @@ add_action('after_setup_theme', function () {
      */
     // Homepage featured images (3 in a row grid layout)
     add_image_size('homepage-featured', 350, 525, true);
-    
+
     // Single post featured image (full-width with sidebar)
     add_image_size('single-featured', 725, 825, true);
-    
+
     // Mobile featured images (both homepage & single)
     add_image_size('mobile-featured', 350, 568, true);
-    
+
     // Author profile images
     add_image_size('author-profile', 120, 120, true);      // Desktop
     add_image_size('author-profile-mobile', 80, 80, true); // Mobile
-    
+
     // Thumbnail fallbacks for cards/widgets
     add_image_size('card-thumbnail', 300, 200, true);        // Desktop
     add_image_size('card-thumbnail-mobile', 280, 187, true); // Mobile

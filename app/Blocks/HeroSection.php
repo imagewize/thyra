@@ -175,7 +175,7 @@ class HeroSection extends Block
 
         $fields
             ->addRepeater('items')
-                ->addText('item')
+            ->addText('item')
             ->endRepeater();
 
         return $fields->build();
