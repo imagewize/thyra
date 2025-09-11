@@ -21,28 +21,8 @@ class FrontPage extends Composer
     public function with()
     {
         return [
-            'latest_posts' => $this->getLatestPosts(),
-            'categories' => $this->getCategories(),
+            // Front page uses standard WordPress page content
+            // No additional data needed as front-page.blade.php uses the_content()
         ];
-    }
-
-    /**
-     * Get latest blog posts for the front page blog section.
-     */
-    public function getLatestPosts()
-    {
-        return get_posts([
-            'numberposts' => 6,
-            'post_status' => 'publish',
-            'meta_key' => '_thumbnail_id',
-        ]);
-    }
-
-    /**
-     * Get categories for optional display.
-     */
-    public function getCategories()
-    {
-        return get_categories(['hide_empty' => true, 'number' => 5]);
     }
 }

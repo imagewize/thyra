@@ -30,7 +30,7 @@
 
           {{-- Page Content --}}
           <div class="prose prose-lg prose-gray max-w-none">
-            {!! get_the_content() !!}
+            @php(the_content())
           </div>
         </div>
       </article>
