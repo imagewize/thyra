@@ -1,0 +1,3 @@
+[submodule "docs/roots-docs"]
+	path = docs/roots-docs
+	url = git@github.com:roots/docs.git
