@@ -234,7 +234,6 @@ class ArticleGrid extends Block
         $args = [
             'numberposts' => $count,
             'post_status' => 'publish',
-            'meta_key' => '_thumbnail_id',
         ];
         
         switch ($source) {
