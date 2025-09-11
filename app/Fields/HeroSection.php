@@ -21,11 +21,12 @@ class HeroSection extends Field
             ->addText('headline', [
                 'label' => 'Headline',
                 'instructions' => 'Main headline for the hero section',
-                'required' => 1,
+                'default_value' => 'Your Headline Here',
             ])
             ->addText('subheadline', [
                 'label' => 'Subheadline',
                 'instructions' => 'Optional subheadline text',
+                'default_value' => 'Add your subheadline text here',
             ])
             ->addImage('background_image', [
                 'label' => 'Background Image',
@@ -36,14 +37,17 @@ class HeroSection extends Field
             ->addText('cta_text', [
                 'label' => 'Call to Action Text',
                 'instructions' => 'Text for the CTA button',
+                'default_value' => 'Get Started',
             ])
             ->addUrl('cta_url', [
                 'label' => 'Call to Action URL',
                 'instructions' => 'URL for the CTA button',
+                'default_value' => '#',
             ])
             ->addColorPicker('accent_color', [
                 'label' => 'Accent Color',
                 'instructions' => 'Optional accent color for overlay/button',
+                'default_value' => '#3B82F6',
             ])
             ->addRange('overlay_opacity', [
                 'label' => 'Overlay Opacity',
