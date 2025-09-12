@@ -21,26 +21,23 @@ Transform the Thyra WordPress theme into a minimalist editorial design inspired 
 
 ## 📅 Implementation Phases
 
-### Phase 1: Foundation Setup ⚡
+### Phase 1: Foundation Setup ✅
 
-#### 1.1 Typography & Font System
+#### 1.1 Typography & Font System ✅
 - [x] **Download font files** from [Google WebFonts Helper](https://gwfh.mranftl.com/fonts)
   - [x] Lato Regular (400) - Primary Sans Serif
-  - [x] Lora Regular (400) - Serif Font
-  - [x] Bitter Regular (400) - Display Font
-  - [x] Open Sans Regular (400) - Alternative Sans Serif
-  - [x] ~~FontAwesome - Icon Font~~ (to be replaced with Blade Icons)
+  - [x] Bitter Variable Font (100-900) - Display/Serif Font  
+  - [x] Menlo Regular (400) - Monospace Font
 - [x] **Add fonts to `resources/fonts/`**
   - [x] `lato-regular.woff2`
-  - [x] `lora-regular.woff2`
-  - [x] `bitter-regular.woff2`
-  - [x] `opensans-regular.woff2`
-  - [x] ~~`fontawesome-webfont.woff2`~~ (to be removed)
+  - [x] `bitter-variable-font.woff2`
+  - [x] `menlo-regular-webfont.woff2`
 - [x] **Create `resources/css/fonts.css`**
 - [x] **Import fonts in `app.css` and `editor.css`**
 - [x] **Configure Tailwind 4 font variables**
+- [x] **Streamlined to 3-font system** (removed Lora, Open Sans, FontAwesome)
 
-#### 1.2 Tailwind 4 Design System
+#### 1.2 Tailwind 4 Design System ✅
 - [x] **Update `resources/css/app.css` with Tailwind 4 `@theme`**
   - [x] Typography scale (28px-55px headlines)
   - [x] Color palette (black, charcoal, gray variants, white, off-white)
@@ -49,7 +46,7 @@ Transform the Thyra WordPress theme into a minimalist editorial design inspired 
 - [x] **Test Tailwind 4 compilation**
 - [x] **Verify design tokens in browser**
 
-#### 1.3 Image Size Configuration
+#### 1.3 Image Size Configuration ✅
 - [x] **Configure custom image sizes with `add_image_size()`**
   - [x] Homepage featured images (desktop: 350x525, 3 in a row grid layout)
   - [x] Single post featured image (desktop: 725x825, full-width with sidebar)
@@ -62,55 +59,45 @@ Transform the Thyra WordPress theme into a minimalist editorial design inspired 
 
 ---
 
-### Phase 2: Template Architecture 📄 ✅
+### Phase 2: Template Architecture 📄 🔄
 
-#### 2.1 Core Template Files ✅
+#### 2.1 Core Template Files (Partially Complete)
 - [x] **Homepage (`resources/views/index.blade.php`)**
   - [x] 3-column magazine grid layout
   - [x] Featured story section (asymmetric layout)
   - [x] Mobile-responsive single column
+  - [ ] **Needs boxed/contained layout implementation**
 - [x] **Front Page (`resources/views/front-page.blade.php`)**
   - [x] Static page template for users setting "Page" as homepage
-  - [x] Inherit index design or custom static page layout
 - [x] **Single Post (`resources/views/single.blade.php`)**
-  - [x] Hero image centered layout
-  - [x] Large typography (55px headlines)
+  - [x] Hero image overlay layout
+  - [x] Large typography (6xl headlines)
   - [x] Two-column content + sidebar
   - [x] Subscribe box and author info sidebar
+  - [x] **Complete implementation with view composer**
+- [ ] **Page Template (`resources/views/page.blade.php`)**
+  - [ ] Needs proper implementation and view composer
 - [x] **Category Archive (`resources/views/category.blade.php`)**
-  - [x] Similar to homepage layout
   - [x] Category-specific post grid
   - [x] Category header with title and description
 
 #### 2.2 View Composers ✅
-- [x] **Update `app/View/Composers/Index.php`**
-  - [x] Featured posts (1 featured + 6 grid posts with thumbnails)
-  - [x] Magazine-style data structure
-- [x] **Create `app/View/Composers/FrontPage.php`**
-  - [x] Static page content + optional blog section
-- [x] **Update `app/View/Composers/Post.php`**
-  - [x] Subtitle handling (ACF field support + excerpt fallback)
-  - [x] Author information enhancement (bio, avatar, post count)
-  - [x] Related posts logic (category-based matching)
-  - [x] Reading time calculation
-  - [x] Tags and categories integration
-- [x] **Create `app/View/Composers/Category.php`**
-  - [x] Category-specific posts
-  - [x] Category information and meta
-  - [x] Pagination handling
-  - [x] Related categories navigation
+- [x] **Index composer** - Magazine-style data structure
+- [x] **FrontPage composer** - Static page content integration
+- [x] **Post composer** - Complete with subtitle, author, related posts, reading time
+- [x] **Category composer** - Complete with pagination and related categories
 
 ---
 
-### Phase 3: Block Editor Integration 🧩 ⚡
+### Phase 3: Block Editor Integration 🧩 🔄
 
-#### 3.1 Native Blocks Setup (Primary Approach) ✅
-- [x] **Install sage-native-block for JS/React blocks** - `composer require imagewize/sage-native-block --dev`
-- [x] **Convert Article Grid Block to native block** (3-column magazine grid with dynamic post querying)
-  - [x] Implemented with post count selection (1-12 posts)
+#### 3.1 Native Blocks Setup (Primary Approach) 🔄
+- [x] **Install sage-native-block** - `composer require imagewize/sage-native-block --dev`
+- [x] **Article Grid Block** - Native block implementation ✅
+  - [x] Post count selection (1-12 posts)
   - [x] Query type options (recent, category, tag)
-  - [x] Dynamic filtering with REST API integration
-  - [x] Frontend view.js for dynamic content loading
+  - [x] Dynamic REST API integration with view.js
+  - [x] Follows HTML pattern structure
 - [ ] **Create additional native blocks**:
   - [ ] Hero Section Block (asymmetric grid layout)
   - [ ] Featured Article Block (large image + content layout)
@@ -118,13 +105,11 @@ Transform the Thyra WordPress theme into a minimalist editorial design inspired 
   - [ ] Newsletter Subscribe Block
   - [ ] Quote/Blockquote Block (editorial style)
 
-#### 3.2 Block Development Strategy
-**Primary Approach**: Native blocks for all blocks (flexible, customer-editable, dynamic content)
-- **Benefits**: Visual-first development, full editor functionality, CSS control for layout conflicts
-- **Dynamic Content**: Use view.js with WordPress REST API (no PHP render callbacks needed)
-- **Registration**: Automatic registration via `app/setup.php` scanning `resources/js/blocks/`
-
-**ACF Blocks**: Use only when native blocks cannot meet requirements (extremely rigid admin control, complex server-side rendering)
+#### 3.2 Block Development Strategy ✅
+- **Primary Approach**: Native blocks for ALL blocks (flexible, customer-editable, dynamic content)
+- **Dynamic Content**: view.js with WordPress REST API (no PHP render callbacks needed)
+- **Registration**: Automatic via `app/setup.php` scanning `resources/js/blocks/`
+- **ACF Blocks**: Exception only - when native blocks insufficient
 
 ---
 
