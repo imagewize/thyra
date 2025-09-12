@@ -102,24 +102,29 @@ Transform the Thyra WordPress theme into a minimalist editorial design inspired 
 
 ---
 
-### Phase 3: Block Editor Integration 🧩 ✅
+### Phase 3: Block Editor Integration 🧩 ⚡
 
-#### 3.1 ACF Blocks Setup (Rigid, Admin-Controlled Blocks) ✅
-- [x] **Install ACF Pro and ACF Composer**
-- [x] **Create rigid editorial ACF Blocks** (blocks customers should not customize much):
-  - [x] Hero Section Block (asymmetric grid layout)
-  - [x] Article Grid Block (3-column magazine grid)
-  - [x] Featured Article Block (large image + content layout)
+#### 3.1 Native Blocks Setup (Primary Approach) ✅
+- [x] **Install sage-native-block for JS/React blocks** - `composer require imagewize/sage-native-block --dev`
+- [x] **Convert Article Grid Block to native block** (3-column magazine grid with dynamic post querying)
+  - [x] Implemented with post count selection (1-12 posts)
+  - [x] Query type options (recent, category, tag)
+  - [x] Dynamic filtering with REST API integration
+  - [x] Frontend view.js for dynamic content loading
+- [ ] **Create additional native blocks**:
+  - [ ] Hero Section Block (asymmetric grid layout)
+  - [ ] Featured Article Block (large image + content layout)
   - [ ] Author Profile Block
   - [ ] Newsletter Subscribe Block
   - [ ] Quote/Blockquote Block (editorial style)
-- [x] **Configure ACF Block templates with ACF Composer**
-- [x] **Style blocks to match Thaiconomics design**
 
-#### 3.2 Native Blocks Integration (Flexible, Customer-Editable Blocks)
-- [ ] **Install sage-native-block for JS/React blocks** - `composer require imagewize/sage-native-block --dev`
+#### 3.2 Block Development Strategy
+**Primary Approach**: Native blocks for all blocks (flexible, customer-editable, dynamic content)
+- **Benefits**: Visual-first development, full editor functionality, CSS control for layout conflicts
+- **Dynamic Content**: Use view.js with WordPress REST API (no PHP render callbacks needed)
+- **Registration**: Automatic registration via `app/setup.php` scanning `resources/js/blocks/`
 
-**Important Note**: Use Sage Native Block only for blocks that need full editor flexibility without CSS flex ordering conflicts. If CSS uses flex order properties to rearrange layouts, editor changes can conflict with the styling.
+**ACF Blocks**: Use only when native blocks cannot meet requirements (extremely rigid admin control, complex server-side rendering)
 
 ---
 
@@ -230,9 +235,12 @@ Transform the Thyra WordPress theme into a minimalist editorial design inspired 
 - **Remove FontAwesome**: Clean up font files and CSS declarations
 
 ### Block Editor Strategy
-- **ACF Blocks**: Rigid, admin-controlled editorial components (hero sections, featured articles) - customers should not customize much
-- **Native Blocks**: Flexible, customer-editable content blocks (paragraphs, headings, images, galleries) - fully editable like WordPress native blocks
-- **Hybrid Workflow**: Editors can mix and match block types seamlessly
+- **Native Blocks (Primary)**: All blocks use native WordPress blocks for maximum flexibility, customer editability, and modern development patterns
+  - Dynamic content handled via view.js and WordPress REST API
+  - Automatic registration via Sage Native Block package
+  - CSS control resolves any layout conflicts
+- **ACF Blocks (Exception Only)**: Use only when native blocks cannot meet requirements (extremely rigid admin control, complex server-side rendering)
+- **Visual-First Workflow**: Start with block editor patterns, then convert to native blocks
 
 ---
 

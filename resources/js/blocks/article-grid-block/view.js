@@ -1,27 +1,105 @@
 /**
- * View script for the block.
+ * View script for the Article Grid block.
  * 
- * This file handles any client-side functionality needed for the block
- * on the frontend of the site.
+ * This file handles loading the articles dynamically on the frontend
+ * using the WordPress REST API.
  */
 
 (function() {
+  document.addEventListener('DOMContentLoaded', () => {
     // Select all instances of this block on the page
     const blocks = document.querySelectorAll('.wp-block-vendor-article-grid-block');
   
-    // Function to initialize a block
-    function initBlock(block) {
-      // Example: Add click event listener
-      block.addEventListener('click', function(e) {
-        // Example functionality - uncomment to use
-        // console.log('Block clicked:', this);
-      });
+    // Function to fetch and display articles
+    async function loadArticles(block) {
+      const container = block.querySelector('#article-grid-container');
+      const numberOfPosts = parseInt(block.getAttribute('data-number-of-posts')) || 3;
+      const queryType = block.getAttribute('data-query-type') || 'recent';
+      const selectedCategory = parseInt(block.getAttribute('data-selected-category')) || 0;
+      const selectedTag = parseInt(block.getAttribute('data-selected-tag')) || 0;
+      
+      try {
+        let apiUrl = `/wp-json/wp/v2/posts?per_page=${numberOfPosts}&_embed&status=publish&orderby=date&order=desc`;
+        
+        // Add category or tag filter if specified
+        if (queryType === 'category' && selectedCategory > 0) {
+          apiUrl += `&categories=${selectedCategory}`;
+        } else if (queryType === 'tag' && selectedTag > 0) {
+          apiUrl += `&tags=${selectedTag}`;
+        }
+        
+        // Fetch posts from WordPress REST API
+        const response = await fetch(apiUrl);
+        
+        if (!response.ok) {
+          throw new Error('Failed to fetch articles');
+        }
+        
+        const posts = await response.json();
+        
+        // Clear loading message
+        container.innerHTML = '';
+        
+        if (posts.length === 0) {
+          container.innerHTML = '<p class="no-articles">No articles found.</p>';
+          return;
+        }
+        
+        // Create grid container based on HTML pattern
+        const gridContainer = document.createElement('div');
+        gridContainer.className = 'wp-block-columns';
+        
+        // Create articles HTML based on the HTML pattern structure
+        posts.forEach(post => {
+          const column = document.createElement('div');
+          column.className = 'wp-block-column';
+          
+          let featuredImage = '';
+          if (post._embedded && post._embedded['wp:featuredmedia'] && post._embedded['wp:featuredmedia'][0]) {
+            const media = post._embedded['wp:featuredmedia'][0];
+            featuredImage = `
+              <figure class="wp-block-image size-large">
+                <img src="${media.source_url}" alt="${media.alt_text || ''}" />
+              </figure>
+            `;
+          }
+          
+          // Format date
+          const postDate = new Date(post.date).toLocaleDateString('en-US', {
+            month: 'short',
+            day: 'numeric',
+            year: 'numeric'
+          });
+          
+          // Build column HTML following the pattern structure
+          column.innerHTML = `
+            ${featuredImage}
+            <div class="has-body-font-family has-small-font-size" style="margin-top: 1rem;">
+              ${postDate}
+            </div>
+            <h2 class="wp-block-heading has-heading-font-family has-subtitle-font-size" style="margin-top: 0.5rem;">
+              <a href="${post.link}" style="text-decoration: none; color: inherit;">
+                ${post.title.rendered}
+              </a>
+            </h2>
+          `;
+          
+          gridContainer.appendChild(column);
+        });
+        
+        container.appendChild(gridContainer);
+        
+      } catch (error) {
+        console.error('Error loading articles:', error);
+        container.innerHTML = '<p class="articles-error">Error loading articles. Please try again later.</p>';
+      }
     }
   
     // Initialize each block found
     if (blocks.length) {
-      blocks.forEach(function(block) {
-        initBlock(block);
+      blocks.forEach(block => {
+        loadArticles(block);
       });
     }
-  })();
+  });
+})();

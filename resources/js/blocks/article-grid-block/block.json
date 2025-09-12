@@ -5,8 +5,8 @@
     "version": "0.1.0",
     "title": "Article Grid Block",
     "category": "layout",
-    "icon": "table-col-after",
-    "description": "An Example Block to built upon.",
+    "icon": "grid-view",
+    "description": "A responsive 3-column grid displaying articles with thumbnails, titles, and dates.",
     "example": [],
     "supports": {
         "html": false
@@ -19,6 +19,22 @@
         "className": {
             "type": "string",
             "default": "wp-block-vendor-article-grid-block"
+        },
+        "numberOfPosts": {
+            "type": "number",
+            "default": 3
+        },
+        "selectedCategory": {
+            "type": "number",
+            "default": 0
+        },
+        "selectedTag": {
+            "type": "number", 
+            "default": 0
+        },
+        "queryType": {
+            "type": "string",
+            "default": "recent"
         }
     }
 }

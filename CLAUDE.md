@@ -374,13 +374,13 @@ The theme uses a preprocessed `theme.json` that gets compiled by Vite to include
 - Editor JavaScript dependencies are managed through Vite's manifest system
 - Full-site editing is disabled (`remove_theme_support('block-templates')`)
 
-### ACF Block Development with ACF Composer (LEGACY APPROACH)
-For creating rigid, admin-controlled blocks that customers should not customize extensively:
+### ACF Block Development with ACF Composer (USE ONLY WHEN NECESSARY)
+For exceptional cases where native blocks cannot meet requirements:
 
-**⚠️ Note**: This approach is slower and less efficient than Native Blocks. Use only when:
-- You need rigid, admin-only control over content
-- CSS flex ordering conflicts prevent native block usage
-- Legacy compatibility is required
+**⚠️ Note**: This approach should only be used when native blocks are insufficient. Use only when:
+- You need extremely rigid, admin-only control over content structure
+- Complex server-side rendering requirements that cannot be handled client-side
+- Legacy compatibility requirements
 
 **Installation:**
 ```bash
@@ -441,8 +441,8 @@ class HeroSection extends Block
 </section>
 ```
 
-### Native Block Development with Sage Native Block (PREFERRED)
-For creating flexible, customer-editable blocks using JS/React:
+### Native Block Development with Sage Native Block (PRIMARY APPROACH)
+This theme uses native WordPress blocks as the primary block development approach for maximum flexibility and modern development patterns.
 
 **Installation:**
 ```bash
@@ -451,7 +451,7 @@ composer require imagewize/sage-native-block --dev
 
 **Recommended Workflow:**
 1. **Create Pattern in Editor**: Use WordPress block editor to create a pattern/layout as base
-2. **Copy to Claude**: Copy the pattern HTML/structure for reference
+2. **Copy to Claude**: Copy the pattern HTML/structure for reference  
 3. **Generate Native Block**: Use Claude to create block with:
    ```bash
    wp acorn sage-native-block:add-setup imagewize/my-cool-block
@@ -463,12 +463,45 @@ composer require imagewize/sage-native-block --dev
 - **Visual First**: Start with actual block editor patterns
 - **Flexible**: Full WordPress block editor functionality
 - **Maintainable**: Uses standard WordPress block development patterns
+- **CSS Control**: Any layout conflicts can be resolved with additional CSS if needed
 
 **Block Registration:**
-Native blocks are registered in `resources/js/blocks/` and compiled through Vite. These blocks are fully editable in the browser like WordPress native blocks.
+Native blocks are automatically registered using the Sage Native Block package's registration system in `app/setup.php`:
 
-**⚠️ Important Limitation:**
-Use Sage Native Block only for blocks that need full editor flexibility **without CSS flex ordering conflicts**. If your CSS uses `flex` with `order` properties to rearrange layouts, editor changes can conflict with the styling. For layouts that rely on CSS flex ordering, use ACF Blocks instead for better control.
+```php
+/**
+ * Register block types using block.json metadata from the theme's blocks directory.
+ * This function will scan the 'resources/js/blocks' directory for block.json files.
+ */
+add_action('init', function () {
+    $blocks_dir = get_template_directory() . '/resources/js/blocks';
+    if (!is_dir($blocks_dir)) {
+        return;
+    }
+
+    $block_folders = scandir($blocks_dir);
+
+    foreach ($block_folders as $folder) {
+        if ($folder === '.' || $folder === '..') {
+            continue;
+        }
+
+        $block_json_path = $blocks_dir . '/' . $folder . '/block.json';
+
+        if (file_exists($block_json_path)) {
+            register_block_type($block_json_path);
+        }
+    }
+}, 10);
+```
+
+This automatically discovers and registers all blocks in `resources/js/blocks/` based on their `block.json` metadata files. Blocks are compiled through Vite and fully editable in the browser like WordPress native blocks.
+
+**Dynamic Content Handling:**
+For blocks requiring dynamic content (like article grids), use the view.js approach:
+- **save.jsx**: Outputs static HTML with data attributes
+- **view.js**: Reads attributes and loads dynamic content via WordPress REST API
+- **No PHP render callback needed**: All dynamic functionality handled client-side
 
 ### Asset Loading
 Assets are loaded through Laravel's Vite integration, with manifest-based dependency management for optimal performance.
