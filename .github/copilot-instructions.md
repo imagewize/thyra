@@ -72,10 +72,10 @@ location ~* \.(woff2)$ {
 - Full-site editing is disabled; use custom block patterns if needed.
 
 ### Block Development Strategy
-The theme **PREFERS Native Blocks** over ACF Composer blocks for efficiency and modern development patterns.
+The theme uses **Native Blocks as the PRIMARY approach** for all block development, providing maximum flexibility and modern development patterns.
 
-#### Native Blocks (PREFERRED APPROACH)
-For all flexible, customer-editable blocks:
+#### Native Blocks (PRIMARY APPROACH)
+For all blocks - flexible, customer-editable, and dynamic content blocks:
 - **Package**: `composer require imagewize/sage-native-block --dev`
 - **Recommended Workflow**:
   1. **Create Pattern in Editor**: Build the desired layout using WordPress block editor
@@ -87,22 +87,24 @@ For all flexible, customer-editable blocks:
   - No manual conversion to ACF Composer block code
   - Visual-first development using editor patterns as base
   - Full WordPress block editor functionality
+  - CSS Control: Any layout conflicts can be resolved with additional CSS
 - **Location**: `resources/js/blocks/`
+- **Registration**: Blocks are automatically registered via the Sage Native Block package's registration system in `app/setup.php`, which scans for `block.json` files and calls `register_block_type()` on each
 - **Characteristics**: JS/React based, fully editable in browser, compiled through Vite
-- **⚠️ Important Limitation**: Use only when CSS doesn't rely on flex ordering. If CSS uses `flex` with `order` properties to rearrange layouts, editor changes can conflict with styling.
+- **Dynamic Content**: For blocks requiring dynamic content (like article grids), use view.js with WordPress REST API
 
-#### ACF Blocks (LEGACY APPROACH - Use Only When Necessary)
-For rigid, admin-controlled components where native blocks won't work:
+#### ACF Blocks (USE ONLY WHEN ABSOLUTELY NECESSARY)
+For exceptional cases where native blocks cannot meet requirements:
 - **Package**: `composer require log1x/acf-composer`
 - **Use Cases**: 
-  - Need rigid, admin-only control over content
-  - CSS flex ordering conflicts prevent native block usage
+  - Extremely rigid, admin-only control over content structure
+  - Complex server-side rendering requirements that cannot be handled client-side
   - Legacy compatibility requirements
 - **Commands**: 
   - `wp acorn make:block BlockName` - Creates app/Blocks/BlockName.php
   - `wp acorn make:field BlockName` - Creates app/Fields/BlockName.php (optional)
 - **Template Location**: `resources/views/blocks/`
-- **Note**: This approach is slower and less efficient than Native Blocks
+- **Note**: Should only be used when native blocks are insufficient
 
 ### Font Management
 Sage provides a structured workflow for adding custom fonts:

@@ -22,3 +22,18 @@
       padding: 2rem;
     }
   }
+
+/* Post spacing styles */
+.article-grid-spacing-none .wp-block-column {
+  margin-bottom: 0 !important;
+}
+
+.article-grid-spacing-small .wp-block-column {
+  margin-bottom: 1rem !important;
+}
+
+.article-grid-spacing-large .wp-block-column {
+  margin-bottom: 2rem !important;
+}
+
+/* Default spacing is already handled by WordPress core styles */
