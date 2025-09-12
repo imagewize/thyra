@@ -3,11 +3,12 @@
 This repository is a Sage WordPress theme built on Laravel's Acorn framework. Please follow these guidelines when using GitHub Copilot in this project:
 
 ### Architecture & Conventions
-- The repository now includes the official Roots Sage documentation in `docs/roots-docs/sage/`. Always consult these files for best practices, Blade template usage, block development, and Sage conventions.
+- The repository includes the official Roots Sage documentation in `docs/roots-docs/sage/`. Always consult these files for best practices, Blade template usage, block development, and Sage conventions.
 - Use **Laravel Blade templates** for views (`resources/views/*.blade.php`) - NOT traditional PHP templates.
 - All PHP classes use the `App\` namespace and follow PSR-4 autoloading (see `composer.json`).
 - Service Providers are in `app/Providers/` and should extend Sage's base provider.
-- **View Composers** in `app/View/Composers/` pass data to Blade templates - use these instead of inline PHP logic.
+- **View Composers** in `app/View/Composers/` are the cornerstone of Sage architecture - they separate data logic from presentation and enable clean, maintainable templates. Always prefer Composers over inline PHP logic.
+- **Automatic View Binding**: Sage auto-matches Composers to views based on file paths (convert `kebab-case` view names to `PascalCase` Composer names).
 - Asset compilation is handled by **Vite** (see `vite.config.js`), with source files in `resources/` and output in `public/build/`.
 - **Tailwind CSS** is used for styling. Use utility classes in Blade templates and CSS files.
 
@@ -26,6 +27,15 @@ The `app/` directory contains all theme functionality and is namespaced under `A
 - Use translation commands (`npm run translate:*`) for internationalization.
 - Use `node compare-sites.js` to run Playwright comparison between thyra.test and reference site (clarity-tailwind.preview.uideck.com).
 - Use WP-CLI for image size testing: `wp media regenerate --all` and `wp eval "print_r(get_intermediate_image_sizes());"`.
+
+### Blade Template & Component Management
+```bash
+wp acorn view:cache              # Compile all Blade templates (debugging)
+wp acorn view:clear              # Clear compiled Blade templates
+wp acorn optimize:clear          # Clear all caches (views, config, routes)
+wp acorn make:composer Name      # Create new View Composer
+wp acorn make:component Name     # Create new Blade Component
+```
 
 ### Site Comparison Tool
 The theme includes a Playwright script (`compare-sites.js`) for comparing the local development site with the reference design:
@@ -51,26 +61,37 @@ curl -i -k https://thyra.test # Or use -k flag to ignore SSL certificate errors
 - Full-site editing is disabled; use custom block patterns if needed.
 
 ### Block Development Strategy
-The theme uses two distinct approaches for block development:
+The theme **PREFERS Native Blocks** over ACF Composer blocks for efficiency and modern development patterns.
 
-#### ACF Blocks (Rigid, Admin-Controlled)
-For editorial components that customers should not customize extensively:
+#### Native Blocks (PREFERRED APPROACH)
+For all flexible, customer-editable blocks:
+- **Package**: `composer require imagewize/sage-native-block --dev`
+- **Recommended Workflow**:
+  1. **Create Pattern in Editor**: Build the desired layout using WordPress block editor
+  2. **Copy to Claude**: Provide the pattern HTML/structure as reference
+  3. **Generate Native Block**: Use `wp acorn sage-native-block:add-setup imagewize/my-cool-block`
+  4. **Adapt with Claude**: Let Claude convert the pattern into native block structure
+- **Benefits**: 
+  - No time wasted creating HTML from scratch
+  - No manual conversion to ACF Composer block code
+  - Visual-first development using editor patterns as base
+  - Full WordPress block editor functionality
+- **Location**: `resources/js/blocks/`
+- **Characteristics**: JS/React based, fully editable in browser, compiled through Vite
+- **⚠️ Important Limitation**: Use only when CSS doesn't rely on flex ordering. If CSS uses `flex` with `order` properties to rearrange layouts, editor changes can conflict with styling.
+
+#### ACF Blocks (LEGACY APPROACH - Use Only When Necessary)
+For rigid, admin-controlled components where native blocks won't work:
 - **Package**: `composer require log1x/acf-composer`
-- **Purpose**: Rigid editorial components (hero sections, featured articles)
+- **Use Cases**: 
+  - Need rigid, admin-only control over content
+  - CSS flex ordering conflicts prevent native block usage
+  - Legacy compatibility requirements
 - **Commands**: 
   - `wp acorn make:block BlockName` - Creates app/Blocks/BlockName.php
   - `wp acorn make:field BlockName` - Creates app/Fields/BlockName.php (optional)
 - **Template Location**: `resources/views/blocks/`
-- **Characteristics**: Limited customization, admin-defined content
-
-#### Native Blocks (Flexible, Customer-Editable) 
-For blocks that should be fully customizable like WordPress native blocks:
-- **Package**: `composer require imagewize/sage-native-block --dev`
-- **Purpose**: Flexible content blocks (paragraphs, headings, images, galleries)
-- **Commands**: `wp acorn native-block:make BlockName`
-- **Location**: `resources/js/blocks/`
-- **Characteristics**: JS/React based, fully editable in browser, compiled through Vite
-- **⚠️ Important Limitation**: Use only when CSS doesn't rely on flex ordering. If CSS uses `flex` with `order` properties to rearrange layouts, editor changes can conflict with styling. Use ACF Blocks for layouts with CSS flex ordering instead.
+- **Note**: This approach is slower and less efficient than Native Blocks
 
 ### Font Management
 Sage provides a structured workflow for adding custom fonts:
@@ -103,8 +124,27 @@ Sage provides a structured workflow for adding custom fonts:
 - **Fonts**: Use the Sage font workflow with `.woff2` files in `resources/fonts/` and `fonts.css` for declarations.
 - **Code Style**: Follow PSR-12 standards and use `./vendor/bin/pint` for formatting.
 
+### Components vs Composers vs Partials
+
+**When to Use What:**
+- **Partials** (`@include`): Simple, static template pieces
+- **Composers**: Data logic for templates (preferred over inline PHP)
+- **Components**: Reusable UI elements with both data and template logic
+
+**Component Usage:**
+```blade
+<x-alert-box type="warning" :dismissible="true" class="mb-4">
+  Important message here
+</x-alert-box>
+```
+
+**Component Data Flow:**
+- Constructor arguments become template variables
+- Use `camelCase` in PHP, `kebab-case` in HTML attributes  
+- Prefix with `:` to pass PHP expressions: `:user="$currentUser"`
+
 ### View Composers Usage
-View Composers are the proper Sage way to pass data to Blade templates:
+View Composers are the cornerstone of Sage architecture and the proper way to pass data to Blade templates:
 
 **Creating New View Composers:**
 ```bash
@@ -139,11 +179,21 @@ class Index extends Composer
 ```
 
 **Key Benefits:**
-- Separates data logic from presentation
-- Reusable across multiple templates
-- Easier to test and maintain
-- Follows Laravel/Sage architectural patterns
-- Cleaner Blade templates focused on presentation only
+- **Separation of Concerns**: Keep data fetching logic out of Blade templates
+- **Reusability**: Share data logic across multiple templates
+- **Testability**: Easier to unit test data logic separately
+- **Performance**: Centralized data fetching and caching
+- **Laravel Patterns**: Follow established Laravel/Sage architectural patterns
+- **Cleaner Templates**: Blade files focus purely on presentation
+
+**Automatic View Binding:**
+- View: `/resources/views/partials/hero-section.blade.php`
+- Composer: `/app/View/Composers/HeroSection.php` 
+- Auto-matched via file path conversion (kebab-case → PascalCase)
+
+**`with()` vs `override()` Methods:**
+- **`with()`**: Adds data without overriding inherited/passed data (use this)
+- **`override()`**: Replaces existing data with the same key names
 
 ### Blade Layouts & Template Structure
 Sage uses Laravel's Blade templating engine with layouts and includes:

@@ -45,6 +45,7 @@
     "roots/acorn": "^5.0"
   },
   "require-dev": {
+    "imagewize/sage-native-block": "^1.0",
     "laravel/pint": "^1.20"
   },
   "suggest": {

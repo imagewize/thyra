@@ -203,3 +203,11 @@ Thyra extends the powerful Sage starter theme framework:
 **Thyra Theme** — Minimalist editorial design meets modern WordPress development.
 
 Built with love using [Sage](https://roots.io/sage/) • Inspired by editorial excellence
+
+## Resources
+
+### Unsplash
+
+Asian woman photo by [Mathias Huysmans](https://unsplash.com/@matman01?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash) on [Unsplash](https://unsplash.com/photos/woman-in-pink-crew-neck-shirt-in-closeup-photography-U4JDjYmjn1g?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash)   
+Beach photo by [Il Vagabiondo](https://unsplash.com/@ilvagabiondo?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash) on [Unsplash](https://unsplash.com/photos/brown-wooden-dock-during-daytime-izhLVIfpSBo?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash)
+         
