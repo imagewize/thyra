@@ -18,7 +18,7 @@ Built on Sage 11 with Laravel Blade, Tailwind CSS, and modern development workfl
 
 Thyra embodies the sophisticated minimalism of editorial publishing, drawing inspiration from the clean aesthetics of Thaiconomic. The theme focuses on:
 
-- **Editorial Typography** — Lato Regular (400) - Primary Sans Serif, Lora Regular (400) - Serif Font, Bitter Regular (400) - Display Font, Open Sans Regular (400) - Alternative Sans Serif with carefully crafted type hierarchy
+- **Editorial Typography** — Lato Regular (400) - Primary Sans Serif, Bitter Regular (400) - Serif & Display Font, Menlo Regular (400) - Monospace Font with carefully crafted type hierarchy
 - **Magazine-Style Layout** — Asymmetric grids and generous whitespace  
 - **Minimalist Aesthetic** — Black, white, and subtle grays color palette
 - **Reading Experience** — Optimized for long-form content consumption
@@ -149,10 +149,11 @@ thyra/
 ## Design System
 
 ### Typography
-- **Primary Font**: Helvetica Neue (clean, editorial aesthetic)
+- **Sans Serif**: Lato Regular (400) for body text and UI elements
+- **Serif**: Bitter Regular (400) for headings, intros, and editorial content
+- **Monospace**: Menlo Regular (400) for code and technical content
 - **Type Scale**: From 55px hero titles to 16px body text
 - **Line Heights**: Optimized for readability (1.2 - 1.8)
-- **Font Weights**: Light (300), Normal (400), Bold (700)
 
 ### Color Palette
 - **Primary**: Black (#000000) for headings and navigation

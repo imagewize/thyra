@@ -47,11 +47,22 @@ The theme includes a Playwright script (`compare-sites.js`) for comparing the lo
 
 This tool is essential for ensuring design consistency and identifying layout issues during development.
 
-### Local Development SSL
+### Local Development SSL & Font Loading
 For local development using Laravel Valet or similar tools, the local site uses self-signed SSL certificates. When testing with curl:
 ```bash
 curl -i http://thyra.test   # Use HTTP instead of HTTPS for local development
 curl -i -k https://thyra.test # Or use -k flag to ignore SSL certificate errors
+```
+
+**Font Loading Issues**: Chrome errors like `Failed to decode downloaded font` or `OTS parsing error: invalid sfntVersion` are typically caused by nginx MIME type misconfiguration. Laravel Valet/nginx may not serve WOFF2 files with the correct `font/woff2` MIME type.
+
+**Solution**: Configure nginx to serve WOFF2 with proper MIME type:
+```nginx
+location ~* \.(woff2)$ {
+    add_header Content-Type font/woff2;
+    expires 1y;
+    add_header Cache-Control "public, immutable";
+}
 ```
 
 ### WordPress Integration
@@ -101,19 +112,45 @@ Sage provides a structured workflow for adding custom fonts:
 3. **Import fonts.css** in both `app.css` and `editor.css`: `@import './fonts.css';`
 4. **Add to Tailwind theme** in `app.css`: `@theme { --font-primary: "Font Name", sans-serif; }`
 
+**Current Font Stack:**
+- **Sans Serif**: Lato Regular (400) for body text and UI elements
+- **Serif**: Bitter Regular (400) for headings, intros, and editorial content  
+- **Monospace**: Menlo Regular (400) for code and technical content
+
 **Font CSS Structure:**
 ```css
+/* Lato - Primary Sans Serif Font */
 @font-face {
   font-display: swap;
-  font-family: 'Helvetica Neue';
+  font-family: 'Lato';
   font-style: normal;
   font-weight: 400;
-  src: url('@fonts/helvetica-neue-regular.woff2') format('woff2');
+  src: url('@fonts/lato-regular.woff2') format('woff2');
+}
+
+/* Bitter - Display Font (Regular) */
+@font-face {
+  font-display: swap;
+  font-family: 'Bitter';
+  font-style: normal;
+  font-weight: 400;
+  src: url('@fonts/bitter-regular.woff2') format('woff2');
+}
+
+/* Menlo - Mono Font */
+@font-face {
+  font-display: swap;
+  font-family: 'Menlo';
+  font-style: normal;
+  font-weight: 400;
+  src: url('@fonts/menlo-regular-webfont.woff2') format('woff2');
 }
 ```
 
 **Resources:**
-- Use [google-webfonts-helper](https://google-webfonts-helper.herokuapp.com/) for downloading fonts and generating CSS
+- Use [Google Webfonts Helper](https://gwfh.mranftl.com/) for downloading fonts and generating CSS
+- **API Downloads**: Use the API for bulk downloads: `https://gwfh.mranftl.com/api/fonts/{font-name}?download=zip&subsets=latin&variants=regular,300,700,900&formats=woff2`
+  - Example: `https://gwfh.mranftl.com/api/fonts/lato?download=zip&subsets=latin&variants=300,700,900,regular,italic&formats=woff2`
 - Always use `font-display: swap` for better loading performance
 
 ### Best Practices

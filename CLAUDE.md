@@ -226,11 +226,23 @@ npm run translate:compile   # Compile .po to .mo and JSON files
 node compare-sites.js       # Run Playwright script to compare thyra.test with reference site
 ```
 
-### Local Development SSL
+### Local Development SSL & MIME Types
 For local development using Laravel Valet or similar tools, the local site uses self-signed SSL certificates. When testing with curl:
 ```bash
 curl -i http://thyra.test   # Use HTTP instead of HTTPS for local development
 curl -i -k https://thyra.test # Or use -k flag to ignore SSL certificate errors
+```
+
+**Font Loading Issues**: If you see Chrome errors like `Failed to decode downloaded font` or `OTS parsing error: invalid sfntVersion`, this is typically an nginx MIME type configuration issue. Laravel Valet/nginx may not be serving WOFF2 files with the correct `font/woff2` MIME type, causing browsers to reject otherwise valid font files.
+
+**Solution**: Add WOFF2 MIME type to your nginx configuration:
+```nginx
+# In nginx.conf or valet configuration
+location ~* \.(woff2)$ {
+    add_header Content-Type font/woff2;
+    expires 1y;
+    add_header Cache-Control "public, immutable";
+}
 ```
 
 The `compare-sites.js` script uses Playwright to:
@@ -298,6 +310,7 @@ Sage provides a structured approach to adding custom fonts to your theme:
 **File:** `resources/css/fonts.css`
 
 ```css
+/* Lato - Primary Sans Serif Font */
 @font-face {
   font-display: swap;
   font-family: 'Lato';
@@ -306,28 +319,22 @@ Sage provides a structured approach to adding custom fonts to your theme:
   src: url('@fonts/lato-regular.woff2') format('woff2');
 }
 
-@font-face {
-  font-display: swap;
-  font-family: 'Lora';
-  font-style: normal;
-  font-weight: 400;
-  src: url('@fonts/lora-regular.woff2') format('woff2');
-}
-
+/* Bitter - Display Font (Variable) */
 @font-face {
   font-display: swap;
   font-family: 'Bitter';
   font-style: normal;
-  font-weight: 400;
-  src: url('@fonts/bitter-regular.woff2') format('woff2');
+  font-weight: 100 900;
+  src: url('@fonts/bitter-variable-font.woff2') format('woff2-variations');
 }
 
+/* Menlo - Mono Font */
 @font-face {
   font-display: swap;
-  font-family: 'Open Sans';
+  font-family: 'Menlo';
   font-style: normal;
   font-weight: 400;
-  src: url('@fonts/opensans-regular.woff2') format('woff2');
+  src: url('@fonts/menlo-regular-webfont.woff2') format('woff2');
 }
 ```
 
@@ -337,16 +344,23 @@ Add custom fonts to your Tailwind theme in `resources/css/app.css`:
 
 ```css
 @theme {
-  --font-primary: "Lato", system-ui, sans-serif;
-  --font-serif: "Lora", Georgia, serif;
-  --font-display: "Bitter", serif;
-  --font-alt: "Open Sans", system-ui, sans-serif;
+  /* Editorial Typography System - Three Font Hierarchy */
+  --font-heading: "Bitter", serif;
+  --font-intro: "Bitter", serif;  
+  --font-body: "Lato", system-ui, sans-serif;
+
+  /* Tailwind font family mappings */
+  --font-sans: "Lato", system-ui, sans-serif;
+  --font-serif: "Bitter", serif;
+  --font-mono: "Menlo", ui-monospace, SFMono-Regular, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
 }
 ```
 
 ### Font Resources
 
-- **Google Fonts Helper**: [google-webfonts-helper.herokuapp.com](https://google-webfonts-helper.herokuapp.com/) - Easy way to download font files and generate CSS
+- **Google Webfonts Helper**: [gwfh.mranftl.com](https://gwfh.mranftl.com/) - Easy way to download font files and generate CSS
+- **API Downloads**: Use the API for bulk downloads: `https://gwfh.mranftl.com/api/fonts/{font-name}?download=zip&subsets=latin&variants=regular,300,700,900&formats=woff2`
+  - Example: `https://gwfh.mranftl.com/api/fonts/lato?download=zip&subsets=latin&variants=300,700,900,regular,italic&formats=woff2`
 - **Font Display**: Use `font-display: swap` for better loading performance
 - **Format Priority**: `.woff2` has excellent browser support and should be your primary format
 
