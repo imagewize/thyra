@@ -25,12 +25,19 @@
   --color-gray-800: #1f2937;
   --color-gray-900: #111827;
   
-  /* Typography System */
-  --font-family-primary: "Lato", system-ui, sans-serif;
-  --font-family-serif: "Lora", Georgia, serif;
-  --font-family-display: "Bitter", "Lato", system-ui, sans-serif;
-  --font-family-body: "Open Sans", "Lato", system-ui, sans-serif;
+  /* Tailwind font family mappings */
+  /* --font-sans: "Lato", system-ui, sans-serif;
+  --font-serif: "Bitter", serif;
+  --font-mono: "Menlo", ui-monospace, SFMono-Regular, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; */
   
+  /* Individual font family definitions for WordPress theme.json */
+  --font-lato: "Lato", system-ui, sans-serif;
+  --font-bitter: "Bitter", serif;
+  --font-menlo: "Menlo", ui-monospace, SFMono-Regular, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+
+  /* Note: Font sizes use Tailwind's built-in scale (text-xs, text-sm, text-base, etc.)
+     We don't define custom font sizes here to keep the rem-based responsive scale */
+
   /* Editorial Typography Scale */
   --font-size-hero: 55px;        /* Hero post titles (desktop) */
   --font-size-hero-mobile: 28px; /* Hero post titles (mobile) */
@@ -85,6 +92,18 @@
   --z-index-popover: 100;
   --z-index-tooltip: 200;
 }
+
+/* Add support for block editor font family classes */
+  .has-lato-font-family {
+    font-family: var(--font-lato);
+  }
+  .has-bitter-font-family {
+    font-family: var(--font-bitter);
+  }
+  .has-menlo-font-family {
+    font-family: var(--font-menlo);
+  }
+
 
 /* Editorial Design CSS Variables */
 :root {

@@ -67,18 +67,26 @@ Most PHP code in Sage is namespaced and autoloaded. All theme functionality shou
 
 ## View Composers: The Sage Way
 
+**View Composers are the cornerstone of Sage architecture** - they separate data logic from presentation and enable clean, maintainable templates.
 
 ### Why Use View Composers?
 - **Separation of Concerns**: Keep data fetching logic out of Blade templates
-- **Reusability**: Share data logic across multiple templates
+- **Reusability**: Share data logic across multiple templates  
 - **Testability**: Easier to unit test data logic separately
 - **Performance**: Centralized data fetching and caching
+- **Laravel Patterns**: Follow established Laravel/Sage architectural patterns
 
 ### Creating View Composers
 Use the Artisan command to generate new View Composers:
 ```bash
 wp acorn make:composer HeroSection      # Creates app/View/Composers/HeroSection.php
 ```
+
+### Automatic View Binding
+Sage automatically binds Composers to views based on file paths:
+- View: `/resources/views/partials/hero-section.blade.php`
+- Composer: `/app/View/Composers/HeroSection.php`
+- **Auto-matched**: Convert `kebab-case` view names to `PascalCase` Composer names
 
 ### View Composer Structure
 ```php
@@ -135,6 +143,11 @@ With View Composers, Blade templates become clean and focused:
 @endif
 ```
 
+### `with()` vs `override()` Methods
+- **`with()`**: Adds data without overriding inherited/passed data
+- **`override()`**: Replaces any existing data with the same key names
+- **Use `with()`** for most cases to preserve data inheritance
+
 ### Anti-Pattern: Avoid Inline PHP
 ```php
 {{-- ❌ WRONG - Don't do this --}}
@@ -180,6 +193,19 @@ npm run build        # Build production assets
 ./vendor/bin/pint    # Run Laravel Pint code formatter (PHP)
 ```
 
+### Blade Template Management
+```bash
+wp acorn view:cache  # Compile all Blade templates (useful for debugging)
+wp acorn view:clear  # Clear all compiled Blade templates
+wp acorn optimize:clear  # Clear all caches (views, config, routes)
+```
+
+### Component & Composer Generation
+```bash
+wp acorn make:composer ExampleComposer    # Create new View Composer
+wp acorn make:component ExampleComponent  # Create new Blade Component
+```
+
 ### Image Size Testing
 ```bash
 wp media regenerate --all          # Regenerate all image sizes for existing images
@@ -200,11 +226,23 @@ npm run translate:compile   # Compile .po to .mo and JSON files
 node compare-sites.js       # Run Playwright script to compare thyra.test with reference site
 ```
 
-### Local Development SSL
+### Local Development SSL & MIME Types
 For local development using Laravel Valet or similar tools, the local site uses self-signed SSL certificates. When testing with curl:
 ```bash
 curl -i http://thyra.test   # Use HTTP instead of HTTPS for local development
 curl -i -k https://thyra.test # Or use -k flag to ignore SSL certificate errors
+```
+
+**Font Loading Issues**: If you see Chrome errors like `Failed to decode downloaded font` or `OTS parsing error: invalid sfntVersion`, this is typically an nginx MIME type configuration issue. Laravel Valet/nginx may not be serving WOFF2 files with the correct `font/woff2` MIME type, causing browsers to reject otherwise valid font files.
+
+**Solution**: Add WOFF2 MIME type to your nginx configuration:
+```nginx
+# In nginx.conf or valet configuration
+location ~* \.(woff2)$ {
+    add_header Content-Type font/woff2;
+    expires 1y;
+    add_header Cache-Control "public, immutable";
+}
 ```
 
 The `compare-sites.js` script uses Playwright to:
@@ -272,6 +310,7 @@ Sage provides a structured approach to adding custom fonts to your theme:
 **File:** `resources/css/fonts.css`
 
 ```css
+/* Lato - Primary Sans Serif Font */
 @font-face {
   font-display: swap;
   font-family: 'Lato';
@@ -280,28 +319,22 @@ Sage provides a structured approach to adding custom fonts to your theme:
   src: url('@fonts/lato-regular.woff2') format('woff2');
 }
 
-@font-face {
-  font-display: swap;
-  font-family: 'Lora';
-  font-style: normal;
-  font-weight: 400;
-  src: url('@fonts/lora-regular.woff2') format('woff2');
-}
-
+/* Bitter - Display Font (Variable) */
 @font-face {
   font-display: swap;
   font-family: 'Bitter';
   font-style: normal;
-  font-weight: 400;
-  src: url('@fonts/bitter-regular.woff2') format('woff2');
+  font-weight: 100 900;
+  src: url('@fonts/bitter-variable-font.woff2') format('woff2-variations');
 }
 
+/* Menlo - Mono Font */
 @font-face {
   font-display: swap;
-  font-family: 'Open Sans';
+  font-family: 'Menlo';
   font-style: normal;
   font-weight: 400;
-  src: url('@fonts/opensans-regular.woff2') format('woff2');
+  src: url('@fonts/menlo-regular-webfont.woff2') format('woff2');
 }
 ```
 
@@ -311,16 +344,23 @@ Add custom fonts to your Tailwind theme in `resources/css/app.css`:
 
 ```css
 @theme {
-  --font-primary: "Lato", system-ui, sans-serif;
-  --font-serif: "Lora", Georgia, serif;
-  --font-display: "Bitter", serif;
-  --font-alt: "Open Sans", system-ui, sans-serif;
+  /* Editorial Typography System - Three Font Hierarchy */
+  --font-heading: "Bitter", serif;
+  --font-intro: "Bitter", serif;  
+  --font-body: "Lato", system-ui, sans-serif;
+
+  /* Tailwind font family mappings */
+  --font-sans: "Lato", system-ui, sans-serif;
+  --font-serif: "Bitter", serif;
+  --font-mono: "Menlo", ui-monospace, SFMono-Regular, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
 }
 ```
 
 ### Font Resources
 
-- **Google Fonts Helper**: [google-webfonts-helper.herokuapp.com](https://google-webfonts-helper.herokuapp.com/) - Easy way to download font files and generate CSS
+- **Google Webfonts Helper**: [gwfh.mranftl.com](https://gwfh.mranftl.com/) - Easy way to download font files and generate CSS
+- **API Downloads**: Use the API for bulk downloads: `https://gwfh.mranftl.com/api/fonts/{font-name}?download=zip&subsets=latin&variants=regular,300,700,900&formats=woff2`
+  - Example: `https://gwfh.mranftl.com/api/fonts/lato?download=zip&subsets=latin&variants=300,700,900,regular,italic&formats=woff2`
 - **Font Display**: Use `font-display: swap` for better loading performance
 - **Format Priority**: `.woff2` has excellent browser support and should be your primary format
 
@@ -334,8 +374,13 @@ The theme uses a preprocessed `theme.json` that gets compiled by Vite to include
 - Editor JavaScript dependencies are managed through Vite's manifest system
 - Full-site editing is disabled (`remove_theme_support('block-templates')`)
 
-### ACF Block Development with ACF Composer
+### ACF Block Development with ACF Composer (LEGACY APPROACH)
 For creating rigid, admin-controlled blocks that customers should not customize extensively:
+
+**⚠️ Note**: This approach is slower and less efficient than Native Blocks. Use only when:
+- You need rigid, admin-only control over content
+- CSS flex ordering conflicts prevent native block usage
+- Legacy compatibility is required
 
 **Installation:**
 ```bash
@@ -396,7 +441,7 @@ class HeroSection extends Block
 </section>
 ```
 
-### Native Block Development with Sage Native Block
+### Native Block Development with Sage Native Block (PREFERRED)
 For creating flexible, customer-editable blocks using JS/React:
 
 **Installation:**
@@ -404,10 +449,20 @@ For creating flexible, customer-editable blocks using JS/React:
 composer require imagewize/sage-native-block --dev
 ```
 
-**Creating Native Blocks:**
-```bash
-wp acorn native-block:make CustomButton    # Creates JS/React block scaffolding
-```
+**Recommended Workflow:**
+1. **Create Pattern in Editor**: Use WordPress block editor to create a pattern/layout as base
+2. **Copy to Claude**: Copy the pattern HTML/structure for reference
+3. **Generate Native Block**: Use Claude to create block with:
+   ```bash
+   wp acorn sage-native-block:add-setup imagewize/my-cool-block
+   ```
+4. **Adjust Block**: Claude adapts the pattern into the native block structure
+
+**Why This Approach:**
+- **Faster Development**: No need to create HTML from scratch and convert to ACF
+- **Visual First**: Start with actual block editor patterns
+- **Flexible**: Full WordPress block editor functionality
+- **Maintainable**: Uses standard WordPress block development patterns
 
 **Block Registration:**
 Native blocks are registered in `resources/js/blocks/` and compiled through Vite. These blocks are fully editable in the browser like WordPress native blocks.
@@ -423,6 +478,30 @@ Assets are loaded through Laravel's Vite integration, with manifest-based depend
 - Standard WordPress theme supports enabled (post-thumbnails, html5, etc.)
 - Two widget areas: sidebar-primary and sidebar-footer
 - Core block patterns disabled in favor of custom implementation
+
+## Components vs Composers vs Partials
+
+### When to Use What:
+- **Partials** (`@include`): Simple, static template pieces
+- **Composers**: Data logic for templates (preferred over inline PHP)
+- **Components**: Reusable UI elements with both data and template logic
+
+### Component Creation
+```bash
+wp acorn make:component AlertBox    # Creates app/View/Components/AlertBox.php + template
+```
+
+**Component Usage:**
+```blade
+<x-alert-box type="warning" :dismissible="true" class="mb-4">
+  Important message here
+</x-alert-box>
+```
+
+**Component Data Flow:**
+- Constructor arguments become template variables
+- Use `camelCase` in PHP, `kebab-case` in HTML attributes
+- Prefix with `:` to pass PHP expressions: `:user="$currentUser"`
 
 ## Common Issues & Troubleshooting
 

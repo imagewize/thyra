@@ -7,16 +7,16 @@
   src: url('@fonts/lato-regular.woff2') format('woff2');
 }
 
-/* Lora - Serif Font */
+/* Menlo - Mono Font */
 @font-face {
   font-display: swap;
-  font-family: 'Lora';
+  font-family: 'Menlo';
   font-style: normal;
   font-weight: 400;
-  src: url('@fonts/lora-regular.woff2') format('woff2');
+  src: url('@fonts/menlo-regular-webfont.woff2') format('woff2');
 }
 
-/* Bitter - Display Font */
+/* Bitter - Display Font (Regular) */
 @font-face {
   font-display: swap;
   font-family: 'Bitter';
@@ -25,14 +25,6 @@
   src: url('@fonts/bitter-regular.woff2') format('woff2');
 }
 
-/* Open Sans - Alternative Sans Serif */
-@font-face {
-  font-display: swap;
-  font-family: 'Open Sans';
-  font-style: normal;
-  font-weight: 400;
-  src: url('@fonts/opensans-regular.woff2') format('woff2');
-}
 
 /* FontAwesome - Icon Font */
 @font-face {

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "df8f57cab45240b98147413ecd4c0ffa",
+    "content-hash": "d72de7303f3d3cc96d4262564ec8be81",
     "packages": [
         {
             "name": "blade-ui-kit/blade-icons",
@@ -6563,6 +6563,59 @@
         }
     ],
     "packages-dev": [
+        {
+            "name": "imagewize/sage-native-block",
+            "version": "v1.0.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/imagewize/sage-native-block.git",
+                "reference": "6a6cdaf90546b102efb0a186dc395899a1917528"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/imagewize/sage-native-block/zipball/6a6cdaf90546b102efb0a186dc395899a1917528",
+                "reference": "6a6cdaf90546b102efb0a186dc395899a1917528",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^8.1"
+            },
+            "require-dev": {
+                "laravel/pint": "^1.20"
+            },
+            "type": "package",
+            "extra": {
+                "acorn": {
+                    "aliases": {
+                        "SageNativeBlock": "Imagewize\\SageNativeBlockPackage\\Facades\\SageNativeBlock"
+                    },
+                    "providers": [
+                        "Imagewize\\SageNativeBlockPackage\\Providers\\SageNativeBlockServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Imagewize\\SageNativeBlockPackage\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Jasper Frumau",
+                    "email": "jasper@imagewize.com"
+                }
+            ],
+            "description": "Native block setups made easier for Sage",
+            "support": {
+                "issues": "https://github.com/imagewize/sage-native-block/issues",
+                "source": "https://github.com/imagewize/sage-native-block/tree/v1.0.2"
+            },
+            "time": "2025-05-02T02:27:51+00:00"
+        },
         {
             "name": "laravel/pint",
             "version": "v1.24.0",

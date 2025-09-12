@@ -2,26 +2,34 @@
   <section {{ $attributes->merge(['class' => 'py-16 bg-white']) }}>
 @endunless
 
-<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-  <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+<div class="max-w-6xl mx-auto px-4 sm:px-8">
+  <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
     
-    {{-- Featured Image --}}
-    <div class="order-2 lg:order-1">
+    {{-- Featured Image (Left - Takes 1 column) --}}
+    <div class="lg:col-span-1">
       @if ($featured_image && !empty($featured_image['url']))
-        <div class="aspect-[4/5] overflow-hidden">
-          <img src="{{ $featured_image['url'] }}" 
-               alt="{{ $featured_image['alt'] ?? '' }}" 
-               class="w-full h-full object-cover">
+        <div class="aspect-[3/4] overflow-hidden bg-gray-100">
+          @if ($article_type !== 'manual' && $selected_post)
+            <a href="{{ get_permalink($selected_post->ID) }}">
+              <img src="{{ $featured_image['url'] }}" 
+                   alt="{{ $featured_image['alt'] ?? '' }}" 
+                   class="w-full h-full object-cover hover:scale-105 transition-transform duration-500">
+            </a>
+          @else
+            <img src="{{ $featured_image['url'] }}" 
+                 alt="{{ $featured_image['alt'] ?? '' }}" 
+                 class="w-full h-full object-cover">
+          @endif
         </div>
       @endif
     </div>
     
-    {{-- Featured Content --}}
-    <div class="order-1 lg:order-2 space-y-6">
+    {{-- Featured Content (Right - Takes 2 columns) --}}
+    <div class="lg:col-span-2 space-y-6">
       @if ($headline)
-        <h1 class="text-4xl lg:text-5xl font-bold text-black leading-tight font-serif">
+        <h1 class="text-3xl lg:text-4xl font-normal text-black leading-tight">
           @if ($article_type !== 'manual' && $selected_post)
-            <a href="{{ get_permalink($selected_post->ID) }}" class="hover:text-gray-700 transition-colors">
+            <a href="{{ get_permalink($selected_post->ID) }}" class="hover:text-gray-600 transition-colors">
               {{ $headline }}
             </a>
           @else
@@ -31,19 +39,15 @@
       @endif
       
       @if ($subtitle)
-        <p class="text-lg text-gray-600 leading-relaxed">
+        <h2 class="text-xl font-normal text-black leading-relaxed">
           {{ $subtitle }}
-        </p>
+        </h2>
+        <div class="w-12 h-px bg-black"></div>
       @endif
       
       @if ($article_type !== 'manual' && $selected_post)
-        <div class="flex items-center space-x-4 text-sm text-gray-500">
-          <div class="flex items-center space-x-2">
-            {!! get_avatar(get_the_author_meta('ID', $selected_post->post_author), 32, '', '', ['class' => 'w-8 h-8 rounded-full']) !!}
-            <span class="font-medium">{{ get_the_author_meta('display_name', $selected_post->post_author) }}</span>
-          </div>
-          <span>•</span>
-          <time>{{ get_the_date('M j, Y', $selected_post->ID) }}</time>
+        <div class="text-sm text-gray-400">
+          <time>{{ get_the_date('M j', $selected_post->ID) }}</time>
         </div>
       @endif
     </div>
