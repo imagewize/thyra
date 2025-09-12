@@ -1,3 +1,41 @@
+## [1.0.0-alpha.5] - 2025-09-12
+
+### Added
+- Native Block Development infrastructure with Sage Native Block package
+- Article Grid Block implementation for editorial layouts
+- Menlo monospace font integration for code/technical content
+- Enhanced development workflow documentation and guidelines
+- HTML pattern examples for block development reference
+- Comprehensive block development workflow in CLAUDE.md
+
+### Changed
+- **Font System Overhaul**: Streamlined from 3-font to 2-font system (Lato + Bitter)
+- **Typography Optimization**: Removed Lora serif font in favor of Bitter variable font
+- **Development Documentation**: Enhanced CLAUDE.md with Native Block vs ACF Block guidance
+- **Header Navigation**: Simplified hamburger menu implementation and mobile navigation
+- **Block Development**: Added preferred Native Block workflow over ACF Composer
+
+### Improved
+- **Font Loading Performance**: Optimized font files and reduced bundle size
+- **Block Editor Integration**: Complete Native Block system with editor.js compilation
+- **Mobile Navigation**: Enhanced hamburger menu with better touch interactions
+- **Code Quality**: Updated development guidelines and architectural documentation
+- **Asset Management**: Improved font file organization and loading strategy
+
+### Technical Implementation  
+- Sage Native Block package integration via Composer
+- Article Grid Block with React/JSX editor components
+- Menlo webfont for monospace typography needs
+- Enhanced Vite configuration for block compilation
+- Mobile-first navigation improvements with Alpine.js
+
+### Dependencies
+- Added `imagewize/sage-native-block` package for modern block development
+- Optimized font assets (removed Lora, streamlined Bitter integration)
+- Enhanced block editor JavaScript compilation pipeline
+
+---
+
 ## [1.0.0-alpha.4] - 2025-09-11
 
 ### Added
