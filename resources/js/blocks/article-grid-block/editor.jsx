@@ -2,7 +2,7 @@
  * WordPress dependencies
  */
 import { useBlockProps, InspectorControls } from '@wordpress/block-editor';
-import { PanelBody, RangeControl, SelectControl, RadioControl } from '@wordpress/components';
+import { PanelBody, RangeControl, SelectControl, RadioControl, ToggleControl } from '@wordpress/components';
 import { useSelect } from '@wordpress/data';
 import { __ } from '@wordpress/i18n';
 
@@ -10,7 +10,19 @@ import { __ } from '@wordpress/i18n';
  * Edit function that renders in the admin
  */
 export default function Edit({ attributes, setAttributes }) {
-  const { numberOfPosts, selectedCategory, selectedTag, queryType } = attributes;
+  const { 
+    numberOfPosts, 
+    selectedCategory, 
+    selectedTag, 
+    queryType,
+    dateFontFamily,
+    dateFontSize,
+    headingFontFamily,
+    headingFontSize,
+    postSpacing,
+    showDate,
+    showExcerpt
+  } = attributes;
   const blockProps = useBlockProps();
 
   // Get categories and tags
@@ -20,6 +32,7 @@ export default function Edit({ attributes, setAttributes }) {
       tags: select('core').getEntityRecords('taxonomy', 'post_tag') || [],
       posts: select('core').getEntityRecords('postType', 'post', {
         per_page: numberOfPosts,
+        _embed: true,
         categories: queryType === 'category' && selectedCategory ? [selectedCategory] : undefined,
         tags: queryType === 'tag' && selectedTag ? [selectedTag] : undefined,
         orderby: 'date',
@@ -79,28 +92,117 @@ export default function Edit({ attributes, setAttributes }) {
             />
           )}
         </PanelBody>
+
+        <PanelBody title={__('Article Grid Styling', 'vendor')}>
+          <ToggleControl
+            label={__('Show Date', 'vendor')}
+            checked={showDate}
+            onChange={(value) => setAttributes({ showDate: value })}
+          />
+
+          <ToggleControl
+            label={__('Show Excerpt', 'vendor')}
+            checked={showExcerpt}
+            onChange={(value) => setAttributes({ showExcerpt: value })}
+          />
+
+          {showDate && (
+            <>
+              <SelectControl
+                label={__('Date Font Family', 'vendor')}
+                value={dateFontFamily}
+                options={[
+                  { label: __('Lato (Sans Serif)', 'vendor'), value: 'lato' },
+                  { label: __('Bitter (Serif)', 'vendor'), value: 'bitter' },
+                  { label: __('Body (Default)', 'vendor'), value: 'body' },
+                  { label: __('Heading (Default)', 'vendor'), value: 'heading' }
+                ]}
+                onChange={(value) => setAttributes({ dateFontFamily: value })}
+              />
+
+              <SelectControl
+                label={__('Date Font Size', 'vendor')}
+                value={dateFontSize}
+                options={[
+                  { label: __('Small', 'vendor'), value: 'small' },
+                  { label: __('Normal', 'vendor'), value: 'normal' },
+                  { label: __('Large', 'vendor'), value: 'large' }
+                ]}
+                onChange={(value) => setAttributes({ dateFontSize: value })}
+              />
+            </>
+          )}
+
+          <SelectControl
+            label={__('Heading Font Family', 'vendor')}
+            value={headingFontFamily}
+            options={[
+              { label: __('Bitter (Serif)', 'vendor'), value: 'bitter' },
+              { label: __('Lato (Sans Serif)', 'vendor'), value: 'lato' },
+              { label: __('Body (Default)', 'vendor'), value: 'body' },
+              { label: __('Heading (Default)', 'vendor'), value: 'heading' }
+            ]}
+            onChange={(value) => setAttributes({ headingFontFamily: value })}
+          />
+
+          <SelectControl
+            label={__('Heading Font Size', 'vendor')}
+            value={headingFontSize}
+            options={[
+              { label: __('Small', 'vendor'), value: 'small' },
+              { label: __('Normal', 'vendor'), value: 'normal' },
+              { label: __('Large', 'vendor'), value: 'large' },
+              { label: __('Subtitle', 'vendor'), value: 'subtitle' }
+            ]}
+            onChange={(value) => setAttributes({ headingFontSize: value })}
+          />
+
+          <SelectControl
+            label={__('Post Spacing', 'vendor')}
+            value={postSpacing}
+            options={[
+              { label: __('None', 'vendor'), value: 'none' },
+              { label: __('Small', 'vendor'), value: 'small' },
+              { label: __('Default', 'vendor'), value: 'default' },
+              { label: __('Large', 'vendor'), value: 'large' }
+            ]}
+            onChange={(value) => setAttributes({ postSpacing: value })}
+          />
+        </PanelBody>
       </InspectorControls>
 
       <div {...blockProps}>
-        <div className="wp-block-columns">
+        <div className={`wp-block-columns ${postSpacing !== 'default' ? `article-grid-spacing-${postSpacing}` : ''}`}>
           {posts.slice(0, numberOfPosts).map((post) => (
             <div key={post.id} className="wp-block-column">
-              {post.featured_media && (
+              {post._embedded?.['wp:featuredmedia']?.[0] && (
                 <figure className="wp-block-image size-large">
                   <img 
-                    src={post._embedded?.['wp:featuredmedia']?.[0]?.source_url || ''} 
-                    alt={post._embedded?.['wp:featuredmedia']?.[0]?.alt_text || ''} 
+                    src={post._embedded['wp:featuredmedia'][0].source_url} 
+                    alt={post._embedded['wp:featuredmedia'][0].alt_text || post.title?.rendered || ''} 
                   />
                 </figure>
               )}
               
-              <div className="has-body-font-family has-small-font-size">
-                {post.date}
-              </div>
+              {showDate && (
+                <div className={`has-${dateFontFamily}-font-family has-${dateFontSize}-font-size`} style={{ marginTop: '1rem' }}>
+                  {new Date(post.date).toLocaleDateString('en-US', {
+                    month: 'short',
+                    day: 'numeric', 
+                    year: 'numeric'
+                  })}
+                </div>
+              )}
               
-              <h2 className="wp-block-heading has-heading-font-family has-subtitle-font-size">
-                {post.title.rendered}
+              <h2 className={`wp-block-heading has-${headingFontFamily}-font-family has-${headingFontSize}-font-size`} style={{ marginTop: '0.5rem' }}>
+                {post.title?.rendered || ''}
               </h2>
+
+              {showExcerpt && post.excerpt?.rendered && (
+                <div className="has-body-font-family has-small-font-size" style={{ marginTop: '0.5rem' }}>
+                  {post.excerpt.rendered.replace(/<[^>]*>/g, '').substring(0, 100)}...
+                </div>
+              )}
             </div>
           ))}
         </div>

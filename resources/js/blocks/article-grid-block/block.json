@@ -7,7 +7,7 @@
     "category": "layout",
     "icon": "grid-view",
     "description": "A responsive 3-column grid displaying articles with thumbnails, titles, and dates.",
-    "example": [],
+    "example": {},
     "supports": {
         "html": false
     },
@@ -35,6 +35,34 @@
         "queryType": {
             "type": "string",
             "default": "recent"
+        },
+        "dateFontFamily": {
+            "type": "string",
+            "default": "lato"
+        },
+        "dateFontSize": {
+            "type": "string",
+            "default": "small"
+        },
+        "headingFontFamily": {
+            "type": "string",
+            "default": "bitter"
+        },
+        "headingFontSize": {
+            "type": "string",
+            "default": "subtitle"
+        },
+        "postSpacing": {
+            "type": "string",
+            "default": "default"
+        },
+        "showDate": {
+            "type": "boolean",
+            "default": true
+        },
+        "showExcerpt": {
+            "type": "boolean",
+            "default": false
         }
     }
 }

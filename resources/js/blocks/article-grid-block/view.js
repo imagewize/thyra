@@ -18,8 +18,17 @@
       const selectedCategory = parseInt(block.getAttribute('data-selected-category')) || 0;
       const selectedTag = parseInt(block.getAttribute('data-selected-tag')) || 0;
       
+      // Get styling attributes
+      const dateFontFamily = block.getAttribute('data-date-font-family') || 'body';
+      const dateFontSize = block.getAttribute('data-date-font-size') || 'small';
+      const headingFontFamily = block.getAttribute('data-heading-font-family') || 'heading';
+      const headingFontSize = block.getAttribute('data-heading-font-size') || 'subtitle';
+      const postSpacing = block.getAttribute('data-post-spacing') || 'default';
+      const showDate = block.getAttribute('data-show-date') !== 'false';
+      const showExcerpt = block.getAttribute('data-show-excerpt') === 'true';
+      
       try {
-        let apiUrl = `/wp-json/wp/v2/posts?per_page=${numberOfPosts}&_embed&status=publish&orderby=date&order=desc`;
+        let apiUrl = `${window.location.origin}/wp-json/wp/v2/posts?per_page=${numberOfPosts}&_embed&status=publish&orderby=date&order=desc`;
         
         // Add category or tag filter if specified
         if (queryType === 'category' && selectedCategory > 0) {
@@ -32,7 +41,7 @@
         const response = await fetch(apiUrl);
         
         if (!response.ok) {
-          throw new Error('Failed to fetch articles');
+          throw new Error(`Failed to fetch articles: ${response.status} ${response.statusText}`);
         }
         
         const posts = await response.json();
@@ -47,7 +56,7 @@
         
         // Create grid container based on HTML pattern
         const gridContainer = document.createElement('div');
-        gridContainer.className = 'wp-block-columns';
+        gridContainer.className = `wp-block-columns ${postSpacing !== 'default' ? `article-grid-spacing-${postSpacing}` : ''}`;
         
         // Create articles HTML based on the HTML pattern structure
         posts.forEach(post => {
@@ -72,17 +81,36 @@
           });
           
           // Build column HTML following the pattern structure
-          column.innerHTML = `
+          let columnHTML = `
             ${featuredImage}
-            <div class="has-body-font-family has-small-font-size" style="margin-top: 1rem;">
+          `;
+          
+          if (showDate) {
+            columnHTML += `
+            <div class="has-${dateFontFamily}-font-family has-${dateFontSize}-font-size" style="margin-top: 1rem;">
               ${postDate}
             </div>
-            <h2 class="wp-block-heading has-heading-font-family has-subtitle-font-size" style="margin-top: 0.5rem;">
+            `;
+          }
+          
+          columnHTML += `
+            <h2 class="wp-block-heading has-${headingFontFamily}-font-family has-${headingFontSize}-font-size" style="margin-top: 0.5rem;">
               <a href="${post.link}" style="text-decoration: none; color: inherit;">
                 ${post.title.rendered}
               </a>
             </h2>
           `;
+          
+          if (showExcerpt && post.excerpt && post.excerpt.rendered) {
+            const excerptText = post.excerpt.rendered.replace(/<[^>]*>/g, '').substring(0, 100);
+            columnHTML += `
+            <div class="has-body-font-family has-small-font-size" style="margin-top: 0.5rem;">
+              ${excerptText}...
+            </div>
+            `;
+          }
+          
+          column.innerHTML = columnHTML;
           
           gridContainer.appendChild(column);
         });

@@ -11,3 +11,16 @@
     color: #757575;
     font-style: italic;
   }
+
+/* Post spacing styles for editor */
+.article-grid-spacing-none .wp-block-column {
+  margin-bottom: 0 !important;
+}
+
+.article-grid-spacing-small .wp-block-column {
+  margin-bottom: 1rem !important;
+}
+
+.article-grid-spacing-large .wp-block-column {
+  margin-bottom: 2rem !important;
+}
