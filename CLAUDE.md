@@ -465,6 +465,13 @@ composer require imagewize/sage-native-block --dev
 - **Maintainable**: Uses standard WordPress block development patterns
 - **CSS Control**: Any layout conflicts can be resolved with additional CSS if needed
 
+**Block Spacing Architecture:**
+- **No Horizontal Margins/Padding**: Blocks should NOT include left/right margins or padding
+- **Layout Container Handles Spacing**: The `max-w-8xl mx-auto px-4 md:px-6 lg:px-8` container in `resources/views/layouts/app.blade.php:47` provides consistent horizontal spacing for all content
+- **Internal Column Spacing Only**: Blocks only need internal spacing when they contain columns or multi-column layouts
+- **Vertical Spacing**: Blocks can include top/bottom margins and padding as needed for visual hierarchy
+- **Consistency**: This approach ensures all blocks align perfectly with the boxed layout without conflicting spacing
+
 **Block Registration:**
 Native blocks are automatically registered using the Sage Native Block package's registration system in `app/setup.php`:
 

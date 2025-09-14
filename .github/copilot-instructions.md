@@ -82,12 +82,17 @@ For all blocks - flexible, customer-editable, and dynamic content blocks:
   2. **Copy to Claude**: Provide the pattern HTML/structure as reference
   3. **Generate Native Block**: Use `wp acorn sage-native-block:add-setup imagewize/my-cool-block`
   4. **Adapt with Claude**: Let Claude convert the pattern into native block structure
-- **Benefits**: 
+- **Benefits**:
   - No time wasted creating HTML from scratch
   - No manual conversion to ACF Composer block code
   - Visual-first development using editor patterns as base
   - Full WordPress block editor functionality
   - CSS Control: Any layout conflicts can be resolved with additional CSS
+- **Block Spacing Convention**:
+  - **NO horizontal margins/padding**: Blocks should never include left/right spacing
+  - **Layout container provides spacing**: The boxed layout (`max-w-8xl mx-auto px-4 md:px-6 lg:px-8`) in `resources/views/layouts/app.blade.php:47` handles all horizontal spacing
+  - **Internal column spacing only**: Only add internal spacing for multi-column layouts within blocks
+  - **Vertical spacing allowed**: Blocks can include top/bottom margins/padding for visual hierarchy
 - **Location**: `resources/js/blocks/`
 - **Registration**: Blocks are automatically registered via the Sage Native Block package's registration system in `app/setup.php`, which scans for `block.json` files and calls `register_block_type()` on each
 - **Characteristics**: JS/React based, fully editable in browser, compiled through Vite
