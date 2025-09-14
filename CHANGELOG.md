@@ -1,3 +1,40 @@
+## [1.0.0-alpha.6] - 2025-09-14
+
+### Added
+- **Native Article Grid Block**: Complete implementation with dynamic content loading
+- **Boxed Layout System**: Template-level container approach for consistent responsive layout (1440px max-width)
+- **Custom Utility Classes**: Added `max-w-8xl` for boxed layout implementation
+- **Enhanced Block Development Workflow**: Streamlined development process for native blocks
+
+### Changed
+- **Block Development Strategy**: Native blocks established as PRIMARY approach for all block development
+- **ACF Blocks Deprecated**: Transitioned from ACF Composer blocks to native WordPress blocks
+- **Layout Architecture**: Implemented consistent boxed layout across all templates and sections
+- **Documentation Enhancement**: Updated development workflow guides with native block focus
+
+### Improved
+- **Article Grid Block**: Advanced functionality with post count selection (1-12), query types (recent/category/tag), and REST API integration
+- **Responsive Layout**: Enhanced mobile-first approach with consistent spacing and alignment
+- **Development Efficiency**: Eliminated PHP cache clearing requirements for native block development
+- **Block Editor Integration**: Improved block registration system with automatic discovery
+
+### Technical Implementation
+- Native block development with view.js for dynamic content loading
+- Automatic block registration via `app/setup.php` scanning `resources/js/blocks/`
+- Template-level boxed container (`max-w-8xl mx-auto px-4 md:px-6 lg:px-8`)
+- REST API integration for dynamic post loading without PHP render callbacks
+- Streamlined Edit → Build → Refresh workflow for faster development
+
+### Removed
+- **ACF Article Grid Block**: Removed `app/Blocks/ArticleGrid.php` in favor of native implementation
+- **Legacy Block Dependencies**: Cleaned up ACF Composer block files and dependencies
+
+### Dependencies
+- Enhanced `imagewize/sage-native-block` package integration for modern block development
+- Optimized Vite compilation pipeline for native block assets
+
+---
+
 ## [1.0.0-alpha.5] - 2025-09-12
 
 ### Added
