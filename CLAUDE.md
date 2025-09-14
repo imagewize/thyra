@@ -33,7 +33,7 @@ This file provides guidance to Claude Code when working with code in this reposi
   - [Theme.json Workflow](#themejson-workflow)
   - [Block Editor Integration](#block-editor-integration)
   - [ACF Block Development with ACF Composer](#acf-block-development-with-acf-composer)
-  - [Native Block Development with Sage Native Block](#native-block-development-with-sage-native-block)
+  - [Native Block Development with Sage Native Block](#native-block-development-with-sage-native-block-primary-approach)
   - [Asset Loading](#asset-loading)
   - [WordPress Features](#wordpress-features)
 - [Blade Layouts & Template Architecture](#blade-layouts--template-architecture)
