@@ -94,14 +94,14 @@
           
           if (showDate) {
             columnHTML += `
-            <div class="has-${dateFontFamily}-font-family has-${dateFontSize}-font-size" style="margin-top: 1rem;">
+            <div class="has-${dateFontFamily}-font-family article-grid-font-${dateFontSize}" style="margin-top: 1rem;">
               ${postDate}
             </div>
             `;
           }
           
           columnHTML += `
-            <h2 class="wp-block-heading has-${headingFontFamily}-font-family has-${headingFontSize}-font-size" style="margin-top: 0.5rem;">
+            <h2 class="wp-block-heading has-${headingFontFamily}-font-family article-grid-font-${headingFontSize}" style="margin-top: 0.5rem;">
               <a href="${post.link}" style="text-decoration: none; color: inherit;">
                 ${post.title.rendered}
               </a>
@@ -111,7 +111,7 @@
           if (showExcerpt && post.excerpt && post.excerpt.rendered) {
             const excerptText = post.excerpt.rendered.replace(/<[^>]*>/g, '').substring(0, 100);
             columnHTML += `
-            <div class="has-body-font-family has-small-font-size" style="margin-top: 0.5rem;">
+            <div class="has-body-font-family article-grid-font-small" style="margin-top: 0.5rem;">
               ${excerptText}...
             </div>
             `;

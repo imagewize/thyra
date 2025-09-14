@@ -38,53 +38,22 @@
   /* Note: Font sizes use Tailwind's built-in scale (text-xs, text-sm, text-base, etc.)
      We don't define custom font sizes here to keep the rem-based responsive scale */
 
-  /* Editorial Typography Scale */
-  --font-size-hero: 55px;        /* Hero post titles (desktop) */
-  --font-size-hero-mobile: 28px; /* Hero post titles (mobile) */
-  --font-size-title: 30px;       /* Large editorial headlines (desktop) */
-  --font-size-title-mobile: 20px; /* Large editorial headlines (mobile) */
-  --font-size-subtitle: 24px;    /* Subtitle/deck text */
-  --font-size-body: 16px;        /* Body text */
-  --font-size-small: 14px;       /* Meta text */
+  /* Editorial Typography Scale - Only custom sizes not in Tailwind */
+  --font-size-hero: 55px;        /* Hero post titles (desktop) - between text-5xl (48px) and text-6xl (60px) */
+  --font-size-hero-mobile: 28px; /* Hero post titles (mobile) - between text-xl (20px) and text-2xl (24px) */
+  --font-size-title: 30px;       /* Large editorial headlines (desktop) - between text-2xl (24px) and text-3xl (30px) */
+  --font-size-title-mobile: 20px; /* Large editorial headlines (mobile) - same as text-xl but explicit for editorial */
+  --font-size-small: 14px;       /* Meta text - kept for article-grid-block compatibility */
   
-  /* Line Heights for Editorial Design */
-  --line-height-tight: 1.2;      /* Headlines */
-  --line-height-normal: 1.6;     /* Body text */
-  --line-height-relaxed: 1.8;    /* Large body text */
-  
-  /* Font Weights */
-  --font-weight-normal: 400;
-  --font-weight-medium: 500;
-  --font-weight-semibold: 600;
-  --font-weight-bold: 700;
-  
-  /* Editorial Spacing System (generous whitespace) */
-  --spacing-xs: 0.5rem;    /* 8px */
-  --spacing-sm: 1rem;      /* 16px */
-  --spacing-md: 1.5rem;    /* 24px */
-  --spacing-lg: 2rem;      /* 32px */
-  --spacing-xl: 3rem;      /* 48px */
-  --spacing-2xl: 4rem;     /* 64px */
-  --spacing-3xl: 6rem;     /* 96px */
-  --spacing-4xl: 8rem;     /* 128px */
-  --spacing-5xl: 10rem;    /* 160px */
+  /* Line Heights for Editorial Design - Only where different from Tailwind defaults */
+  --line-height-tight: 1.2;      /* Headlines - slightly tighter than Tailwind's leading-tight (1.25) */
+  --line-height-normal: 1.6;     /* Body text - looser than Tailwind's leading-normal (1.5) for readability */
+  --line-height-relaxed: 1.8;    /* Large body text - looser than Tailwind's leading-relaxed (1.625) */
   
   /* Custom Editorial Spacing */
   --spacing-section: 4rem;  /* Between major sections */
   --spacing-article: 2rem;  /* Between articles */
   --spacing-content: 1.5rem; /* Content spacing */
-  
-  /* Border Radius */
-  --radius-none: 0;
-  --radius-sm: 0.25rem;
-  --radius-md: 0.5rem;
-  --radius-lg: 1rem;
-  --radius-xl: 1.5rem;
-  
-  /* Shadows for Editorial Design */
-  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
   
   /* Z-index Scale */
   --z-index-dropdown: 10;
@@ -126,29 +95,29 @@
   --focus-ring: 0 0 0 2px var(--color-black);
 }
 
-/* Editorial Typography Utilities */
+/* Editorial Typography Utilities - Using mix of custom variables and Tailwind classes */
 .text-hero {
   font-size: var(--font-size-hero);
   line-height: var(--line-height-tight);
-  font-weight: var(--font-weight-bold);
+  font-weight: 700; /* font-bold - was var(--font-weight-bold) */
 }
 
 .text-title {
   font-size: var(--font-size-title);
   line-height: var(--line-height-tight);
-  font-weight: var(--font-weight-semibold);
+  font-weight: 600; /* font-semibold - was var(--font-weight-semibold) */
 }
 
 .text-subtitle {
-  font-size: var(--font-size-subtitle);
+  font-size: 1.5rem; /* text-2xl (24px) - was var(--font-size-subtitle) */
   line-height: var(--line-height-normal);
-  font-weight: var(--font-weight-normal);
+  font-weight: 400; /* font-normal - was var(--font-weight-normal) */
 }
 
 .text-meta {
-  font-size: var(--font-size-small);
+  font-size: var(--font-size-small); /* Kept for article-grid-block compatibility */
   color: var(--color-gray);
-  font-weight: var(--font-weight-normal);
+  font-weight: 400; /* font-normal - was var(--font-weight-normal) */
 }
 
 /* Responsive Typography */
@@ -217,5 +186,5 @@ html {
 *:focus-visible {
   outline: none;
   box-shadow: var(--focus-ring);
-  border-radius: var(--radius-sm);
+  border-radius: 0.25rem; /* rounded-sm - was var(--radius-sm) */
 }

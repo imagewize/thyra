@@ -369,6 +369,8 @@ Add custom fonts to your Tailwind theme in `resources/css/app.css`:
 ### Theme.json Workflow
 The theme uses a preprocessed `theme.json` that gets compiled by Vite to include Tailwind's design tokens. The built version is loaded via the `theme_file_path` filter in `app/setup.php:54`.
 
+**CSS Variables**: The theme generates **316 total CSS variables** - 248 colors from `theme.json` plus 68 WordPress preset variables (aspect ratios, gradients, shadows, spacing). All use the `--wp--preset--*` format.
+
 ### Block Editor Integration
 - Editor styles are injected via `block_editor_settings_all` filter
 - Editor JavaScript dependencies are managed through Vite's manifest system

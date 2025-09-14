@@ -1,2 +1,12 @@
 @import "tailwindcss";
 @import "./fonts.css";
+
+/* Import the theme variables for editor - Only custom sizes not in Tailwind */
+@theme {
+  /* Editorial Typography Scale - Matching app.css custom variables */
+  --font-size-hero: 55px;        /* Hero post titles (desktop) - between text-5xl (48px) and text-6xl (60px) */
+  --font-size-hero-mobile: 28px; /* Hero post titles (mobile) - between text-xl (20px) and text-2xl (24px) */
+  --font-size-title: 30px;       /* Large editorial headlines (desktop) - between text-2xl (24px) and text-3xl (30px) */
+  --font-size-title-mobile: 20px; /* Large editorial headlines (mobile) - same as text-xl but explicit for editorial */
+  --font-size-small: 14px;       /* Meta text - kept for article-grid-block compatibility */
+}

@@ -1,3 +1,30 @@
+## [1.0.0-alpha.7] - 2025-09-14
+
+### Improved
+- **Typography System Efficiency**: Streamlined editorial font size variables with consistent naming convention
+- **Article Grid Block Typography**: Enhanced font size controls with clear size indicators (14px, 16px, 24px, 30px, 55px)
+- **Block Editor Integration**: Improved typography consistency between editor and frontend with shared CSS variables
+- **Development Efficiency**: Unified font size system reduces CSS duplication and improves maintainability
+
+### Changed
+- **Font Size Variable Names**: Renamed from contextual names (`--font-size-hero`, `--font-size-title`) to size-based names (`--font-size-xx-large`, `--font-size-x-large`) for better scalability
+- **Article Grid Block Typography**: Updated font size options with descriptive labels showing actual pixel values
+- **Block Textdomain**: Corrected from `vendor` to `imagewize` for proper internationalization
+- **CSS Architecture**: Consolidated typography variables between app.css and editor.css for consistency
+
+### Technical Implementation
+- Typography scale now uses semantic size names (small/medium/large/x-large/xx-large) instead of context-specific names
+- Shared CSS variables between editor and frontend ensure WYSIWYG accuracy
+- Custom CSS classes (`article-grid-font-*`) provide precise font size control using editorial variables
+- Responsive typography automatically scales large sizes for mobile (55px→28px, 30px→20px)
+
+### Enhanced
+- **Block Editor Experience**: Font size controls now display actual pixel values for better user understanding
+- **Code Maintainability**: Simplified CSS variable system makes font size adjustments more predictable
+- **Typography Consistency**: Unified font size system across all theme components and blocks
+
+---
+
 ## [1.0.0-alpha.6] - 2025-09-14
 
 ### Added
