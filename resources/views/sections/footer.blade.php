@@ -1,5 +1,5 @@
 <footer class="bg-white border-t border-gray-100">
-  <div class="max-w-6xl mx-auto px-4 sm:px-8 py-8 sm:py-12">
+  <div class="max-w-8xl mx-auto px-4 sm:px-8 py-8 sm:py-12">
     
     <!-- Simple Footer Navigation -->
     <nav class="text-center">

@@ -697,7 +697,7 @@ Based on the mobile screenshot analysis, here's the responsive CSS implementatio
 ```php
 <!-- Mobile-optimized header -->
 <header class="bg-white border-b border-gray-100">
-  <div class="max-w-6xl mx-auto px-4 sm:px-8">
+  <div class="max-w-8xl mx-auto px-4 sm:px-8">
     <div class="mobile-header">
       
       <!-- Mobile Menu Toggle -->
@@ -733,7 +733,7 @@ Based on the mobile screenshot analysis, here's the responsive CSS implementatio
 ```php
 <!-- Mobile-responsive homepage layout -->
 <section class="py-16 sm:py-24 bg-white">
-  <div class="max-w-6xl mx-auto px-4 sm:px-8">
+  <div class="max-w-8xl mx-auto px-4 sm:px-8">
     
     <!-- Mobile: Single column, Desktop: 3 columns -->
     <div class="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-12 mb-16 sm:mb-24">

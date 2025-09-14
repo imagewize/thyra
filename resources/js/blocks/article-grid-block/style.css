@@ -1,15 +1,13 @@
 /**
  * Block styling for both frontend & backend.
  */
- .wp-block-vendor-article-grid-block {
-    background-color: #f8f9fa;
-    border: 1px solid #e2e4e7;
+ .wp-block-imagewize-article-grid-block {
     border-radius: 4px;
-    padding: 1.5rem;
+    /* padding done by theme */
     margin-bottom: 1.5rem;
   }
   
-  .wp-block-vendor-article-grid-block p {
+  .wp-block-imagewize-article-grid-block p {
     margin-top: 0;
     margin-bottom: 1rem;
     font-size: 1rem;
@@ -18,7 +16,42 @@
   
   /* Responsive adjustments */
   @media screen and (min-width: 768px) {
-    .wp-block-vendor-article-grid-block {
-      padding: 2rem;
-    }
+    /*  Padding removed as theme container adds sufficient spacing */
   }
+
+/* Post spacing styles (vertical spacing between rows) */
+.article-grid-spacing-none .wp-block-column {
+  margin-bottom: 0 !important;
+}
+
+.article-grid-spacing-small .wp-block-column {
+  margin-bottom: 1rem !important;
+}
+
+.article-grid-spacing-large .wp-block-column {
+  margin-bottom: 2rem !important;
+}
+
+/* Column gap styles (horizontal spacing between columns) */
+.wp-block-imagewize-article-grid-block.article-grid-gap-none .wp-block-columns {
+  gap: 0;
+}
+
+.wp-block-imagewize-article-grid-block.article-grid-gap-small .wp-block-columns {
+  gap: 1rem;
+}
+
+.wp-block-imagewize-article-grid-block.article-grid-gap-default .wp-block-columns,
+.wp-block-imagewize-article-grid-block .wp-block-columns {
+  gap: 2rem;
+}
+
+.wp-block-imagewize-article-grid-block.article-grid-gap-large .wp-block-columns {
+  gap: 3rem;
+}
+
+.wp-block-imagewize-article-grid-block.article-grid-gap-xl .wp-block-columns {
+  gap: 4rem;
+}
+
+/* Default spacing is already handled by WordPress core styles */

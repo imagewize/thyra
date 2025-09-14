@@ -1,5 +1,5 @@
 <nav class="bg-white border-b border-gray-100 relative">
-  <div class="max-w-6xl mx-auto px-4 sm:px-8">
+  <div class="max-w-8xl mx-auto px-4 sm:px-8">
     <div class="relative flex items-center justify-between py-6 sm:py-8">
       
       <!-- Left: Menu Toggle -->
@@ -50,7 +50,7 @@
        x-transition:leave-start="opacity-100 transform translate-y-0"
        x-transition:leave-end="opacity-0 transform -translate-y-1"
        class="absolute top-full left-0 right-0 bg-white border border-gray-100 shadow-lg z-50">
-    <div class="max-w-6xl mx-auto px-4 sm:px-8 py-3">
+    <div class="max-w-8xl mx-auto px-4 sm:px-8 py-3">
       @if (has_nav_menu('primary_navigation'))
         <div class="space-y-1">
           {!! wp_nav_menu([

@@ -5,9 +5,9 @@
     "version": "0.1.0",
     "title": "Article Grid Block",
     "category": "layout",
-    "icon": "table-col-after",
-    "description": "An Example Block to built upon.",
-    "example": [],
+    "icon": "grid-view",
+    "description": "A responsive 3-column grid displaying articles with thumbnails, titles, and dates.",
+    "example": {},
     "supports": {
         "html": false
     },
@@ -18,7 +18,55 @@
     "attributes": {
         "className": {
             "type": "string",
-            "default": "wp-block-vendor-article-grid-block"
+            "default": "wp-block-imagewize-article-grid-block"
+        },
+        "numberOfPosts": {
+            "type": "number",
+            "default": 3
+        },
+        "selectedCategory": {
+            "type": "number",
+            "default": 0
+        },
+        "selectedTag": {
+            "type": "number", 
+            "default": 0
+        },
+        "queryType": {
+            "type": "string",
+            "default": "recent"
+        },
+        "dateFontFamily": {
+            "type": "string",
+            "default": "lato"
+        },
+        "dateFontSize": {
+            "type": "string",
+            "default": "small"
+        },
+        "headingFontFamily": {
+            "type": "string",
+            "default": "bitter"
+        },
+        "headingFontSize": {
+            "type": "string",
+            "default": "subtitle"
+        },
+        "postSpacing": {
+            "type": "string",
+            "default": "default"
+        },
+        "showDate": {
+            "type": "boolean",
+            "default": true
+        },
+        "showExcerpt": {
+            "type": "boolean",
+            "default": false
+        },
+        "columnGap": {
+            "type": "string",
+            "default": "default"
         }
     }
 }

@@ -43,17 +43,20 @@
 
       @include('sections.header')
 
-      <main id="main" class="main">
-        @yield('content')
-      </main>
+      <!-- Content Container: Boxed layout for main content and sidebar -->
+      <div class="max-w-8xl mx-auto px-4 md:px-6 lg:px-8">
+        <main id="main" class="main">
+          @yield('content')
+        </main>
 
-      @hasSection('sidebar')
-        <aside class="sidebar bg-gray-50">
-          <div class="max-w-7xl mx-auto px-4 py-12">
-            @yield('sidebar')
-          </div>
-        </aside>
-      @endif
+        @hasSection('sidebar')
+          <aside class="sidebar bg-gray-50 mt-8 md:mt-12 rounded-lg">
+            <div class="py-8 md:py-12 px-6">
+              @yield('sidebar')
+            </div>
+          </aside>
+        @endif
+      </div>
 
       @include('sections.footer')
     </div>

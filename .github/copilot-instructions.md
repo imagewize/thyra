@@ -72,10 +72,10 @@ location ~* \.(woff2)$ {
 - Full-site editing is disabled; use custom block patterns if needed.
 
 ### Block Development Strategy
-The theme **PREFERS Native Blocks** over ACF Composer blocks for efficiency and modern development patterns.
+The theme uses **Native Blocks as the PRIMARY approach** for all block development, providing maximum flexibility and modern development patterns.
 
-#### Native Blocks (PREFERRED APPROACH)
-For all flexible, customer-editable blocks:
+#### Native Blocks (PRIMARY APPROACH)
+For all blocks - flexible, customer-editable, and dynamic content blocks:
 - **Package**: `composer require imagewize/sage-native-block --dev`
 - **Recommended Workflow**:
   1. **Create Pattern in Editor**: Build the desired layout using WordPress block editor
@@ -87,22 +87,44 @@ For all flexible, customer-editable blocks:
   - No manual conversion to ACF Composer block code
   - Visual-first development using editor patterns as base
   - Full WordPress block editor functionality
+  - CSS Control: Any layout conflicts can be resolved with additional CSS
 - **Location**: `resources/js/blocks/`
+- **Registration**: Blocks are automatically registered via the Sage Native Block package's registration system in `app/setup.php`, which scans for `block.json` files and calls `register_block_type()` on each
 - **Characteristics**: JS/React based, fully editable in browser, compiled through Vite
-- **⚠️ Important Limitation**: Use only when CSS doesn't rely on flex ordering. If CSS uses `flex` with `order` properties to rearrange layouts, editor changes can conflict with styling.
+- **Dynamic Content**: For blocks requiring dynamic content (like article grids), use view.js with WordPress REST API
 
-#### ACF Blocks (LEGACY APPROACH - Use Only When Necessary)
-For rigid, admin-controlled components where native blocks won't work:
+#### Native Block Development Workflow
+Since native blocks are JS/React/CSS based and compiled through Vite, they have a streamlined development process:
+
+**Development Process:**
+1. **Edit**: Modify files in `resources/js/blocks/[block-name]/` (editor.jsx, save.jsx, view.js, style.css, block.json)
+2. **Build**: Run `npm run build` to compile changes through Vite
+3. **Refresh**: Changes appear immediately in editor/frontend - no cache clearing needed
+
+**Key Advantages:**
+- **No `wp acorn` commands needed**: Native blocks don't use PHP rendering or Blade templates
+- **No cache clearing**: WordPress PHP caches (views, routes, config) don't affect native blocks
+- **Faster iteration**: Edit → Build → Refresh workflow (vs. Edit → Clear Cache → Refresh)
+- **Client-side rendering**: All dynamic content handled via JavaScript and REST API
+- **Immediate feedback**: Block changes visible instantly after compilation
+
+**When Cache Clearing IS Needed:**
+- **Never for native blocks**: They're pure JS/CSS and don't use WordPress PHP caching
+- **Only for ACF blocks**: Which use Blade templates and PHP rendering
+- **Theme changes**: When modifying `app/setup.php`, View Composers, or other PHP files
+
+#### ACF Blocks (USE ONLY WHEN ABSOLUTELY NECESSARY)
+For exceptional cases where native blocks cannot meet requirements:
 - **Package**: `composer require log1x/acf-composer`
 - **Use Cases**: 
-  - Need rigid, admin-only control over content
-  - CSS flex ordering conflicts prevent native block usage
+  - Extremely rigid, admin-only control over content structure
+  - Complex server-side rendering requirements that cannot be handled client-side
   - Legacy compatibility requirements
 - **Commands**: 
   - `wp acorn make:block BlockName` - Creates app/Blocks/BlockName.php
   - `wp acorn make:field BlockName` - Creates app/Fields/BlockName.php (optional)
 - **Template Location**: `resources/views/blocks/`
-- **Note**: This approach is slower and less efficient than Native Blocks
+- **Note**: Should only be used when native blocks are insufficient
 
 ### Font Management
 Sage provides a structured workflow for adding custom fonts:
@@ -251,6 +273,8 @@ Sage uses Laravel's Blade templating engine with layouts and includes:
   </body>
 </html>
 ```
+
+**Boxed Layout**: The theme uses a template-level container (`max-w-8xl mx-auto px-4 md:px-6 lg:px-8`) around main content and sidebar for consistent responsive boxed layout across all screen sizes (1440px max-width). The `max-w-8xl` is a custom utility class defined in `resources/css/app.css`.
 
 **Extending Layouts:**
 ```php
