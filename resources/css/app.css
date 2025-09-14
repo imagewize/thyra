@@ -43,11 +43,6 @@
   --font-size-hero-mobile: 28px; /* Hero post titles (mobile) - between text-xl (20px) and text-2xl (24px) */
   --font-size-title: 30px;       /* Large editorial headlines (desktop) - between text-2xl (24px) and text-3xl (30px) */
   --font-size-title-mobile: 20px; /* Large editorial headlines (mobile) - same as text-xl but explicit for editorial */
-
-  /* Removed redundant variables that duplicate Tailwind's built-in scale:
-     --font-size-subtitle: 24px → Use text-2xl (24px)
-     --font-size-body: 16px → Use text-base (16px)
-     --font-size-small: 14px → Use text-sm (14px) */
   --font-size-small: 14px;       /* Meta text - kept for article-grid-block compatibility */
   
   /* Line Heights for Editorial Design - Only where different from Tailwind defaults */
@@ -55,39 +50,10 @@
   --line-height-normal: 1.6;     /* Body text - looser than Tailwind's leading-normal (1.5) for readability */
   --line-height-relaxed: 1.8;    /* Large body text - looser than Tailwind's leading-relaxed (1.625) */
   
-  /* Removed redundant font weights that duplicate Tailwind classes:
-     --font-weight-normal: 400 → Use font-normal
-     --font-weight-medium: 500 → Use font-medium
-     --font-weight-semibold: 600 → Use font-semibold
-     --font-weight-bold: 700 → Use font-bold */
-  
-  /* Removed redundant spacing variables that duplicate Tailwind's spacing scale:
-     --spacing-xs: 0.5rem → Use space-2 (8px)
-     --spacing-sm: 1rem → Use space-4 (16px)
-     --spacing-md: 1.5rem → Use space-6 (24px)
-     --spacing-lg: 2rem → Use space-8 (32px)
-     --spacing-xl: 3rem → Use space-12 (48px)
-     --spacing-2xl: 4rem → Use space-16 (64px)
-     --spacing-3xl: 6rem → Use space-24 (96px)
-     --spacing-4xl: 8rem → Use space-32 (128px)
-     --spacing-5xl: 10rem → Use space-40 (160px) */
-  
   /* Custom Editorial Spacing */
   --spacing-section: 4rem;  /* Between major sections */
   --spacing-article: 2rem;  /* Between articles */
   --spacing-content: 1.5rem; /* Content spacing */
-  
-  /* Removed redundant border radius variables that duplicate Tailwind classes:
-     --radius-none: 0 → Use rounded-none
-     --radius-sm: 0.25rem → Use rounded-sm
-     --radius-md: 0.5rem → Use rounded-md
-     --radius-lg: 1rem → Use rounded-lg
-     --radius-xl: 1.5rem → Use rounded-xl */
-  
-  /* Removed redundant shadow variables that duplicate Tailwind classes:
-     --shadow-sm → Use shadow-sm
-     --shadow-md → Use shadow-md
-     --shadow-lg → Use shadow-lg */
   
   /* Z-index Scale */
   --z-index-dropdown: 10;
