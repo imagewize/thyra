@@ -1,13 +1,13 @@
 /**
  * Editor-specific styles.
  */
- .wp-block-vendor-article-grid-block {
+ .wp-block-imagewize-article-grid-block {
     /* Editor-only border to make the block more visible when editing */
     border: 2px dashed #007cba;
   }
   
   /* Style for editor placeholder content */
-  .wp-block-vendor-article-grid-block p:first-of-type {
+  .wp-block-imagewize-article-grid-block p:first-of-type {
     color: #757575;
     font-style: italic;
   }
@@ -23,4 +23,26 @@
 
 .article-grid-spacing-large .wp-block-column {
   margin-bottom: 2rem !important;
+}
+
+/* Column gap styles for editor */
+.wp-block-imagewize-article-grid-block.article-grid-gap-none .wp-block-columns {
+  gap: 0;
+}
+
+.wp-block-imagewize-article-grid-block.article-grid-gap-small .wp-block-columns {
+  gap: 1rem;
+}
+
+.wp-block-imagewize-article-grid-block.article-grid-gap-default .wp-block-columns,
+.wp-block-imagewize-article-grid-block .wp-block-columns {
+  gap: 2rem;
+}
+
+.wp-block-imagewize-article-grid-block.article-grid-gap-large .wp-block-columns {
+  gap: 3rem;
+}
+
+.wp-block-imagewize-article-grid-block.article-grid-gap-xl .wp-block-columns {
+  gap: 4rem;
 }

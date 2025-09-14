@@ -503,6 +503,20 @@ For blocks requiring dynamic content (like article grids), use the view.js appro
 - **view.js**: Reads attributes and loads dynamic content via WordPress REST API
 - **No PHP render callback needed**: All dynamic functionality handled client-side
 
+**Native Block Development Workflow:**
+Since native blocks are JS/React/CSS based and don't use PHP rendering, the development process is streamlined:
+
+1. **Development**: Edit files in `resources/js/blocks/[block-name]/`
+2. **Build**: Run `npm run build` to compile changes
+3. **No cache clearing needed**: Native blocks don't use WordPress PHP caches
+4. **Immediate refresh**: Changes appear immediately after build - just refresh the editor/frontend
+
+**Key Differences from ACF Blocks:**
+- **No `wp acorn` commands needed**: Native blocks don't use Blade templates or PHP rendering
+- **No view cache**: No `wp acorn view:clear` or `wp acorn optimize:clear` required
+- **Faster development**: Edit → Build → Refresh workflow
+- **Client-side rendering**: Dynamic content loaded via JavaScript and REST API
+
 ### Asset Loading
 Assets are loaded through Laravel's Vite integration, with manifest-based dependency management for optimal performance.
 

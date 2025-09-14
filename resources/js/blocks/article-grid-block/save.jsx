@@ -8,10 +8,10 @@ import { useBlockProps } from '@wordpress/block-editor';
  * The actual content is rendered dynamically by view.js
  */
 export default function Save({ attributes }) {
-  const { 
-    numberOfPosts, 
-    selectedCategory, 
-    selectedTag, 
+  const {
+    numberOfPosts,
+    selectedCategory,
+    selectedTag,
     queryType,
     dateFontFamily,
     dateFontSize,
@@ -19,21 +19,23 @@ export default function Save({ attributes }) {
     headingFontSize,
     postSpacing,
     showDate,
-    showExcerpt
+    showExcerpt,
+    columnGap
   } = attributes;
   const blockProps = useBlockProps.save({
-    className: 'wp-block-vendor-article-grid-block',
+    className: `wp-block-imagewize-article-grid-block ${postSpacing !== 'default' ? `article-grid-spacing-${postSpacing}` : ''} article-grid-gap-${columnGap}`.trim(),
   });
   
   return (
-    <div { ...blockProps } 
-         data-number-of-posts={numberOfPosts} 
+    <div { ...blockProps }
+         data-number-of-posts={numberOfPosts}
          data-query-type={queryType}
          data-date-font-family={dateFontFamily}
          data-date-font-size={dateFontSize}
          data-heading-font-family={headingFontFamily}
          data-heading-font-size={headingFontSize}
          data-post-spacing={postSpacing}
+         data-column-gap={columnGap}
          data-show-date={showDate}
          data-show-excerpt={showExcerpt}
          {...(selectedCategory !== 0 && { 'data-selected-category': selectedCategory })}

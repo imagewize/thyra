@@ -10,10 +10,10 @@ import { __ } from '@wordpress/i18n';
  * Edit function that renders in the admin
  */
 export default function Edit({ attributes, setAttributes }) {
-  const { 
-    numberOfPosts, 
-    selectedCategory, 
-    selectedTag, 
+  const {
+    numberOfPosts,
+    selectedCategory,
+    selectedTag,
     queryType,
     dateFontFamily,
     dateFontSize,
@@ -21,9 +21,12 @@ export default function Edit({ attributes, setAttributes }) {
     headingFontSize,
     postSpacing,
     showDate,
-    showExcerpt
+    showExcerpt,
+    columnGap
   } = attributes;
-  const blockProps = useBlockProps();
+  const blockProps = useBlockProps({
+    className: `${postSpacing !== 'default' ? `article-grid-spacing-${postSpacing}` : ''} article-grid-gap-${columnGap}`.trim()
+  });
 
   // Get categories and tags
   const { categories, tags, posts } = useSelect((select) => {
@@ -168,11 +171,24 @@ export default function Edit({ attributes, setAttributes }) {
             ]}
             onChange={(value) => setAttributes({ postSpacing: value })}
           />
+
+          <SelectControl
+            label={__('Column Gap', 'vendor')}
+            value={columnGap}
+            options={[
+              { label: __('None', 'vendor'), value: 'none' },
+              { label: __('Small', 'vendor'), value: 'small' },
+              { label: __('Default', 'vendor'), value: 'default' },
+              { label: __('Large', 'vendor'), value: 'large' },
+              { label: __('Extra Large', 'vendor'), value: 'xl' }
+            ]}
+            onChange={(value) => setAttributes({ columnGap: value })}
+          />
         </PanelBody>
       </InspectorControls>
 
       <div {...blockProps}>
-        <div className={`wp-block-columns ${postSpacing !== 'default' ? `article-grid-spacing-${postSpacing}` : ''}`}>
+        <div className="wp-block-columns">
           {posts.slice(0, numberOfPosts).map((post) => (
             <div key={post.id} className="wp-block-column">
               {post._embedded?.['wp:featuredmedia']?.[0] && (

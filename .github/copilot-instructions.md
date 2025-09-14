@@ -93,6 +93,26 @@ For all blocks - flexible, customer-editable, and dynamic content blocks:
 - **Characteristics**: JS/React based, fully editable in browser, compiled through Vite
 - **Dynamic Content**: For blocks requiring dynamic content (like article grids), use view.js with WordPress REST API
 
+#### Native Block Development Workflow
+Since native blocks are JS/React/CSS based and compiled through Vite, they have a streamlined development process:
+
+**Development Process:**
+1. **Edit**: Modify files in `resources/js/blocks/[block-name]/` (editor.jsx, save.jsx, view.js, style.css, block.json)
+2. **Build**: Run `npm run build` to compile changes through Vite
+3. **Refresh**: Changes appear immediately in editor/frontend - no cache clearing needed
+
+**Key Advantages:**
+- **No `wp acorn` commands needed**: Native blocks don't use PHP rendering or Blade templates
+- **No cache clearing**: WordPress PHP caches (views, routes, config) don't affect native blocks
+- **Faster iteration**: Edit → Build → Refresh workflow (vs. Edit → Clear Cache → Refresh)
+- **Client-side rendering**: All dynamic content handled via JavaScript and REST API
+- **Immediate feedback**: Block changes visible instantly after compilation
+
+**When Cache Clearing IS Needed:**
+- **Never for native blocks**: They're pure JS/CSS and don't use WordPress PHP caching
+- **Only for ACF blocks**: Which use Blade templates and PHP rendering
+- **Theme changes**: When modifying `app/setup.php`, View Composers, or other PHP files
+
 #### ACF Blocks (USE ONLY WHEN ABSOLUTELY NECESSARY)
 For exceptional cases where native blocks cannot meet requirements:
 - **Package**: `composer require log1x/acf-composer`

@@ -8,7 +8,7 @@
 (function() {
   document.addEventListener('DOMContentLoaded', () => {
     // Select all instances of this block on the page
-    const blocks = document.querySelectorAll('.wp-block-vendor-article-grid-block');
+    const blocks = document.querySelectorAll('.wp-block-imagewize-article-grid-block');
   
     // Function to fetch and display articles
     async function loadArticles(block) {
@@ -24,6 +24,7 @@
       const headingFontFamily = block.getAttribute('data-heading-font-family') || 'heading';
       const headingFontSize = block.getAttribute('data-heading-font-size') || 'subtitle';
       const postSpacing = block.getAttribute('data-post-spacing') || 'default';
+      const columnGap = block.getAttribute('data-column-gap') || 'default';
       const showDate = block.getAttribute('data-show-date') !== 'false';
       const showExcerpt = block.getAttribute('data-show-excerpt') === 'true';
       
@@ -54,9 +55,15 @@
           return;
         }
         
+        // Apply spacing classes to the block wrapper
+        if (postSpacing !== 'default') {
+          block.classList.add(`article-grid-spacing-${postSpacing}`);
+        }
+        block.classList.add(`article-grid-gap-${columnGap}`);
+
         // Create grid container based on HTML pattern
         const gridContainer = document.createElement('div');
-        gridContainer.className = `wp-block-columns ${postSpacing !== 'default' ? `article-grid-spacing-${postSpacing}` : ''}`;
+        gridContainer.className = 'wp-block-columns';
         
         // Create articles HTML based on the HTML pattern structure
         posts.forEach(post => {
