@@ -1,2 +1,14 @@
 @import "tailwindcss";
 @import "./fonts.css";
+
+/* Import the theme variables for editor */
+@theme {
+  /* Editorial Typography Scale */
+  --font-size-xx-large: 55px;        /* Hero post titles (desktop) */
+  --font-size-xx-large-mobile: 28px; /* Hero post titles (mobile) */
+  --font-size-x-large: 30px;         /* Large editorial headlines (desktop) */
+  --font-size-x-large-mobile: 20px;  /* Large editorial headlines (mobile) */
+  --font-size-large: 24px;           /* Subtitle/deck text */
+  --font-size-medium: 16px;          /* Body text */
+  --font-size-small: 14px;           /* Meta text */
+}

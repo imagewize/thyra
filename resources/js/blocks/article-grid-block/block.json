@@ -50,7 +50,7 @@
         },
         "headingFontSize": {
             "type": "string",
-            "default": "subtitle"
+            "default": "large"
         },
         "postSpacing": {
             "type": "string",

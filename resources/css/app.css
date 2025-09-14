@@ -39,13 +39,13 @@
      We don't define custom font sizes here to keep the rem-based responsive scale */
 
   /* Editorial Typography Scale */
-  --font-size-hero: 55px;        /* Hero post titles (desktop) */
-  --font-size-hero-mobile: 28px; /* Hero post titles (mobile) */
-  --font-size-title: 30px;       /* Large editorial headlines (desktop) */
-  --font-size-title-mobile: 20px; /* Large editorial headlines (mobile) */
-  --font-size-subtitle: 24px;    /* Subtitle/deck text */
-  --font-size-body: 16px;        /* Body text */
-  --font-size-small: 14px;       /* Meta text */
+  --font-size-xx-large: 55px;        /* Hero post titles (desktop) */
+  --font-size-xx-large-mobile: 28px; /* Hero post titles (mobile) */
+  --font-size-x-large: 30px;         /* Large editorial headlines (desktop) */
+  --font-size-x-large-mobile: 20px;  /* Large editorial headlines (mobile) */
+  --font-size-large: 24px;           /* Subtitle/deck text */
+  --font-size-medium: 16px;          /* Body text */
+  --font-size-small: 14px;           /* Meta text */
   
   /* Line Heights for Editorial Design */
   --line-height-tight: 1.2;      /* Headlines */

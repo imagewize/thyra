@@ -127,9 +127,9 @@ export default function Edit({ attributes, setAttributes }) {
                 label={__('Date Font Size', 'imagewize')}
                 value={dateFontSize}
                 options={[
-                  { label: __('Small', 'imagewize'), value: 'small' },
-                  { label: __('Normal', 'imagewize'), value: 'normal' },
-                  { label: __('Large', 'imagewize'), value: 'large' }
+                  { label: __('Small (14px)', 'imagewize'), value: 'small' },
+                  { label: __('Medium (16px)', 'imagewize'), value: 'medium' },
+                  { label: __('Large (24px)', 'imagewize'), value: 'large' }
                 ]}
                 onChange={(value) => setAttributes({ dateFontSize: value })}
               />
@@ -152,10 +152,11 @@ export default function Edit({ attributes, setAttributes }) {
             label={__('Heading Font Size', 'imagewize')}
             value={headingFontSize}
             options={[
-              { label: __('Small', 'imagewize'), value: 'small' },
-              { label: __('Normal', 'imagewize'), value: 'normal' },
-              { label: __('Large', 'imagewize'), value: 'large' },
-              { label: __('Subtitle', 'imagewize'), value: 'subtitle' }
+              { label: __('Small (14px)', 'imagewize'), value: 'small' },
+              { label: __('Medium (16px)', 'imagewize'), value: 'medium' },
+              { label: __('Large (24px)', 'imagewize'), value: 'large' },
+              { label: __('X-Large (30px)', 'imagewize'), value: 'x-large' },
+              { label: __('XX-Large (55px)', 'imagewize'), value: 'xx-large' }
             ]}
             onChange={(value) => setAttributes({ headingFontSize: value })}
           />
@@ -201,7 +202,7 @@ export default function Edit({ attributes, setAttributes }) {
               )}
               
               {showDate && (
-                <div className={`has-${dateFontFamily}-font-family has-${dateFontSize}-font-size`} style={{ marginTop: '1rem' }}>
+                <div className={`has-${dateFontFamily}-font-family article-grid-font-${dateFontSize}`} style={{ marginTop: '1rem' }}>
                   {new Date(post.date).toLocaleDateString('en-US', {
                     month: 'short',
                     day: 'numeric', 
@@ -210,12 +211,12 @@ export default function Edit({ attributes, setAttributes }) {
                 </div>
               )}
               
-              <h2 className={`wp-block-heading has-${headingFontFamily}-font-family has-${headingFontSize}-font-size`} style={{ marginTop: '0.5rem' }}>
+              <h2 className={`wp-block-heading has-${headingFontFamily}-font-family article-grid-font-${headingFontSize}`} style={{ marginTop: '0.5rem' }}>
                 {post.title?.rendered || ''}
               </h2>
 
               {showExcerpt && post.excerpt?.rendered && (
-                <div className="has-body-font-family has-small-font-size" style={{ marginTop: '0.5rem' }}>
+                <div className="has-body-font-family article-grid-font-small" style={{ marginTop: '0.5rem' }}>
                   {post.excerpt.rendered.replace(/<[^>]*>/g, '').substring(0, 100)}...
                 </div>
               )}

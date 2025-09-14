@@ -55,3 +55,35 @@
 }
 
 /* Default spacing is already handled by WordPress core styles */
+
+/* Custom typography scale using editorial CSS variables from app.css */
+.article-grid-font-small {
+  font-size: var(--font-size-small) !important; /* 14px */
+}
+
+.article-grid-font-medium {
+  font-size: var(--font-size-medium) !important; /* 16px */
+}
+
+.article-grid-font-large {
+  font-size: var(--font-size-large) !important; /* 24px */
+}
+
+.article-grid-font-x-large {
+  font-size: var(--font-size-x-large) !important; /* 30px desktop */
+}
+
+.article-grid-font-xx-large {
+  font-size: var(--font-size-xx-large) !important; /* 55px desktop */
+}
+
+/* Responsive typography */
+@media (max-width: 768px) {
+  .article-grid-font-x-large {
+    font-size: var(--font-size-x-large-mobile) !important; /* 20px mobile */
+  }
+
+  .article-grid-font-xx-large {
+    font-size: var(--font-size-xx-large-mobile) !important; /* 28px mobile */
+  }
+}
