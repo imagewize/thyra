@@ -45,21 +45,21 @@ export default function Edit({ attributes, setAttributes }) {
   }, [numberOfPosts, selectedCategory, selectedTag, queryType]);
 
   const categoryOptions = [
-    { label: __('All Categories', 'vendor'), value: 0 },
+    { label: __('All Categories', 'imagewize'), value: 0 },
     ...(categories.map(cat => ({ label: cat.name, value: cat.id })))
   ];
 
   const tagOptions = [
-    { label: __('All Tags', 'vendor'), value: 0 },
+    { label: __('All Tags', 'imagewize'), value: 0 },
     ...(tags.map(tag => ({ label: tag.name, value: tag.id })))
   ];
 
   return (
     <>
       <InspectorControls>
-        <PanelBody title={__('Article Grid Settings', 'vendor')}>
+        <PanelBody title={__('Article Grid Settings', 'imagewize')}>
           <RangeControl
-            label={__('Number of Posts', 'vendor')}
+            label={__('Number of Posts', 'imagewize')}
             value={numberOfPosts}
             onChange={(value) => setAttributes({ numberOfPosts: value })}
             min={1}
@@ -67,19 +67,19 @@ export default function Edit({ attributes, setAttributes }) {
           />
           
           <RadioControl
-            label={__('Query Type', 'vendor')}
+            label={__('Query Type', 'imagewize')}
             selected={queryType}
             options={[
-              { label: __('Recent Posts', 'vendor'), value: 'recent' },
-              { label: __('By Category', 'vendor'), value: 'category' },
-              { label: __('By Tag', 'vendor'), value: 'tag' }
+              { label: __('Recent Posts', 'imagewize'), value: 'recent' },
+              { label: __('By Category', 'imagewize'), value: 'category' },
+              { label: __('By Tag', 'imagewize'), value: 'tag' }
             ]}
             onChange={(value) => setAttributes({ queryType: value })}
           />
 
           {queryType === 'category' && (
             <SelectControl
-              label={__('Select Category', 'vendor')}
+              label={__('Select Category', 'imagewize')}
               value={selectedCategory}
               options={categoryOptions}
               onChange={(value) => setAttributes({ selectedCategory: parseInt(value) })}
@@ -88,7 +88,7 @@ export default function Edit({ attributes, setAttributes }) {
 
           {queryType === 'tag' && (
             <SelectControl
-              label={__('Select Tag', 'vendor')}
+              label={__('Select Tag', 'imagewize')}
               value={selectedTag}
               options={tagOptions}
               onChange={(value) => setAttributes({ selectedTag: parseInt(value) })}
@@ -96,15 +96,15 @@ export default function Edit({ attributes, setAttributes }) {
           )}
         </PanelBody>
 
-        <PanelBody title={__('Article Grid Styling', 'vendor')}>
+        <PanelBody title={__('Article Grid Styling', 'imagewize')}>
           <ToggleControl
-            label={__('Show Date', 'vendor')}
+            label={__('Show Date', 'imagewize')}
             checked={showDate}
             onChange={(value) => setAttributes({ showDate: value })}
           />
 
           <ToggleControl
-            label={__('Show Excerpt', 'vendor')}
+            label={__('Show Excerpt', 'imagewize')}
             checked={showExcerpt}
             onChange={(value) => setAttributes({ showExcerpt: value })}
           />
@@ -112,24 +112,24 @@ export default function Edit({ attributes, setAttributes }) {
           {showDate && (
             <>
               <SelectControl
-                label={__('Date Font Family', 'vendor')}
+                label={__('Date Font Family', 'imagewize')}
                 value={dateFontFamily}
                 options={[
-                  { label: __('Lato (Sans Serif)', 'vendor'), value: 'lato' },
-                  { label: __('Bitter (Serif)', 'vendor'), value: 'bitter' },
-                  { label: __('Body (Default)', 'vendor'), value: 'body' },
-                  { label: __('Heading (Default)', 'vendor'), value: 'heading' }
+                  { label: __('Lato (Sans Serif)', 'imagewize'), value: 'lato' },
+                  { label: __('Bitter (Serif)', 'imagewize'), value: 'bitter' },
+                  { label: __('Body (Default)', 'imagewize'), value: 'body' },
+                  { label: __('Heading (Default)', 'imagewize'), value: 'heading' }
                 ]}
                 onChange={(value) => setAttributes({ dateFontFamily: value })}
               />
 
               <SelectControl
-                label={__('Date Font Size', 'vendor')}
+                label={__('Date Font Size', 'imagewize')}
                 value={dateFontSize}
                 options={[
-                  { label: __('Small', 'vendor'), value: 'small' },
-                  { label: __('Normal', 'vendor'), value: 'normal' },
-                  { label: __('Large', 'vendor'), value: 'large' }
+                  { label: __('Small', 'imagewize'), value: 'small' },
+                  { label: __('Normal', 'imagewize'), value: 'normal' },
+                  { label: __('Large', 'imagewize'), value: 'large' }
                 ]}
                 onChange={(value) => setAttributes({ dateFontSize: value })}
               />
@@ -137,50 +137,50 @@ export default function Edit({ attributes, setAttributes }) {
           )}
 
           <SelectControl
-            label={__('Heading Font Family', 'vendor')}
+            label={__('Heading Font Family', 'imagewize')}
             value={headingFontFamily}
             options={[
-              { label: __('Bitter (Serif)', 'vendor'), value: 'bitter' },
-              { label: __('Lato (Sans Serif)', 'vendor'), value: 'lato' },
-              { label: __('Body (Default)', 'vendor'), value: 'body' },
-              { label: __('Heading (Default)', 'vendor'), value: 'heading' }
+              { label: __('Bitter (Serif)', 'imagewize'), value: 'bitter' },
+              { label: __('Lato (Sans Serif)', 'imagewize'), value: 'lato' },
+              { label: __('Body (Default)', 'imagewize'), value: 'body' },
+              { label: __('Heading (Default)', 'imagewize'), value: 'heading' }
             ]}
             onChange={(value) => setAttributes({ headingFontFamily: value })}
           />
 
           <SelectControl
-            label={__('Heading Font Size', 'vendor')}
+            label={__('Heading Font Size', 'imagewize')}
             value={headingFontSize}
             options={[
-              { label: __('Small', 'vendor'), value: 'small' },
-              { label: __('Normal', 'vendor'), value: 'normal' },
-              { label: __('Large', 'vendor'), value: 'large' },
-              { label: __('Subtitle', 'vendor'), value: 'subtitle' }
+              { label: __('Small', 'imagewize'), value: 'small' },
+              { label: __('Normal', 'imagewize'), value: 'normal' },
+              { label: __('Large', 'imagewize'), value: 'large' },
+              { label: __('Subtitle', 'imagewize'), value: 'subtitle' }
             ]}
             onChange={(value) => setAttributes({ headingFontSize: value })}
           />
 
           <SelectControl
-            label={__('Post Spacing', 'vendor')}
+            label={__('Post Spacing', 'imagewize')}
             value={postSpacing}
             options={[
-              { label: __('None', 'vendor'), value: 'none' },
-              { label: __('Small', 'vendor'), value: 'small' },
-              { label: __('Default', 'vendor'), value: 'default' },
-              { label: __('Large', 'vendor'), value: 'large' }
+              { label: __('None', 'imagewize'), value: 'none' },
+              { label: __('Small', 'imagewize'), value: 'small' },
+              { label: __('Default', 'imagewize'), value: 'default' },
+              { label: __('Large', 'imagewize'), value: 'large' }
             ]}
             onChange={(value) => setAttributes({ postSpacing: value })}
           />
 
           <SelectControl
-            label={__('Column Gap', 'vendor')}
+            label={__('Column Gap', 'imagewize')}
             value={columnGap}
             options={[
-              { label: __('None', 'vendor'), value: 'none' },
-              { label: __('Small', 'vendor'), value: 'small' },
-              { label: __('Default', 'vendor'), value: 'default' },
-              { label: __('Large', 'vendor'), value: 'large' },
-              { label: __('Extra Large', 'vendor'), value: 'xl' }
+              { label: __('None', 'imagewize'), value: 'none' },
+              { label: __('Small', 'imagewize'), value: 'small' },
+              { label: __('Default', 'imagewize'), value: 'default' },
+              { label: __('Large', 'imagewize'), value: 'large' },
+              { label: __('Extra Large', 'imagewize'), value: 'xl' }
             ]}
             onChange={(value) => setAttributes({ columnGap: value })}
           />
@@ -224,7 +224,7 @@ export default function Edit({ attributes, setAttributes }) {
         </div>
         
         {posts.length === 0 && (
-          <p>{__('No posts found. Try adjusting your settings.', 'vendor')}</p>
+          <p>{__('No posts found. Try adjusting your settings.', 'imagewize')}</p>
         )}
       </div>
     </>
