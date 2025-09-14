@@ -821,6 +821,23 @@ After implementing this Thaiconomics-inspired design:
 
 ## 📚 Technical Notes
 
+### CSS Variables Structure
+The theme uses **two complementary CSS variable systems**:
+
+**WordPress Preset Variables (316 total):**
+- **248 color entries** defined in `theme.json` (complete Tailwind palette)
+- **68 WordPress preset variables** auto-generated (aspect ratios, gradients, shadows, spacing, legacy colors)
+- Format: `--wp--preset--*` (e.g., `--wp--preset--color--red-500`, `--wp--preset--font-family--lato`)
+- Generated automatically from `theme.json` + WordPress core defaults
+
+**Custom Theme Variables (in `resources/css/app.css`):**
+- **Editorial design tokens**: `--color-black`, `--color-charcoal`, `--font-size-hero`
+- **Typography scale**: Custom sizes like `--font-size-xx-large` (55px desktop, 28px mobile)
+- **Spacing system**: Editorial spacing from `--spacing-xs` (8px) to `--spacing-5xl` (160px)
+- **Layout variables**: `--content-width-narrow` (65ch), `--sidebar-width` (320px)
+- **Animation/interaction**: `--transition-fast`, `--focus-ring`
+- Used for theme-specific design tokens not covered by WordPress presets
+
 ### Custom CSS Variables Usage
 All design tokens are stored as CSS custom properties for easy maintenance and theming.
 

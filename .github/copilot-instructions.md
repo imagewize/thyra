@@ -70,6 +70,7 @@ location ~* \.(woff2)$ {
 - Navigation menus, theme supports, and widget areas are registered in setup files.
 - Block editor integration and asset loading are managed via Vite and custom filters.
 - Full-site editing is disabled; use custom block patterns if needed.
+- **CSS Variables**: Theme generates 316 total CSS variables (248 colors from `theme.json` + 68 WordPress presets) using `--wp--preset--*` format.
 
 ### Block Development Strategy
 The theme uses **Native Blocks as the PRIMARY approach** for all block development, providing maximum flexibility and modern development patterns.
