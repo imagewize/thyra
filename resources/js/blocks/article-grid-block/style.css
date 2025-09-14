@@ -2,10 +2,8 @@
  * Block styling for both frontend & backend.
  */
  .wp-block-imagewize-article-grid-block {
-    background-color: #f8f9fa;
-    border: 1px solid #e2e4e7;
     border-radius: 4px;
-    padding: 1.5rem;
+    /* padding done by theme */
     margin-bottom: 1.5rem;
   }
   
@@ -18,9 +16,7 @@
   
   /* Responsive adjustments */
   @media screen and (min-width: 768px) {
-    .wp-block-imagewize-article-grid-block {
-      padding: 2rem;
-    }
+    /*  Padding removed as theme container adds sufficient spacing */
   }
 
 /* Post spacing styles (vertical spacing between rows) */

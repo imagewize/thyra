@@ -176,6 +176,10 @@
 }
 
 /* Custom utility classes */
+.max-w-8xl {
+  max-width: 90rem; /* 1440px */
+}
+
 .line-clamp-3 {
   display: -webkit-box;
   -webkit-line-clamp: 3;

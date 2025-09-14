@@ -274,6 +274,8 @@ Sage uses Laravel's Blade templating engine with layouts and includes:
 </html>
 ```
 
+**Boxed Layout**: The theme uses a template-level container (`max-w-8xl mx-auto px-4 md:px-6 lg:px-8`) around main content and sidebar for consistent responsive boxed layout across all screen sizes (1440px max-width). The `max-w-8xl` is a custom utility class defined in `resources/css/app.css`.
+
 **Extending Layouts:**
 ```php
 // resources/views/page.blade.php

@@ -2,7 +2,7 @@
   <section {{ $attributes->merge(['class' => 'py-16 bg-white']) }}>
 @endunless
 
-<div class="max-w-6xl mx-auto px-4 sm:px-8">
+<div class="max-w-8xl mx-auto px-4 sm:px-8">
   <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
     
     {{-- Featured Image (Left - Takes 1 column) --}}

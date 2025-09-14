@@ -613,6 +613,16 @@ Sage uses Laravel's Blade templating engine with a layout-based architecture for
 </html>
 ```
 
+### Boxed Layout Implementation
+The theme uses a **template-level container** approach for consistent boxed layout across desktop, tablet, and mobile:
+
+- **Container**: `max-w-8xl mx-auto px-4 md:px-6 lg:px-8` wrapper around main content and sidebar (1440px max-width)
+- **Shared constraints**: Both main content and sidebar inherit same max-width and alignment
+- **Responsive spacing**: Mobile (px-4), tablet (px-6), desktop (px-8) horizontal padding
+- **Sidebar consistency**: Maintains alignment with main content when present
+- **Location**: Applied at layout level in `resources/views/layouts/app.blade.php:47`
+- **Custom utility**: Uses custom `max-w-8xl` class defined in `resources/css/app.css:179-181`
+
 ### Extending Layouts
 Template files extend the base layout and define content for specific sections:
 ```php

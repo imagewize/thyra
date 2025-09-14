@@ -13,7 +13,7 @@
   <section {{ $attributes }} class="py-16 bg-white">
 @endunless
 
-<div class="max-w-6xl mx-auto px-4 sm:px-8">
+<div class="max-w-8xl mx-auto px-4 sm:px-8">
   @if (!empty($featured_posts))
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
       
