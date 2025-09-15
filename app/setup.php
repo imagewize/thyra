@@ -70,6 +70,11 @@ add_action('after_setup_theme', function () {
      */
 
     /**
+     * Enable appearance tools for style variations.
+     */
+    add_theme_support('appearance-tools');
+
+    /**
      * Register the navigation menus.
      *
      * @link https://developer.wordpress.org/reference/functions/register_nav_menus/
