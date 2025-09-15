@@ -1,14 +1,14 @@
 /*
-Theme Name:         Thyra
+Theme Name:         Sage Foundation
 Theme URI:          https://github.com/roots/sage/
-Description:        Minimalist editorial WordPress theme inspired by Thaiconomics design. Built on Sage 11 with Laravel Blade, Tailwind CSS, and modern development workflow. Features magazine-style layout with 3-column grid, hero sections, editorial typography, author profiles, and mobile-first responsive design optimized for reading experience.
-Version:            1.0.0-alpha.8
+Description:        A reusable WordPress base theme built on Sage 11 with Laravel Blade, Tailwind CSS, and modern development workflow. Features style variations system, native block support, and flexible architecture. Use as foundation for custom themes via style variations (editorial, minimal, corporate, etc.).
+Version:            1.0.0-base.1
 Author:             Sage Team
 Author URI:         https://roots.io/
-Text Domain:        thyra
+Text Domain:        sage-foundation
 License:            MIT License
 License URI:        https://opensource.org/licenses/MIT
 Requires PHP:       8.2
 Requires at least:  6.6
-Tags:               editorial, magazine, minimalist, typography, responsive, blog, news, clean, modern, tailwindcss
+Tags:               base-theme, framework, reusable, sage, tailwindcss, style-variations, laravel-blade, modern, responsive, foundation
 */

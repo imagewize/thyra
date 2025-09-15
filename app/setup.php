@@ -64,11 +64,10 @@ add_filter('theme_file_path', function ($path, $file) {
  */
 add_action('after_setup_theme', function () {
     /**
-     * Disable full-site editing support.
-     *
-     * @link https://wptavern.com/gutenberg-10-5-embeds-pdfs-adds-verse-block-color-options-and-introduces-new-patterns
+     * Enable style variations support while keeping hybrid theme approach.
+     * We don't remove 'block-templates' to allow style variations in Site Editor,
+     * but we maintain classic theme structure with Blade templates.
      */
-    remove_theme_support('block-templates');
 
     /**
      * Register the navigation menus.

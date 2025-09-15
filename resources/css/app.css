@@ -1,19 +1,12 @@
 @import "tailwindcss" theme(static);
-@import "./fonts.css";
 @source "../views/";
 @source "../../app/";
 
-/* Thaiconomics Editorial Design System - Phase 1.2 */
+/* Sage Base Theme - Universal Design System */
 @theme {
-  /* Thaiconomics Editorial Palette */
+  /* Basic Neutral Palette */
   --color-black: #000000;
-  --color-charcoal: #333333;
-  --color-gray: #666666;
-  --color-light-gray: #999999;
   --color-white: #ffffff;
-  --color-off-white: #fafafa;
-  
-  /* Extended grays for UI elements */
   --color-gray-50: #f9fafb;
   --color-gray-100: #f3f4f6;
   --color-gray-200: #e5e7eb;
@@ -24,39 +17,7 @@
   --color-gray-700: #374151;
   --color-gray-800: #1f2937;
   --color-gray-900: #111827;
-  
-  /* Tailwind font family mappings */
-  /* --font-sans: "Lato", system-ui, sans-serif;
-  --font-serif: "Bitter", serif;
-  --font-mono: "Menlo", ui-monospace, SFMono-Regular, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; */
-  
-  /* Individual font family definitions for WordPress theme.json */
-  --font-lato: "Lato", system-ui, sans-serif;
-  --font-bitter: "Bitter", serif;
-  --font-menlo: "Menlo", ui-monospace, SFMono-Regular, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
 
-  /* Note: Font sizes use Tailwind's built-in scale (text-xs, text-sm, text-base, etc.)
-     We don't define custom font sizes here to keep the rem-based responsive scale */
-
-  /* Editorial Typography Scale - Only unique sizes not in Tailwind */
-  --font-size-hero: 55px;        /* Hero post titles (desktop) - between text-5xl (48px) and text-6xl (60px) */
-  --font-size-hero-mobile: 28px; /* Hero post titles (mobile) - between text-xl (20px) and text-2xl (24px) */
-
-  /* Note: Consolidated font sizes to use Tailwind presets:
-     - --font-size-small (14px) → use --wp--preset--font-size--sm
-     - --font-size-title (30px) → use --wp--preset--font-size--3xl
-     - --font-size-title-mobile (20px) → use --wp--preset--font-size--xl */
-  
-  /* Line Heights for Editorial Design - Only where different from Tailwind defaults */
-  --line-height-tight: 1.2;      /* Headlines - slightly tighter than Tailwind's leading-tight (1.25) */
-  --line-height-normal: 1.6;     /* Body text - looser than Tailwind's leading-normal (1.5) for readability */
-  --line-height-relaxed: 1.8;    /* Large body text - looser than Tailwind's leading-relaxed (1.625) */
-  
-  /* Custom Editorial Spacing */
-  --spacing-section: 4rem;  /* Between major sections */
-  --spacing-article: 2rem;  /* Between articles */
-  --spacing-content: 1.5rem; /* Content spacing */
-  
   /* Z-index Scale */
   --z-index-dropdown: 10;
   --z-index-modal: 50;
@@ -64,76 +25,28 @@
   --z-index-tooltip: 200;
 }
 
-/* Add support for block editor font family classes */
-  .has-lato-font-family {
-    font-family: var(--font-lato);
-  }
-  .has-bitter-font-family {
-    font-family: var(--font-bitter);
-  }
-  .has-menlo-font-family {
-    font-family: var(--font-menlo);
-  }
-
-
-/* Editorial Design CSS Variables */
+/* Universal CSS Variables */
 :root {
   /* Content width constraints */
   --content-width-narrow: 65ch;   /* Optimal reading line length */
   --content-width-medium: 80ch;   /* Medium content blocks */
   --content-width-wide: 1200px;   /* Full-width sections */
-  
-  /* Editorial layout proportions */
+
+  /* Common layout proportions */
   --hero-aspect-ratio: 16/9;      /* Hero image aspect ratio */
   --thumbnail-aspect-ratio: 4/3;  /* Article thumbnail aspect ratio */
   --sidebar-width: 320px;         /* Sidebar width */
-  
+
   /* Animation durations */
   --transition-fast: 0.15s;
   --transition-normal: 0.3s;
   --transition-slow: 0.5s;
-  
+
   /* Focus ring for accessibility */
   --focus-ring: 0 0 0 2px var(--color-black);
 }
 
-/* Editorial Typography Utilities - Using mix of custom variables and Tailwind classes */
-.text-hero {
-  font-size: var(--font-size-hero);
-  line-height: var(--line-height-tight);
-  font-weight: 700; /* font-bold - was var(--font-weight-bold) */
-}
-
-.text-title {
-  font-size: var(--wp--preset--font-size--3-xl); /* 30px - WordPress preset with dash */
-  line-height: var(--line-height-tight);
-  font-weight: 600; /* font-semibold - was var(--font-weight-semibold) */
-}
-
-.text-subtitle {
-  font-size: var(--wp--preset--font-size--2-xl); /* 24px - WordPress preset with dash */
-  line-height: var(--line-height-normal);
-  font-weight: 400; /* font-normal - was var(--font-weight-normal) */
-}
-
-.text-meta {
-  font-size: var(--wp--preset--font-size--sm); /* 14px - WordPress preset with dash */
-  color: var(--color-gray);
-  font-weight: 400; /* font-normal - was var(--font-weight-normal) */
-}
-
-/* Responsive Typography */
-@media (max-width: 768px) {
-  .text-hero {
-    font-size: var(--font-size-hero-mobile);
-  }
-  
-  .text-title {
-    font-size: var(--wp--preset--font-size--xl); /* 20px - WordPress preset */
-  }
-}
-
-/* Editorial Layout Utilities */
+/* Universal Layout Utilities */
 .content-narrow {
   max-width: var(--content-width-narrow);
 }
@@ -146,7 +59,7 @@
   max-width: var(--content-width-wide);
 }
 
-/* Custom utility classes */
+/* Universal Utility Classes */
 .max-w-8xl {
   max-width: 90rem; /* 1440px */
 }
@@ -167,7 +80,7 @@
   aspect-ratio: var(--thumbnail-aspect-ratio);
 }
 
-/* Smooth scroll behavior */
+/* Base Styling */
 html {
   scroll-behavior: smooth;
 }
@@ -188,5 +101,5 @@ html {
 *:focus-visible {
   outline: none;
   box-shadow: var(--focus-ring);
-  border-radius: 0.25rem; /* rounded-sm - was var(--radius-sm) */
+  border-radius: 0.25rem;
 }

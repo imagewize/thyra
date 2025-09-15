@@ -1,0 +1,134 @@
+{
+  "version": 3,
+  "title": "Editorial",
+  "settings": {
+    "typography": {
+      "fontFamilies": [
+        {
+          "fontFamily": "\"Bitter\", serif",
+          "name": "Bitter",
+          "slug": "bitter"
+        },
+        {
+          "fontFamily": "\"Lato\", system-ui, sans-serif",
+          "name": "Lato",
+          "slug": "lato"
+        },
+        {
+          "fontFamily": "\"Menlo\", ui-monospace, SFMono-Regular, Monaco, Consolas, \"Liberation Mono\", \"Courier New\", monospace",
+          "name": "Menlo",
+          "slug": "menlo"
+        }
+      ]
+    },
+    "color": {
+      "palette": [
+        {
+          "color": "#000000",
+          "name": "Black",
+          "slug": "black"
+        },
+        {
+          "color": "#333333",
+          "name": "Charcoal",
+          "slug": "charcoal"
+        },
+        {
+          "color": "#666666",
+          "name": "Gray",
+          "slug": "gray"
+        },
+        {
+          "color": "#999999",
+          "name": "Light Gray",
+          "slug": "light-gray"
+        },
+        {
+          "color": "#ffffff",
+          "name": "White",
+          "slug": "white"
+        },
+        {
+          "color": "#fafafa",
+          "name": "Off White",
+          "slug": "off-white"
+        }
+      ]
+    },
+    "spacing": {
+      "spacingSizes": [
+        {
+          "size": "1.5rem",
+          "slug": "content",
+          "name": "Content spacing"
+        },
+        {
+          "size": "2rem",
+          "slug": "article",
+          "name": "Article spacing"
+        },
+        {
+          "size": "4rem",
+          "slug": "section",
+          "name": "Section spacing"
+        }
+      ]
+    }
+  },
+  "styles": {
+    "typography": {
+      "fontFamily": "var(--wp--preset--font-family--lato)"
+    },
+    "elements": {
+      "heading": {
+        "typography": {
+          "fontFamily": "var(--wp--preset--font-family--bitter)",
+          "lineHeight": "1.2"
+        }
+      },
+      "h1": {
+        "typography": {
+          "fontSize": "55px",
+          "lineHeight": "1.2",
+          "fontWeight": "700"
+        }
+      },
+      "h2": {
+        "typography": {
+          "fontSize": "var(--wp--preset--font-size--3-xl)",
+          "lineHeight": "1.2",
+          "fontWeight": "600"
+        }
+      },
+      "h3": {
+        "typography": {
+          "fontSize": "var(--wp--preset--font-size--2-xl)",
+          "lineHeight": "1.6",
+          "fontWeight": "400"
+        }
+      }
+    },
+    "blocks": {
+      "core/paragraph": {
+        "typography": {
+          "lineHeight": "1.6"
+        }
+      },
+      "core/post-title": {
+        "typography": {
+          "fontFamily": "var(--wp--preset--font-family--bitter)",
+          "lineHeight": "1.2"
+        }
+      },
+      "core/post-date": {
+        "typography": {
+          "fontSize": "var(--wp--preset--font-size--small)",
+          "fontFamily": "var(--wp--preset--font-family--lato)"
+        },
+        "color": {
+          "text": "var(--wp--preset--color--gray)"
+        }
+      }
+    }
+  }
+}

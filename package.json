@@ -1,5 +1,5 @@
 {
-  "name": "sage",
+  "name": "sage-foundation",
   "private": true,
   "engines": {
     "node": ">=20.0.0"

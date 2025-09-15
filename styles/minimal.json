@@ -1,0 +1,60 @@
+{
+  "version": 3,
+  "title": "Minimal",
+  "settings": {
+    "typography": {
+      "fontFamilies": [
+        {
+          "fontFamily": "system-ui, -apple-system, sans-serif",
+          "name": "System Sans",
+          "slug": "system-sans"
+        },
+        {
+          "fontFamily": "ui-serif, Georgia, serif",
+          "name": "System Serif",
+          "slug": "system-serif"
+        }
+      ]
+    },
+    "color": {
+      "palette": [
+        {
+          "color": "#000000",
+          "name": "Black",
+          "slug": "black"
+        },
+        {
+          "color": "#ffffff",
+          "name": "White",
+          "slug": "white"
+        },
+        {
+          "color": "#6b7280",
+          "name": "Gray",
+          "slug": "gray"
+        }
+      ]
+    }
+  },
+  "styles": {
+    "typography": {
+      "fontFamily": "var(--wp--preset--font-family--system-sans)"
+    },
+    "elements": {
+      "heading": {
+        "typography": {
+          "fontFamily": "var(--wp--preset--font-family--system-serif)",
+          "lineHeight": "1.25",
+          "fontWeight": "400"
+        }
+      }
+    },
+    "blocks": {
+      "core/paragraph": {
+        "typography": {
+          "lineHeight": "1.5"
+        }
+      }
+    }
+  }
+}
