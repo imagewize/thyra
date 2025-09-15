@@ -59,14 +59,14 @@ Transform the Thyra WordPress theme into a minimalist editorial design inspired 
 
 ---
 
-### Phase 2: Template Architecture 📄 🔄
+### Phase 2: Template Architecture ✅
 
-#### 2.1 Core Template Files (Partially Complete)
+#### 2.1 Core Template Files ✅
 - [x] **Homepage (`resources/views/index.blade.php`)**
   - [x] 3-column magazine grid layout
   - [x] Featured story section (asymmetric layout)
   - [x] Mobile-responsive single column
-  - [ ] **Needs boxed/contained layout implementation**
+  - [x] **Boxed/contained layout implementation**
 - [x] **Front Page (`resources/views/front-page.blade.php`)**
   - [x] Static page template for users setting "Page" as homepage
 - [x] **Single Post (`resources/views/single.blade.php`)**
@@ -75,8 +75,8 @@ Transform the Thyra WordPress theme into a minimalist editorial design inspired 
   - [x] Two-column content + sidebar
   - [x] Subscribe box and author info sidebar
   - [x] **Complete implementation with view composer**
-- [ ] **Page Template (`resources/views/page.blade.php`)**
-  - [ ] Needs proper implementation and view composer
+- [x] **Page Template (`resources/views/page.blade.php`)**
+  - [x] Complete implementation with view composer
 - [x] **Category Archive (`resources/views/category.blade.php`)**
   - [x] Category-specific post grid
   - [x] Category header with title and description
@@ -89,7 +89,7 @@ Transform the Thyra WordPress theme into a minimalist editorial design inspired 
 
 ---
 
-### Phase 3: Block Editor Integration 🧩 🔄
+### Phase 3: Block Editor Integration 🧩 ⭐
 
 #### 3.1 Native Blocks Setup (Primary Approach) 🔄
 - [x] **Install sage-native-block** - `composer require imagewize/sage-native-block --dev`
@@ -104,6 +104,8 @@ Transform the Thyra WordPress theme into a minimalist editorial design inspired 
   - [ ] Author Profile Block
   - [ ] Newsletter Subscribe Block
   - [ ] Quote/Blockquote Block (editorial style)
+  - [ ] Call-to-Action Block
+  - [ ] Image Gallery Block
 
 #### 3.2 Block Development Strategy ✅
 - **Primary Approach**: Native blocks for ALL blocks (flexible, customer-editable, dynamic content)
@@ -124,10 +126,14 @@ Transform the Thyra WordPress theme into a minimalist editorial design inspired 
   - [x] Clean typography and spacing
 - [x] **Mobile navigation implementation with Alpine.js**
 - [x] **Responsive header behavior**
-- [ ] **Replace FontAwesome with Blade Icons**
-  - [ ] Install: `composer require blade-ui-kit/blade-icons`
-  - [ ] Remove FontAwesome font files and CSS
-  - [ ] Update social media icons to use Blade Icons or custom SVGs
+- [x] **Header title/logo styling fixes**
+  - [x] Updated font size to 28px (text-2xl) using Lato font
+  - [x] Removed text underline from H1 logo heading
+  - [x] Enhanced border below logo (thicker and longer)
+- [x] **Replace FontAwesome with Blade Icons**
+  - [x] Install: `composer require blade-ui-kit/blade-icons`
+  - [x] Remove FontAwesome font files and CSS
+  - [x] Update social media icons to use Blade Icons or custom SVGs
 
 #### 4.2 Footer
 - [ ] **Update `resources/views/sections/footer.blade.php`**
