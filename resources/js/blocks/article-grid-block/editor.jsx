@@ -127,9 +127,9 @@ export default function Edit({ attributes, setAttributes }) {
                 label={__('Date Font Size', 'imagewize')}
                 value={dateFontSize}
                 options={[
-                  { label: __('Small (14px)', 'imagewize'), value: 'small' },
-                  { label: __('Medium (16px)', 'imagewize'), value: 'medium' },
-                  { label: __('Large (24px)', 'imagewize'), value: 'large' }
+                  { label: __('Small (14px - Tailwind sm)', 'imagewize'), value: 'small' },
+                  { label: __('Medium (16px - Tailwind base)', 'imagewize'), value: 'medium' },
+                  { label: __('Large (24px - Tailwind 2xl)', 'imagewize'), value: 'large' }
                 ]}
                 onChange={(value) => setAttributes({ dateFontSize: value })}
               />
@@ -152,11 +152,11 @@ export default function Edit({ attributes, setAttributes }) {
             label={__('Heading Font Size', 'imagewize')}
             value={headingFontSize}
             options={[
-              { label: __('Small (14px)', 'imagewize'), value: 'small' },
-              { label: __('Medium (16px)', 'imagewize'), value: 'medium' },
-              { label: __('Large (24px)', 'imagewize'), value: 'large' },
-              { label: __('X-Large (30px)', 'imagewize'), value: 'x-large' },
-              { label: __('XX-Large (55px)', 'imagewize'), value: 'xx-large' }
+              { label: __('Small (14px - Tailwind sm)', 'imagewize'), value: 'small' },
+              { label: __('Medium (16px - Tailwind base)', 'imagewize'), value: 'medium' },
+              { label: __('Large (24px - Tailwind 2xl)', 'imagewize'), value: 'large' },
+              { label: __('X-Large (30px - Tailwind 3xl)', 'imagewize'), value: 'x-large' },
+              { label: __('XX-Large (55px - Editorial)', 'imagewize'), value: 'xx-large' }
             ]}
             onChange={(value) => setAttributes({ headingFontSize: value })}
           />

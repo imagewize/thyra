@@ -56,34 +56,34 @@
 
 /* Default spacing is already handled by WordPress core styles */
 
-/* Custom typography scale - Updated to match cleaned CSS variables */
+/* Custom typography scale - Using WordPress preset variables */
 .article-grid-font-small {
-  font-size: var(--font-size-small); /* 14px - kept for compatibility */
+  font-size: var(--wp--preset--font-size--sm) !important; /* 14px - now using Tailwind preset */
 }
 
 .article-grid-font-medium {
-  font-size: 1rem; /* 16px - was var(--font-size-medium), now using direct value (text-base equivalent) */
+  font-size: var(--wp--preset--font-size--base) !important; /* 16px - using Tailwind preset */
 }
 
 .article-grid-font-large {
-  font-size: 1.5rem; /* 24px - was var(--font-size-large), now using direct value (text-2xl equivalent) */
+  font-size: var(--wp--preset--font-size--2xl) !important; /* 24px - using Tailwind preset */
 }
 
 .article-grid-font-x-large {
-  font-size: var(--font-size-title); /* 30px desktop - was var(--font-size-x-large) */
+  font-size: var(--wp--preset--font-size--3xl) !important; /* 30px desktop - using Tailwind preset */
 }
 
 .article-grid-font-xx-large {
-  font-size: var(--font-size-hero); /* 55px desktop - was var(--font-size-xx-large) */
+  font-size: var(--font-size-hero) !important; /* 55px desktop - unique editorial size */
 }
 
-/* Responsive typography - Updated to match cleaned CSS variables */
+/* Responsive typography - Using WordPress preset variables */
 @media (max-width: 768px) {
   .article-grid-font-x-large {
-    font-size: var(--font-size-title-mobile); /* 20px mobile - was var(--font-size-x-large-mobile) */
+    font-size: var(--wp--preset--font-size--xl) !important; /* 20px mobile - using Tailwind preset */
   }
 
   .article-grid-font-xx-large {
-    font-size: var(--font-size-hero-mobile); /* 28px mobile - was var(--font-size-xx-large-mobile) */
+    font-size: var(--font-size-hero-mobile) !important; /* 28px mobile - unique editorial size */
   }
 }
