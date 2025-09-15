@@ -1,0 +1,15 @@
+{
+  "version": 2,
+  "title": "Test Style",
+  "settings": {
+    "color": {
+      "palette": [
+        {
+          "color": "#ff0000",
+          "name": "Test Red",
+          "slug": "test-red"
+        }
+      ]
+    }
+  }
+}

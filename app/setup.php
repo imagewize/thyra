@@ -70,9 +70,16 @@ add_action('after_setup_theme', function () {
      */
 
     /**
-     * Enable appearance tools for style variations.
+     * Enable appearance tools and block styles for style variations.
      */
     add_theme_support('appearance-tools');
+    add_theme_support('wp-block-styles');
+    add_theme_support('editor-styles');
+
+    /**
+     * Enable Full Site Editing features needed for style variations.
+     */
+    add_theme_support('block-template-parts');
 
     /**
      * Register the navigation menus.
