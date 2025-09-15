@@ -330,17 +330,21 @@ WordPress preset variables generated from Tailwind's font size scale via `wordpr
 ```css
 /* resources/js/blocks/article-grid-block/style.css */
 .article-grid-font-small {
-  font-size: var(--font-size-small) !important;
+  font-size: var(--wp--preset--font-size--sm) !important; /* 14px - WordPress preset with dash */
+}
+
+.article-grid-font-large {
+  font-size: var(--wp--preset--font-size--2-xl) !important; /* 24px - WordPress preset with dash */
 }
 
 .article-grid-font-x-large {
-  font-size: var(--font-size-title) !important; /* 30px desktop */
+  font-size: var(--wp--preset--font-size--3-xl) !important; /* 30px desktop - WordPress preset with dash */
 }
 
 /* Responsive usage */
 @media (max-width: 768px) {
   .article-grid-font-x-large {
-    font-size: var(--font-size-title-mobile) !important; /* 20px mobile */
+    font-size: var(--wp--preset--font-size--xl) !important; /* 20px mobile - WordPress preset */
   }
 }
 ```
@@ -402,13 +406,13 @@ WordPress preset variables generated from Tailwind's font size scale via `wordpr
 }
 
 .text-title {
-  font-size: var(--font-size-title);
+  font-size: var(--wp--preset--font-size--3-xl); /* 30px - WordPress preset with dash */
   line-height: var(--line-height-tight);
   font-weight: 600;
 }
 
 .text-meta {
-  font-size: var(--font-size-small);
+  font-size: var(--wp--preset--font-size--sm); /* 14px - WordPress preset with dash */
   color: var(--color-gray);
   font-weight: 400;
 }
@@ -453,6 +457,30 @@ The `wordpressThemeJson()` plugin automatically:
 - Generates CSS variables for all Tailwind design tokens
 - Creates block editor compatible preset classes
 - Provides `--wp--preset--*` variables for all design tokens
+
+### ⚠️ Important Discovery: WordPress Preset Variable Naming
+
+**Critical Finding**: WordPress preset variables use **dashes** in size names, not the expected format:
+
+```css
+/* ✅ CORRECT - WordPress generates variables with dashes */
+--wp--preset--font-size--2-xl    /* 24px - note the dash in "2-xl" */
+--wp--preset--font-size--3-xl    /* 30px - note the dash in "3-xl" */
+
+/* ❌ INCORRECT - This format does NOT exist */
+--wp--preset--font-size--2xl     /* Would expect this, but WordPress doesn't generate it */
+--wp--preset--font-size--3xl     /* Would expect this, but WordPress doesn't generate it */
+```
+
+**Build Process Requirement**:
+- WordPress preset variables are only available after `npm run build` (not `npm run dev`)
+- The `wordpressThemeJson()` Vite plugin processes `theme.json` during build phase
+- Development mode (`npm run dev`) does not generate these variables
+
+**Resolution**: All font size implementations have been updated to use the correct dash convention throughout:
+- `/resources/js/blocks/article-grid-block/style.css`
+- `/resources/js/blocks/article-grid-block/editor.css`
+- `/resources/css/app.css`
 
 ## Best Practices
 
