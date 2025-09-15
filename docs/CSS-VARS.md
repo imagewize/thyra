@@ -2,11 +2,47 @@
 
 This document catalogs all available CSS variables in the Thyra theme, their sources, and usage patterns for blocks, Blade views, and components.
 
+## Table of Contents
+
+- [Variable Sources](#variable-sources)
+- [Custom Editorial Variables](#custom-editorial-variables)
+  - [Typography Scale](#typography-scale)
+  - [Font Families](#font-families)
+  - [Editorial Color Palette](#editorial-color-palette)
+  - [Line Heights & Spacing](#line-heights--spacing)
+  - [Layout & Design System Variables](#layout--design-system-variables)
+- [WordPress Preset Variables](#wordpress-preset-variables)
+  - [Color Variables (260 total)](#color-variables-260-total)
+  - [Typography Presets](#typography-presets)
+    - [Font Family Variables (6 total)](#font-family-variables-6-total)
+    - [Font Size Variables (13 total)](#font-size-variables-13-total)
+  - [Other WordPress Presets](#other-wordpress-presets)
+- [Complete Font Size Reference](#complete-font-size-reference)
+  - [Custom Editorial Font Sizes (5 total)](#custom-editorial-font-sizes-5-total)
+  - [Tailwind Generated Font Sizes (13 total)](#tailwind-generated-font-sizes-13-total)
+- [Usage Patterns](#usage-patterns)
+  - [1. Block Development (Native Blocks)](#1-block-development-native-blocks)
+  - [2. Blade Templates](#2-blade-templates)
+  - [3. Component Development](#3-component-development)
+  - [4. Editor Integration](#4-editor-integration)
+- [Configuration Sources](#configuration-sources)
+  - [Vite Configuration](#vite-configuration)
+  - [Theme.json Integration](#themejson-integration)
+- [Best Practices](#best-practices)
+  - [1. Variable Naming Convention](#1-variable-naming-convention)
+  - [2. Responsive Design](#2-responsive-design)
+  - [3. Block Development](#3-block-development)
+  - [4. Performance Considerations](#4-performance-considerations)
+
 ## Variable Sources
 
-The theme generates **300+ CSS variables** from multiple sources:
-- **Custom Editorial Variables**: Defined in `resources/css/app.css`
-- **WordPress Preset Variables**: Generated from `theme.json` via Vite plugin (248 colors + 68 other presets)
+The theme generates **330+ CSS variables** from multiple sources:
+- **Custom Editorial Variables**: Defined in `resources/css/app.css` (20+ variables)
+- **WordPress Preset Variables**: Generated from `theme.json` via Vite plugin (319 total variables)
+  - 260 color variables (Tailwind color palette + custom editorial colors)
+  - 13 font size variables (Tailwind scale)
+  - 6 font family variables
+  - 40+ other presets (spacing, shadows, gradients, aspect ratios)
 - **Tailwind Integration**: Via `@tailwindcss/vite` plugin and `wordpressThemeJson()` configuration
 
 ## Custom Editorial Variables
@@ -116,47 +152,172 @@ The theme generates **300+ CSS variables** from multiple sources:
 
 ## WordPress Preset Variables
 
-Generated automatically from `theme.json` via `wordpressThemeJson()` Vite plugin with 316 total variables:
+Generated automatically from `theme.json` via `wordpressThemeJson()` Vite plugin with 319 total variables:
 
-### Color Variables (248 total)
+### Color Variables (260 total)
 ```css
-/* WordPress color presets - examples */
---wp--preset--color--black: #000000;
---wp--preset--color--white: #ffffff;
---wp--preset--color--gray-50: #f9fafb;
---wp--preset--color--gray-100: #f3f4f6;
-/* ... continues for all Tailwind colors */
+/* Tailwind Color Palette (248 variables) - Complete color spectrum */
+--wp--preset--color--red-50: oklch(97.1% .013 17.38);
+--wp--preset--color--red-100: oklch(93.6% .032 17.717);
+--wp--preset--color--red-500: oklch(63.7% .237 25.331);
+--wp--preset--color--red-900: oklch(39.6% .141 25.723);
+/* ... continues for all colors: orange, amber, yellow, lime, green, emerald,
+     teal, cyan, sky, blue, indigo, violet, purple, fuchsia, pink, rose,
+     slate, gray, zinc, neutral, stone (each with 50-950 variants) */
+
+/* Custom Editorial Colors (6 variables) */
+--wp--preset--color--black: #000;
+--wp--preset--color--white: #fff;
+--wp--preset--color--charcoal: #333;
+--wp--preset--color--gray: #666;
+--wp--preset--color--light-gray: #999;
+--wp--preset--color--off-white: #fafafa;
 ```
 
-### Typography Presets (68 total)
+### Typography Presets
+
+#### Font Family Variables (6 total)
 ```css
-/* Font family presets */
---wp--preset--font-family--lato: "Lato", system-ui, sans-serif;
---wp--preset--font-family--bitter: "Bitter", serif;
---wp--preset--font-family--menlo: "Menlo", ui-monospace;
+/* WordPress font family presets */
+--wp--preset--font-family--sans: ui-sans-serif,system-ui,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji;
+--wp--preset--font-family--serif: ui-serif,Georgia,Cambria,Times New Roman,Times,serif;
+--wp--preset--font-family--mono: ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,Liberation Mono,Courier New,monospace;
+--wp--preset--font-family--lato: Lato,system-ui,sans-serif;
+--wp--preset--font-family--bitter: Bitter,serif;
+--wp--preset--font-family--menlo: Menlo,ui-monospace,SFMono-Regular,Monaco,Consolas,Liberation Mono,Courier New,monospace;
+```
 
-/* Font size presets */
---wp--preset--font-size--small: 14px;
---wp--preset--font-size--medium: 16px;
---wp--preset--font-size--large: 24px;
---wp--preset--font-size--x-large: 30px;
---wp--preset--font-size--xx-large: 55px;
+#### Font Size Variables (13 total)
+```css
+/* Tailwind font size scale - Complete responsive typography system */
+--wp--preset--font-size--xs: .75rem;      /* 12px */
+--wp--preset--font-size--sm: .875rem;     /* 14px */
+--wp--preset--font-size--base: 1rem;      /* 16px */
+--wp--preset--font-size--lg: 1.125rem;    /* 18px */
+--wp--preset--font-size--xl: 1.25rem;     /* 20px */
+--wp--preset--font-size--2xl: 1.5rem;     /* 24px */
+--wp--preset--font-size--3xl: 1.875rem;   /* 30px */
+--wp--preset--font-size--4xl: 2.25rem;    /* 36px */
+--wp--preset--font-size--5xl: 3rem;       /* 48px */
+--wp--preset--font-size--6xl: 3.75rem;    /* 60px */
+--wp--preset--font-size--7xl: 4.5rem;     /* 72px */
+--wp--preset--font-size--8xl: 6rem;       /* 96px */
+--wp--preset--font-size--9xl: 8rem;       /* 128px */
+```
 
-/* Spacing presets */
---wp--preset--spacing--10: 0.25rem;
---wp--preset--spacing--20: 0.5rem;
---wp--preset--spacing--30: 0.75rem;
-/* ... continues for Tailwind spacing scale */
+### Other WordPress Presets
+```css
+/* Spacing presets (40+ variables) - Full Tailwind spacing scale */
+--wp--preset--spacing--10: 0.25rem;       /* 4px */
+--wp--preset--spacing--20: 0.5rem;        /* 8px */
+--wp--preset--spacing--30: 0.75rem;       /* 12px */
+--wp--preset--spacing--40: 1rem;          /* 16px */
+/* ... continues through full Tailwind scale to --wp--preset--spacing--96 */
 
-/* Other presets */
+/* Aspect ratio presets */
 --wp--preset--aspect-ratio--square: 1;
 --wp--preset--aspect-ratio--4-3: 4/3;
 --wp--preset--aspect-ratio--16-9: 16/9;
 
+/* Shadow presets */
 --wp--preset--shadow--natural: 0 8px 16px rgba(0, 0, 0, 0.15);
 --wp--preset--shadow--deep: 0 12px 24px rgba(0, 0, 0, 0.25);
 
+/* Gradient presets */
 --wp--preset--gradient--vivid-cyan-blue-to-vivid-purple: linear-gradient(135deg, rgba(6,147,227,1) 0%, rgb(155,81,224) 100%);
+```
+
+## Complete Font Size Reference
+
+The theme provides **18 total font size variables** from two sources, offering comprehensive typography control for all design needs.
+
+### Custom Editorial Font Sizes (5 total)
+These are custom sizes specific to editorial design, defined in `resources/css/app.css`:
+
+```css
+/* Editorial Typography - Custom sizes not in Tailwind */
+--font-size-hero: 55px;            /* Hero post titles (desktop) */
+--font-size-hero-mobile: 28px;     /* Hero post titles (mobile) */
+--font-size-title: 30px;           /* Large editorial headlines (desktop) */
+--font-size-title-mobile: 20px;    /* Large editorial headlines (mobile) */
+--font-size-small: 14px;           /* Meta text - article-grid-block compatibility */
+```
+
+**Usage:** Primarily in custom blocks and editorial templates where specific design requirements need precise control.
+
+### Tailwind Generated Font Sizes (13 total)
+WordPress preset variables generated from Tailwind's font size scale via `wordpressThemeJson()`:
+
+```css
+/* Complete Tailwind Font Scale */
+--wp--preset--font-size--xs: .75rem;      /* 12px - Small captions, labels */
+--wp--preset--font-size--sm: .875rem;     /* 14px - Meta text, small body */
+--wp--preset--font-size--base: 1rem;      /* 16px - Standard body text */
+--wp--preset--font-size--lg: 1.125rem;    /* 18px - Large body text */
+--wp--preset--font-size--xl: 1.25rem;     /* 20px - Small headings */
+--wp--preset--font-size--2xl: 1.5rem;     /* 24px - Medium headings */
+--wp--preset--font-size--3xl: 1.875rem;   /* 30px - Large headings */
+--wp--preset--font-size--4xl: 2.25rem;    /* 36px - Extra large headings */
+--wp--preset--font-size--5xl: 3rem;       /* 48px - Hero headlines */
+--wp--preset--font-size--6xl: 3.75rem;    /* 60px - Display headlines */
+--wp--preset--font-size--7xl: 4.5rem;     /* 72px - Large displays */
+--wp--preset--font-size--8xl: 6rem;       /* 96px - Extra large displays */
+--wp--preset--font-size--9xl: 8rem;       /* 128px - Massive displays */
+```
+
+**Usage:** Available in WordPress block editor font size picker and for consistent design system scaling.
+
+### Font Size Usage Patterns
+
+**In Block Editor (WordPress Classes):**
+```blade
+{{-- WordPress preset classes --}}
+<div class="has-sm-font-size">Small text using Tailwind xs (14px)</div>
+<div class="has-base-font-size">Body text using Tailwind base (16px)</div>
+<div class="has-2xl-font-size">Heading using Tailwind 2xl (24px)</div>
+<div class="has-5xl-font-size">Hero using Tailwind 5xl (48px)</div>
+```
+
+**In Custom CSS/Blocks:**
+```css
+/* Editorial custom sizes */
+.hero-headline {
+  font-size: var(--font-size-hero);        /* 55px desktop */
+}
+
+@media (max-width: 768px) {
+  .hero-headline {
+    font-size: var(--font-size-hero-mobile); /* 28px mobile */
+  }
+}
+
+/* Tailwind preset sizes */
+.article-title {
+  font-size: var(--wp--preset--font-size--3xl); /* 30px */
+}
+
+.meta-text {
+  font-size: var(--wp--preset--font-size--sm);  /* 14px */
+}
+```
+
+**Size Comparison Chart:**
+```
+ 12px  --wp--preset--font-size--xs
+ 14px  --wp--preset--font-size--sm  ≈ --font-size-small
+ 16px  --wp--preset--font-size--base
+ 18px  --wp--preset--font-size--lg
+ 20px  --wp--preset--font-size--xl   ≈ --font-size-title-mobile
+ 24px  --wp--preset--font-size--2xl
+ 28px  --font-size-hero-mobile
+ 30px  --wp--preset--font-size--3xl  ≈ --font-size-title
+ 36px  --wp--preset--font-size--4xl
+ 48px  --wp--preset--font-size--5xl
+ 55px  --font-size-hero
+ 60px  --wp--preset--font-size--6xl
+ 72px  --wp--preset--font-size--7xl
+ 96px  --wp--preset--font-size--8xl
+128px  --wp--preset--font-size--9xl
 ```
 
 ## Usage Patterns
