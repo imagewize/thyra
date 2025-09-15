@@ -16,12 +16,12 @@
       <!-- Center: Logo/Brand -->
       <div class="flex flex-1 justify-center">
         <div class="text-center">
-          <h1 class="text-lg sm:text-xl text-black font-normal font-primary">
-            <a href="{{ home_url('/') }}" class="hover:text-gray-600 transition-colors">
+          <h1 class="text-black font-normal font-primary" style="font-size: var(--font-size-hero-mobile);">
+            <a href="{{ home_url('/') }}" class="hover:text-gray-600 transition-colors" style="text-decoration: none !important;">
               {{ get_bloginfo('name') }}
             </a>
           </h1>
-          <div class="w-12 sm:w-16 h-px bg-black mx-auto mt-2"></div>
+          <div class="w-20 sm:w-24 h-0.5 bg-black mx-auto mt-3"></div>
         </div>
       </div>
       
