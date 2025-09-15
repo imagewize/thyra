@@ -1,3 +1,32 @@
+## [1.0.0-alpha.8] - 2025-09-15
+
+### Improved
+- **WordPress Preset Variable Adoption**: Streamlined typography system by adopting WordPress preset variables with correct dash naming convention
+- **Article Grid Block Typography**: Enhanced font size controls to use WordPress preset variables (e.g., `--wp--preset--font-size--2-xl`, `--wp--preset--font-size--3-xl`)
+- **CSS Variable Consistency**: Consolidated custom font size variables to use WordPress presets where possible, reducing duplication
+- **Build Process Documentation**: Added critical documentation about WordPress preset variable availability requiring `npm run build`
+
+### Changed
+- **Font Size Variable Strategy**: Reduced custom editorial font sizes from 5 to 2 variables, leveraging WordPress presets for standard sizes
+- **WordPress Preset Integration**: Updated all typography references to use correct dash convention (`--wp--preset--font-size--2-xl` instead of `--wp--preset--font-size--2xl`)
+- **Article Grid Block Labels**: Enhanced font size control labels to show both pixel values and Tailwind equivalents for better user understanding
+- **Documentation Updates**: Comprehensive updates to CLAUDE.md, CSS-VARS.md, and copilot instructions with WordPress preset variable findings
+
+### Technical Implementation
+- WordPress preset variables now follow correct naming: `--wp--preset--font-size--{size}-{unit}` with dashes
+- Typography consolidation uses WordPress presets: `--wp--preset--font-size--sm` (14px), `--wp--preset--font-size--3-xl` (30px), `--wp--preset--font-size--xl` (20px)
+- Retained only unique editorial sizes: `--font-size-hero` (55px) and `--font-size-hero-mobile` (28px)
+- Updated all block CSS files to use WordPress preset variables with `!important` declarations for editor consistency
+- Build process requirement: WordPress preset variables only available after `npm run build`, not `npm run dev`
+
+### Enhanced
+- **Typography System Efficiency**: Simplified font size management by leveraging WordPress preset infrastructure
+- **Block Editor Integration**: Improved typography consistency between editor and frontend using shared WordPress preset variables
+- **Development Workflow**: Clear documentation of build requirements for WordPress preset variable availability
+- **Code Maintainability**: Reduced custom CSS variable count while maintaining all design functionality
+
+---
+
 ## [1.0.0-alpha.7] - 2025-09-14
 
 ### Improved

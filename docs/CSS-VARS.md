@@ -18,7 +18,7 @@ This document catalogs all available CSS variables in the Thyra theme, their sou
     - [Font Size Variables (13 total)](#font-size-variables-13-total)
   - [Other WordPress Presets](#other-wordpress-presets)
 - [Complete Font Size Reference](#complete-font-size-reference)
-  - [Custom Editorial Font Sizes (5 total)](#custom-editorial-font-sizes-5-total)
+  - [Custom Editorial Font Sizes (2 total)](#custom-editorial-font-sizes-2-total)
   - [Tailwind Generated Font Sizes (13 total)](#tailwind-generated-font-sizes-13-total)
 - [Usage Patterns](#usage-patterns)
   - [1. Block Development (Native Blocks)](#1-block-development-native-blocks)
@@ -229,21 +229,23 @@ Generated automatically from `theme.json` via `wordpressThemeJson()` Vite plugin
 
 ## Complete Font Size Reference
 
-The theme provides **18 total font size variables** from two sources, offering comprehensive typography control for all design needs.
+The theme provides **15 total font size variables** from two sources, offering comprehensive typography control for all design needs.
 
-### Custom Editorial Font Sizes (5 total)
-These are custom sizes specific to editorial design, defined in `resources/css/app.css`:
+### Custom Editorial Font Sizes (2 total)
+These are unique sizes specific to editorial design, defined in `resources/css/app.css`:
 
 ```css
-/* Editorial Typography - Custom sizes not in Tailwind */
---font-size-hero: 55px;            /* Hero post titles (desktop) */
---font-size-hero-mobile: 28px;     /* Hero post titles (mobile) */
---font-size-title: 30px;           /* Large editorial headlines (desktop) */
---font-size-title-mobile: 20px;    /* Large editorial headlines (mobile) */
---font-size-small: 14px;           /* Meta text - article-grid-block compatibility */
+/* Editorial Typography - Only unique sizes not in Tailwind */
+--font-size-hero: 55px;        /* Hero post titles (desktop) - between text-5xl (48px) and text-6xl (60px) */
+--font-size-hero-mobile: 28px; /* Hero post titles (mobile) - between text-xl (20px) and text-2xl (24px) */
+
+/* Note: Consolidated font sizes to use Tailwind presets:
+   - --font-size-small (14px) → use --wp--preset--font-size--sm
+   - --font-size-title (30px) → use --wp--preset--font-size--3xl
+   - --font-size-title-mobile (20px) → use --wp--preset--font-size--xl */
 ```
 
-**Usage:** Primarily in custom blocks and editorial templates where specific design requirements need precise control.
+**Usage:** Unique editorial hero sizes that fall between Tailwind's standard scale for precise editorial impact.
 
 ### Tailwind Generated Font Sizes (13 total)
 WordPress preset variables generated from Tailwind's font size scale via `wordpressThemeJson()`:
@@ -304,16 +306,16 @@ WordPress preset variables generated from Tailwind's font size scale via `wordpr
 **Size Comparison Chart:**
 ```
  12px  --wp--preset--font-size--xs
- 14px  --wp--preset--font-size--sm  ≈ --font-size-small
+ 14px  --wp--preset--font-size--sm      (replaces --font-size-small)
  16px  --wp--preset--font-size--base
  18px  --wp--preset--font-size--lg
- 20px  --wp--preset--font-size--xl   ≈ --font-size-title-mobile
+ 20px  --wp--preset--font-size--xl      (replaces --font-size-title-mobile)
  24px  --wp--preset--font-size--2xl
- 28px  --font-size-hero-mobile
- 30px  --wp--preset--font-size--3xl  ≈ --font-size-title
+ 28px  --font-size-hero-mobile          (unique editorial size)
+ 30px  --wp--preset--font-size--3xl     (replaces --font-size-title)
  36px  --wp--preset--font-size--4xl
  48px  --wp--preset--font-size--5xl
- 55px  --font-size-hero
+ 55px  --font-size-hero                 (unique editorial size)
  60px  --wp--preset--font-size--6xl
  72px  --wp--preset--font-size--7xl
  96px  --wp--preset--font-size--8xl
@@ -328,17 +330,21 @@ WordPress preset variables generated from Tailwind's font size scale via `wordpr
 ```css
 /* resources/js/blocks/article-grid-block/style.css */
 .article-grid-font-small {
-  font-size: var(--font-size-small) !important;
+  font-size: var(--wp--preset--font-size--sm) !important; /* 14px - WordPress preset with dash */
+}
+
+.article-grid-font-large {
+  font-size: var(--wp--preset--font-size--2-xl) !important; /* 24px - WordPress preset with dash */
 }
 
 .article-grid-font-x-large {
-  font-size: var(--font-size-title) !important; /* 30px desktop */
+  font-size: var(--wp--preset--font-size--3-xl) !important; /* 30px desktop - WordPress preset with dash */
 }
 
 /* Responsive usage */
 @media (max-width: 768px) {
   .article-grid-font-x-large {
-    font-size: var(--font-size-title-mobile) !important; /* 20px mobile */
+    font-size: var(--wp--preset--font-size--xl) !important; /* 20px mobile - WordPress preset */
   }
 }
 ```
@@ -400,13 +406,13 @@ WordPress preset variables generated from Tailwind's font size scale via `wordpr
 }
 
 .text-title {
-  font-size: var(--font-size-title);
+  font-size: var(--wp--preset--font-size--3-xl); /* 30px - WordPress preset with dash */
   line-height: var(--line-height-tight);
   font-weight: 600;
 }
 
 .text-meta {
-  font-size: var(--font-size-small);
+  font-size: var(--wp--preset--font-size--sm); /* 14px - WordPress preset with dash */
   color: var(--color-gray);
   font-weight: 400;
 }
@@ -451,6 +457,30 @@ The `wordpressThemeJson()` plugin automatically:
 - Generates CSS variables for all Tailwind design tokens
 - Creates block editor compatible preset classes
 - Provides `--wp--preset--*` variables for all design tokens
+
+### ⚠️ Important Discovery: WordPress Preset Variable Naming
+
+**Critical Finding**: WordPress preset variables use **dashes** in size names, not the expected format:
+
+```css
+/* ✅ CORRECT - WordPress generates variables with dashes */
+--wp--preset--font-size--2-xl    /* 24px - note the dash in "2-xl" */
+--wp--preset--font-size--3-xl    /* 30px - note the dash in "3-xl" */
+
+/* ❌ INCORRECT - This format does NOT exist */
+--wp--preset--font-size--2xl     /* Would expect this, but WordPress doesn't generate it */
+--wp--preset--font-size--3xl     /* Would expect this, but WordPress doesn't generate it */
+```
+
+**Build Process Requirement**:
+- WordPress preset variables are only available after `npm run build` (not `npm run dev`)
+- The `wordpressThemeJson()` Vite plugin processes `theme.json` during build phase
+- Development mode (`npm run dev`) does not generate these variables
+
+**Resolution**: All font size implementations have been updated to use the correct dash convention throughout:
+- `/resources/js/blocks/article-grid-block/style.css`
+- `/resources/js/blocks/article-grid-block/editor.css`
+- `/resources/css/app.css`
 
 ## Best Practices
 

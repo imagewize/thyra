@@ -38,12 +38,14 @@
   /* Note: Font sizes use Tailwind's built-in scale (text-xs, text-sm, text-base, etc.)
      We don't define custom font sizes here to keep the rem-based responsive scale */
 
-  /* Editorial Typography Scale - Only custom sizes not in Tailwind */
+  /* Editorial Typography Scale - Only unique sizes not in Tailwind */
   --font-size-hero: 55px;        /* Hero post titles (desktop) - between text-5xl (48px) and text-6xl (60px) */
   --font-size-hero-mobile: 28px; /* Hero post titles (mobile) - between text-xl (20px) and text-2xl (24px) */
-  --font-size-title: 30px;       /* Large editorial headlines (desktop) - between text-2xl (24px) and text-3xl (30px) */
-  --font-size-title-mobile: 20px; /* Large editorial headlines (mobile) - same as text-xl but explicit for editorial */
-  --font-size-small: 14px;       /* Meta text - kept for article-grid-block compatibility */
+
+  /* Note: Consolidated font sizes to use Tailwind presets:
+     - --font-size-small (14px) → use --wp--preset--font-size--sm
+     - --font-size-title (30px) → use --wp--preset--font-size--3xl
+     - --font-size-title-mobile (20px) → use --wp--preset--font-size--xl */
   
   /* Line Heights for Editorial Design - Only where different from Tailwind defaults */
   --line-height-tight: 1.2;      /* Headlines - slightly tighter than Tailwind's leading-tight (1.25) */
@@ -103,19 +105,19 @@
 }
 
 .text-title {
-  font-size: var(--font-size-title);
+  font-size: var(--wp--preset--font-size--3-xl); /* 30px - WordPress preset with dash */
   line-height: var(--line-height-tight);
   font-weight: 600; /* font-semibold - was var(--font-weight-semibold) */
 }
 
 .text-subtitle {
-  font-size: 1.5rem; /* text-2xl (24px) - was var(--font-size-subtitle) */
+  font-size: var(--wp--preset--font-size--2-xl); /* 24px - WordPress preset with dash */
   line-height: var(--line-height-normal);
   font-weight: 400; /* font-normal - was var(--font-weight-normal) */
 }
 
 .text-meta {
-  font-size: var(--font-size-small); /* Kept for article-grid-block compatibility */
+  font-size: var(--wp--preset--font-size--sm); /* 14px - WordPress preset with dash */
   color: var(--color-gray);
   font-weight: 400; /* font-normal - was var(--font-weight-normal) */
 }
@@ -127,7 +129,7 @@
   }
   
   .text-title {
-    font-size: var(--font-size-title-mobile);
+    font-size: var(--wp--preset--font-size--xl); /* 20px - WordPress preset */
   }
 }
 

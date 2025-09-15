@@ -72,6 +72,25 @@ location ~* \.(woff2)$ {
 - Full-site editing is disabled; use custom block patterns if needed.
 - **CSS Variables**: Theme generates 316 total CSS variables (248 colors from `theme.json` + 68 WordPress presets) using `--wp--preset--*` format.
 
+#### ⚠️ Critical WordPress Preset Variable Naming Discovery
+
+**Important Finding**: WordPress preset variables use **dashes** in size names, not the format you might expect:
+
+```css
+/* ✅ CORRECT - WordPress generates variables with dashes */
+--wp--preset--font-size--2-xl    /* 24px - note the dash in "2-xl" */
+--wp--preset--font-size--3-xl    /* 30px - note the dash in "3-xl" */
+
+/* ❌ INCORRECT - This format does NOT exist */
+--wp--preset--font-size--2xl     /* Would expect this, but WordPress doesn't generate it */
+--wp--preset--font-size--3xl     /* Would expect this, but WordPress doesn't generate it */
+```
+
+**Build Process Requirement**:
+- WordPress preset variables are only available after `npm run build` (not `npm run dev`)
+- The `wordpressThemeJson()` Vite plugin processes `theme.json` during build phase
+- Development mode (`npm run dev`) does not generate these variables, so testing requires full build
+
 ### Block Development Strategy
 The theme uses **Native Blocks as the PRIMARY approach** for all block development, providing maximum flexibility and modern development patterns.
 
