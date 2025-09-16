@@ -262,6 +262,32 @@ class Index extends Composer
 @endphp
 ```
 
+### Asset Loading in Blade Templates
+**❌ WRONG - Don't use @php blocks for asset logic:**
+```php
+@php
+  $icon_file = match($type) {
+    'arrow' => 'resources/images/icons/arrow.svg',
+    default => 'resources/images/icons/check.svg'
+  };
+@endphp
+<img src="{{ Vite::asset($icon_file) }}">
+```
+
+**✅ CORRECT - Use Blade conditionals and Vite::asset() directly:**
+```php
+@if($type === 'arrow')
+  <img src="{{ Vite::asset('resources/images/icons/arrow.svg') }}">
+@else
+  <img src="{{ Vite::asset('resources/images/icons/check.svg') }}">
+@endif
+```
+
+**Asset Loading Rules:**
+- **Blade Templates**: Use `Vite::asset('path/to/asset')` directly (no import needed)
+- **PHP Files**: Use `use Illuminate\Support\Facades\Vite;` then `Vite::asset()`
+- **No @php blocks**: Avoid @php for asset logic - use Blade conditionals or View Composers
+
 **Key Benefits:**
 - **Separation of Concerns**: Keep data fetching logic out of Blade templates
 - **Reusability**: Share data logic across multiple templates

@@ -160,7 +160,33 @@ With View Composers, Blade templates become clean and focused:
 @foreach($featured_posts as $post)
   {{-- Template logic only --}}
 @endforeach
-```(claude.ai/code) when working with code in this repository.
+```
+
+### Asset Loading in Blade Templates
+**❌ WRONG - Don't use @php blocks for asset logic:**
+```php
+@php
+  $icon_file = match($type) {
+    'arrow' => 'resources/images/icons/arrow.svg',
+    default => 'resources/images/icons/check.svg'
+  };
+@endphp
+<img src="{{ Vite::asset($icon_file) }}">
+```
+
+**✅ CORRECT - Use Blade conditionals directly:**
+```php
+@if($type === 'arrow')
+  <img src="{{ Vite::asset('resources/images/icons/arrow.svg') }}">
+@else
+  <img src="{{ Vite::asset('resources/images/icons/check.svg') }}">
+@endif
+```
+
+**Asset Loading Rules:**
+- **Blade Templates**: Use `Vite::asset()` directly (no import needed)
+- **PHP Files**: Use `use Illuminate\Support\Facades\Vite;` then `Vite::asset()`
+- **No @php blocks**: Keep asset logic in Blade conditionals or View Composers(claude.ai/code) when working with code in this repository.
 
 ## Architecture Overview
 
