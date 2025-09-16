@@ -7,8 +7,44 @@
   --font-size-hero: 55px;        /* Hero post titles (desktop) - between text-5xl (48px) and text-6xl (60px) */
   --font-size-hero-mobile: 28px; /* Hero post titles (mobile) - between text-xl (20px) and text-2xl (24px) */
 
+  /* T3CH Theme Brand Colors - Matching app.css */
+  --color-t3ch-blue: #0295DA;        /* Primary brand blue */
+  --color-t3ch-darkblue: #00283C;    /* Dark background blue */
+  --color-t3ch-orange: #d97d00;      /* CTA orange */
+  --color-t3ch-lightblue: #f0f8ff;   /* Light blue backgrounds */
+
   /* Note: Consolidated font sizes to use Tailwind presets:
      - --font-size-small (14px) → use --wp--preset--font-size--sm
      - --font-size-title (30px) → use --wp--preset--font-size--3xl
      - --font-size-title-mobile (20px) → use --wp--preset--font-size--xl */
+}
+
+/* ACF Block Styles for Editor */
+.wp-block[data-type="acf/expertise-detail-advantages"] {
+  /* Better editor styling for readability */
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  border: 1px solid #e9ecef;
+}
+
+/* Expertise Detail Advantages Block - Editor Styles */
+.wp-block[data-type="acf/expertise-detail-advantages"] #voordelen {
+  background-color: var(--color-t3ch-darkblue);
+  color: white;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+/* Improve text readability in editor */
+.wp-block[data-type="acf/expertise-detail-advantages"] .bg-t3ch-darkblue {
+  background-color: var(--color-t3ch-darkblue);
+}
+
+.wp-block[data-type="acf/expertise-detail-advantages"] .bg-t3ch-blue {
+  background-color: var(--color-t3ch-blue);
+}
+
+/* Ensure text is readable in editor */
+.wp-block[data-type="acf/expertise-detail-advantages"] .text-white {
+  color: white !important;
 }

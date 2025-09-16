@@ -24,6 +24,12 @@
   --color-gray-700: #374151;
   --color-gray-800: #1f2937;
   --color-gray-900: #111827;
+
+  /* T3CH Theme Brand Colors */
+  --color-t3ch-blue: #0295DA;        /* Primary brand blue */
+  --color-t3ch-darkblue: #00283C;    /* Dark background blue */
+  --color-t3ch-orange: #d97d00;      /* CTA orange */
+  --color-t3ch-lightblue: #f0f8ff;   /* Light blue backgrounds */
   
   /* Tailwind font family mappings */
   /* --font-sans: "Lato", system-ui, sans-serif;

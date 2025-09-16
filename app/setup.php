@@ -151,6 +151,29 @@ add_action('after_setup_theme', function () {
 }, 20);
 
 /**
+ * Register custom block categories for Thyra theme
+ */
+add_filter('block_categories_all', function ($categories) {
+    return array_merge($categories, [
+        [
+            'slug'  => 'thyra-expertise',
+            'title' => 'Thyra Expertise Blocks',
+            'icon'  => 'star-filled',
+        ],
+        [
+            'slug'  => 'thyra-general',
+            'title' => 'Thyra General Blocks',
+            'icon'  => 'admin-customizer',
+        ],
+        [
+            'slug'  => 'thyra-home',
+            'title' => 'Thyra Home Blocks',
+            'icon'  => 'admin-home',
+        ],
+    ]);
+});
+
+/**
  * Register the theme sidebars.
  *
  * @return void
